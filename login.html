@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - BillingApp Pro</title>
+  <!-- Common Header Section (Google Fonts, Tailwind Config, Styles) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { /* ... Same config as above ... */
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' }, secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB'
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { soft: '0 4px 10px rgba(0, 0, 0, 0.05)', DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)', md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)'},
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-borderDefault text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+
+  <div class="text-center mb-8 sm:mb-10">
+    <h1 class="font-heading text-3xl sm:text-4xl text-primary">BillingApp Pro</h1>
+    <p class="font-sans text-secondary mt-1">Welcome back! Please log in to your account.</p>
+  </div>
+
+  <div class="bg-cardBg p-8 sm:p-10 rounded-lg shadow-soft w-full max-w-md">
+    <h2 class="font-heading text-2xl text-primary mb-8 text-center">Member Login</h2>
+    <form action="#" method="POST" class="space-y-6">
+      <div>
+        <label for="email" class="block text-sm font-medium text-primary mb-1 font-sans">Email Address</label>
+        <input type="email" name="email" id="email" required placeholder="you@example.com" class="form-element">
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm font-medium text-primary mb-1 font-sans">Password</label>
+          <a href="#" class="text-xs font-medium text-secondary hover:text-accent transition-colors duration-200">Forgot password?</a>
+        </div>
+        <input type="password" name="password" id="password" required placeholder="Your secure password" class="form-element">
+      </div>
+
+      <div>
+        <button type="submit" class="w-full flex justify-center font-sans font-semibold py-3 px-4 rounded-lg shadow-soft transition-colors duration-200 bg-primary hover:bg-primary-dark text-textOnPrimary">
+          Log In
+        </button>
+      </div>
+    </form>
+
+    <p class="mt-10 text-center text-sm text-secondary font-sans">
+      Don't have an account?
+      <a href="signup.html" class="font-semibold text-primary hover:text-accent transition-colors duration-200">Sign up here</a>
+    </p>
+  </div>
+
+  <footer class="mt-12 text-center text-xs text-secondary font-sans">
+    © <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All rights reserved.
+  </footer>
+
+</body>
+</html>

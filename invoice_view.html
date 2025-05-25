@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Invoice #INV-2024-0078 - BillingApp Pro</title>
+  <!-- Common Header Section (Google Fonts, Tailwind Config, Styles) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { 
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' }, secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' }
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { soft: '0 4px 10px rgba(0, 0, 0, 0.05)', DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)', md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)'},
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-borderDefault text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+
+    .nav-link { @apply px-3 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150; }
+    .nav-link:hover { @apply bg-primary-dark text-accent; }
+    .nav-link-active { @apply bg-accent text-textDark font-semibold; }
+    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+
+    .sidebar-link { @apply flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm text-textOnSecondary hover:bg-white/20 hover:text-accent transition-colors duration-200; }
+    .sidebar-link-active { @apply bg-white/20 text-accent; }
+
+    .status-badge { @apply px-3 py-1 text-xs font-semibold rounded-full inline-block; }
+    .status-paid { @apply bg-success-light text-success-dark; }
+    .status-pending { @apply bg-warning-light text-warning-dark; }
+    .status-overdue { @apply bg-danger-light text-danger-dark; }
+    .status-partial { @apply bg-accent/20 text-accent-dark; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
+    <div class="flex items-center space-x-6">
+      <nav class="hidden md:flex space-x-2 font-sans">
+        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
+        <a href="invoice_create.html" class="nav-link nav-link-active">Billing</a> 
+        <a href="#" class="nav-link">Inventory</a>
+        <a href="#" class="nav-link">Analytics</a>
+        <a href="#" class="nav-link">Settings</a>
+        <a href="#" class="nav-link">Support</a>
+      </nav>
+      <div class="relative font-sans">
+        <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+          <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+          <span class="hidden lg:inline text-sm">Administrator</span>
+          <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1 border-borderLight"> 
+          <a href="login.html" class="block px-4 py-2 text-sm text-primary hover:bg-background">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1">
+    <!-- Sidebar (Optional) -->
+    <aside class="w-64 bg-secondary p-6 space-y-6 hidden lg:block shadow-soft flex-shrink-0">
+        <h2 class="text-xl font-heading font-bold mb-4 border-b border-white/20 pb-2 text-textOnSecondary">Billing Menu</h2>
+        <nav class="space-y-2">
+            <a href="invoice_create.html" class="sidebar-link">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Create Invoice</span>
+            </a>
+            <a href="#" class="sidebar-link sidebar-link-active"> 
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span>All Invoices</span>
+            </a>
+            <a href="#" class="sidebar-link">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <span>Recurring Invoices</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content: Invoice View -->
+    <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
+      <!-- Invoice Header -->
+      <section class="mb-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+          <div>
+            <h2 class="text-3xl font-heading text-primary">Invoice #INV-2024-0078</h2>
+            <p class="text-secondary font-sans">Client: Wellness Clinic Pvt. Ltd.</p>
+          </div>
+          <div class="mt-3 sm:mt-0 text-left sm:text-right">
+            <span class="status-badge status-partial">Partially Paid</span>
+            <p class="text-sm text-secondary font-sans mt-1">Issued: May 10, 2024</p>
+            <p class="text-sm text-secondary font-sans">Due: May 25, 2024</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Invoice Actions Bar -->
+      <section class="mb-8 flex flex-wrap gap-3 items-center">
+        <button class="font-sans text-sm bg-primary hover:bg-primary-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+          <span>Download PDF</span>
+        </button>
+        <button class="font-sans text-sm bg-accent hover:bg-accent-dark text-textDark px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          <span>Send Reminder</span>
+        </button>
+        <button class="font-sans text-sm bg-secondary hover:bg-secondary/80 text-textOnSecondary px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+          <span>Edit Invoice</span>
+        </button>
+         <button class="font-sans text-sm bg-danger-DEFAULT hover:bg-danger-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            <span>Void Invoice</span>
+        </button>
+      </section>
+
+      <!-- Invoice Details: Items & Totals -->
+      <section class="dashboard-card mb-8">
+        <h3 class="text-xl font-heading text-primary mb-4">Invoice Items</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[600px] text-sm font-sans">
+            <thead class="bg-background">
+              <tr>
+                <th class="p-3 text-left font-semibold text-primary">Item/Service</th>
+                <th class="p-3 text-center font-semibold text-primary">Qty</th>
+                <th class="p-3 text-right font-semibold text-primary">Unit Price (₹)</th>
+                <th class="p-3 text-right font-semibold text-primary">Tax (%)</th>
+                <th class="p-3 text-right font-semibold text-primary">Amount (₹)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-borderLight">
+                <td class="p-3 text-primary">Wellness Consultation</td>
+                <td class="p-3 text-center text-secondary">1</td>
+                <td class="p-3 text-right text-secondary">2,000.00</td>
+                <td class="p-3 text-right text-secondary">18%</td>
+                <td class="p-3 text-right text-primary font-semibold">2,360.00</td>
+              </tr>
+              <tr class="border-b border-borderLight">
+                <td class="p-3 text-primary">Herbal Supplement Pack</td>
+                <td class="p-3 text-center text-secondary">1</td>
+                <td class="p-3 text-right text-secondary">966.10</td>
+                <td class="p-3 text-right text-secondary">18%</td>
+                <td class="p-3 text-right text-primary font-semibold">1,140.00</td>
+              </tr>
+            </tbody>
+            <tfoot class="font-sans">
+              <tr>
+                <td colspan="3"></td>
+                <td class="p-3 text-right text-secondary font-semibold">Subtotal:</td>
+                <td class="p-3 text-right text-primary font-semibold">₹2,966.10</td>
+              </tr>
+              <tr>
+                <td colspan="3"></td>
+                <td class="p-3 text-right text-secondary">Total Tax (GST @18%):</td>
+                <td class="p-3 text-right text-primary">₹533.90</td>
+              </tr>
+              <!-- Example Discount -->
+              <!-- <tr>
+                <td colspan="3"></td>
+                <td class="p-3 text-right text-secondary">Discount:</td>
+                <td class="p-3 text-right text-primary">-₹0.00</td>
+              </tr> -->
+              <tr>
+                <td colspan="3"></td>
+                <td class="p-3 text-right text-xl font-heading text-primary">Grand Total:</td>
+                <td class="p-3 text-right text-xl font-heading text-primary">₹3,500.00</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- Payment Collection & History Section (Your Snippet Integrated Here) -->
+      <section id="paymentCollection" class="dashboard-card">
+        <h3 class="text-2xl font-heading text-primary mb-6">Payment Management</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Left Side: Payment Recording Form -->
+          <div class="md:col-span-2 space-y-6">
+            <div class="p-4 bg-background rounded-lg">
+              <p class="text-sm font-sans text-secondary">Invoice Total: <span class="font-semibold text-primary text-lg">₹3,500.00</span></p>
+              <p class="text-sm font-sans text-secondary">Amount Paid: <span class="font-semibold text-success-dark text-lg">₹1,500.00</span></p>
+              <p class="text-lg font-sans text-danger-DEFAULT">Remaining Balance: <span class="font-semibold">₹2,000.00</span></p>
+            </div>
+
+            <form id="recordPaymentForm" class="space-y-5">
+              <div>
+                <label for="paymentAmount" class="block text-sm font-medium text-primary mb-1 font-sans">Amount Received <span class="text-danger-DEFAULT">*</span></label>
+                <input type="number" id="paymentAmount" name="paymentAmount" placeholder="Enter amount" step="0.01" class="form-element" required>
+              </div>
+              <div>
+                <label for="paymentDate" class="block text-sm font-medium text-primary mb-1 font-sans">Payment Date <span class="text-danger-DEFAULT">*</span></label>
+                <input type="date" id="paymentDate" name="paymentDate" class="form-element" required>
+                <script>document.getElementById('paymentDate').valueAsDate = new Date();</script>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-primary mb-2 font-sans">Payment Method <span class="text-danger-DEFAULT">*</span></label>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <label class="flex items-center space-x-2 p-3 border border-borderDefault rounded-lg hover:border-primary hover:bg-background cursor-pointer transition-all">
+                    <input type="radio" name="paymentMethod" value="upi" class="form-radio h-4 w-4 text-primary focus:ring-primary">
+                    <span class="text-sm font-sans text-primary">UPI</span>
+                  </label>
+                  <label class="flex items-center space-x-2 p-3 border border-borderDefault rounded-lg hover:border-primary hover:bg-background cursor-pointer transition-all">
+                    <input type="radio" name="paymentMethod" value="card" class="form-radio h-4 w-4 text-primary focus:ring-primary">
+                    <span class="text-sm font-sans text-primary">Card</span>
+                  </label>
+                  <label class="flex items-center space-x-2 p-3 border border-borderDefault rounded-lg hover:border-primary hover:bg-background cursor-pointer transition-all">
+                    <input type="radio" name="paymentMethod" value="net_banking" class="form-radio h-4 w-4 text-primary focus:ring-primary">
+                    <span class="text-sm font-sans text-primary">Net Banking</span>
+                  </label>
+                  <label class="flex items-center space-x-2 p-3 border border-borderDefault rounded-lg hover:border-primary hover:bg-background cursor-pointer transition-all">
+                    <input type="radio" name="paymentMethod" value="cash" class="form-radio h-4 w-4 text-primary focus:ring-primary">
+                    <span class="text-sm font-sans text-primary">Cash</span>
+                  </label>
+                  <label class="flex items-center space-x-2 p-3 border border-borderDefault rounded-lg hover:border-primary hover:bg-background cursor-pointer transition-all">
+                    <input type="radio" name="paymentMethod" value="emi" class="form-radio h-4 w-4 text-primary focus:ring-primary">
+                    <span class="text-sm font-sans text-primary">EMI</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label for="paymentReference" class="block text-sm font-medium text-primary mb-1 font-sans">Reference / Transaction ID (Optional)</label>
+                <input type="text" id="paymentReference" name="paymentReference" placeholder="E.g., UPI Ref No., Cheque No." class="form-element">
+              </div>
+              <div>
+                <label for="paymentNotes" class="block text-sm font-medium text-primary mb-1 font-sans">Notes (Optional)</label>
+                <textarea id="paymentNotes" name="paymentNotes" rows="2" placeholder="Any additional details..." class="form-element"></textarea>
+              </div>
+              <div class="pt-3">
+                <button type="submit" class="w-full sm:w-auto font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-6 py-3 rounded-lg shadow-soft transition-colors duration-200 flex items-center justify-center space-x-2">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                  <span>Record Payment</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Side: Payment History -->
+          <div class="md:col-span-1">
+            <h4 class="text-lg font-heading text-primary mb-4">Payment History</h4>
+            <div class="space-y-3 max-h-96 overflow-y-auto pr-2">
+              <div class="p-4 bg-background rounded-lg border border-borderLight">
+                <div class="flex justify-between items-center mb-1">
+                  <p class="font-semibold font-sans text-primary">₹1,000.00</p>
+                  <span class="text-xs font-sans px-2 py-0.5 rounded-full bg-primary/10 text-primary-dark">UPI</span>
+                </div>
+                <p class="text-xs font-sans text-secondary">Date: May 20, 2024</p>
+                <p class="text-xs font-sans text-secondary">Ref: UP12345XYZ</p>
+              </div>
+              <div class="p-4 bg-background rounded-lg border border-borderLight">
+                <div class="flex justify-between items-center mb-1">
+                  <p class="font-semibold font-sans text-primary">₹500.00</p>
+                  <span class="text-xs font-sans px-2 py-0.5 rounded-full bg-primary/10 text-primary-dark">Cash</span>
+                </div>
+                <p class="text-xs font-sans text-secondary">Date: May 15, 2024</p>
+                <p class="text-xs font-sans text-secondary">Notes: Advance payment</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Payment Collection Section -->
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-textOnPrimary text-center p-4 text-xs font-sans shadow-soft mt-auto">
+    © <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All Rights Reserved. <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Privacy Policy</a> <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Terms of Service</a>
+  </footer>
+
+  <script>
+    function toggleProfileDropdown() { document.getElementById('profileDropdown').classList.toggle('hidden'); }
+    window.onclick = function(event) {
+      const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]');
+      const profileDropdown = document.getElementById('profileDropdown');
+      if (!profileButton && profileDropdown && !profileDropdown.contains(event.target) && !profileDropdown.classList.contains('hidden')) {
+        profileDropdown.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

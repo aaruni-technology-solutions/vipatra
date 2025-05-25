@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Dashboard - BillingApp Pro</title>
+  <!-- Common Header Section (Google Fonts, Tailwind Config, Styles) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { /* ... Same config as previous examples ... */
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' }, secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' } 
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { soft: '0 4px 10px rgba(0, 0, 0, 0.05)', DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)', md: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)'},
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-borderDefault text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+
+    .nav-link { @apply px-3 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150; }
+    .nav-link:hover { @apply bg-primary-dark text-accent; }
+    .nav-link-active { @apply bg-accent text-textDark font-semibold; }
+    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+
+    .sidebar-link { @apply flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm text-textOnSecondary hover:bg-white/20 hover:text-accent transition-colors duration-200; }
+    .sidebar-link-active { @apply bg-white/20 text-accent; }
+
+    .status-badge { @apply px-3 py-1 text-xs font-semibold rounded-full inline-block; }
+    .status-low { @apply bg-danger-light text-danger-dark; }
+    .status-nearing-expiry { @apply bg-warning-light text-warning-dark; }
+    .status-ok { @apply bg-success-light text-success-dark; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
+    <div class="flex items-center space-x-6">
+      <nav class="hidden md:flex space-x-2 font-sans">
+        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
+        <a href="invoice_create.html" class="nav-link">Billing</a>
+        <a href="inventory_dashboard.html" class="nav-link nav-link-active">Inventory</a> 
+        <a href="#" class="nav-link">Analytics</a>
+        <a href="#" class="nav-link">Settings</a>
+        <a href="#" class="nav-link">Support</a>
+      </nav>
+      <div class="relative font-sans">
+        <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+          <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+          <span class="hidden lg:inline text-sm">Administrator</span>
+          <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> 
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1 border-borderLight"> 
+          <a href="login.html" class="block px-4 py-2 text-sm text-primary hover:bg-background">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1">
+    <!-- Sidebar (Optional) -->
+    <aside class="w-64 bg-secondary p-6 space-y-6 hidden lg:block shadow-soft flex-shrink-0">
+        <h2 class="text-xl font-heading font-bold mb-4 border-b border-white/20 pb-2 text-textOnSecondary">Inventory Menu</h2>
+        <nav class="space-y-2">
+            <a href="inventory_dashboard.html" class="sidebar-link sidebar-link-active">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="sidebar-link">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+                <span>All Products</span>
+            </a>
+            <a href="#" class="sidebar-link">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Add New Product</span>
+            </a>
+            <a href="#" class="sidebar-link">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <span>Batch Tracking</span>
+            </a>
+             <a href="#" class="sidebar-link">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span>Stock Reports</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content: Inventory Dashboard -->
+    <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
+      <div class="mb-8">
+        <h2 class="text-3xl font-heading text-primary">Inventory Management Dashboard</h2>
+        <p class="text-secondary font-sans">Monitor stock levels, track batches, and manage products.</p>
+      </div>
+
+      <!-- 1. Inventory Dashboard: Quick Stats -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div class="dashboard-card text-center">
+          <p class="text-sm text-secondary font-sans uppercase tracking-wider">Total SKUs</p>
+          <p class="text-4xl font-bold font-sans text-primary mt-1">1,250</p>
+        </div>
+        <div class="dashboard-card text-center">
+          <p class="text-sm text-secondary font-sans uppercase tracking-wider">Low Stock Items</p>
+          <p class="text-4xl font-bold font-sans text-danger-DEFAULT mt-1">15</p>
+          <a href="#lowStockItems" class="text-xs text-secondary hover:text-accent mt-1 block">View Details</a>
+        </div>
+        <div class="dashboard-card text-center">
+          <p class="text-sm text-secondary font-sans uppercase tracking-wider">Fast-Moving Products (Month)</p>
+          <p class="text-4xl font-bold font-sans text-primary-dark mt-1">28</p>
+          <a href="#" class="text-xs text-secondary hover:text-accent mt-1 block">View Report</a>
+        </div>
+        <div class="dashboard-card text-center">
+          <p class="text-sm text-secondary font-sans uppercase tracking-wider">Batches Nearing Expiry</p>
+          <p class="text-4xl font-bold font-sans text-warning-dark mt-1">8</p>
+           <a href="#batchTrackingPanel" class="text-xs text-secondary hover:text-accent mt-1 block">View Batches</a>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Real-time stock levels for critical items & Low Stock Items -->
+        <div class="lg:col-span-2 space-y-8">
+          <section id="criticalItemsStock" class="dashboard-card">
+            <h3 class="text-xl font-heading text-primary mb-4">Critical Items: Real-Time Stock</h3>
+            <div class="space-y-3">
+              <!-- Critical Item Example -->
+              <div class="p-3 bg-background rounded-lg flex justify-between items-center">
+                <div>
+                  <p class="font-semibold text-primary font-sans">Amoxicillin 250mg Tabs</p>
+                  <p class="text-xs text-secondary font-sans">SKU: AMX250-TAB</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-lg font-bold text-primary font-sans">150 <span class="text-xs">units</span></p>
+                  <span class="status-badge status-ok">In Stock</span>
+                </div>
+              </div>
+              <!-- Critical Item Low Stock Example -->
+              <div class="p-3 bg-danger-light rounded-lg flex justify-between items-center">
+                <div>
+                  <p class="font-semibold text-danger-dark font-sans">Insulin Glargine Vials</p>
+                  <p class="text-xs text-secondary font-sans">SKU: INSGLR-VIAL</p>
+                </div>
+                <div class="text-right">
+                  <p class="text-lg font-bold text-danger-dark font-sans">5 <span class="text-xs">units</span></p>
+                  <span class="status-badge status-low">Low Stock!</span>
+                </div>
+              </div>
+              <!-- More critical items -->
+            </div>
+            <a href="#" class="text-sm font-sans text-secondary hover:text-accent mt-4 block">View All Critical Items</a>
+          </section>
+
+          <section id="lowStockItems" class="dashboard-card">
+             <h3 class="text-xl font-heading text-primary mb-4">Detailed Low Stock Items</h3>
+             <div class="overflow-x-auto">
+                <table class="w-full min-w-[500px] text-sm font-sans">
+                    <thead class="bg-background">
+                        <tr>
+                            <th class="p-2 text-left font-semibold text-primary">Product Name</th>
+                            <th class="p-2 text-center font-semibold text-primary">SKU</th>
+                            <th class="p-2 text-center font-semibold text-primary">Current Stock</th>
+                            <th class="p-2 text-center font-semibold text-primary">Threshold</th>
+                            <th class="p-2 text-center font-semibold text-primary">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-borderLight">
+                            <td class="p-2 text-primary">Syringes (10ml)</td>
+                            <td class="p-2 text-center text-secondary">SYR10ML</td>
+                            <td class="p-2 text-center text-danger-DEFAULT font-semibold">8</td>
+                            <td class="p-2 text-center text-secondary">10</td>
+                            <td class="p-2 text-center">
+                                <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-2 py-1 rounded-md shadow-soft">Restock</button>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-borderLight">
+                            <td class="p-2 text-primary">Pain Relief Spray</td>
+                            <td class="p-2 text-center text-secondary">PRSRAY01</td>
+                            <td class="p-2 text-center text-danger-DEFAULT font-semibold">3</td>
+                            <td class="p-2 text-center text-secondary">5</td>
+                            <td class="p-2 text-center">
+                                <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-2 py-1 rounded-md shadow-soft">Restock</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+             </div>
+          </section>
+        </div>
+
+        <!-- 2. Batch Tracking Panel -->
+        <aside id="batchTrackingPanel" class="lg:col-span-1 dashboard-card">
+          <h3 class="text-xl font-heading text-primary mb-4">Batch Tracking & Expiry Alerts</h3>
+          <div class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
+            <!-- Batch Item Example - Nearing Expiry -->
+            <div class="p-3 rounded-lg border border-warning-dark bg-warning-light">
+              <p class="font-semibold text-warning-dark font-sans">Paracetamol Batch #P23001A</p>
+              <p class="text-xs text-secondary font-sans">Product: Paracetamol 500mg</p>
+              <p class="text-xs text-secondary font-sans">Lot No: LOTX55789</p>
+              <p class="text-xs text-warning-dark font-sans font-semibold">Expires: July 15, 2024 (In 20 days)</p>
+              <p class="text-xs text-secondary font-sans">Quantity: 250 units</p>
+              <button class="mt-2 text-xs bg-secondary hover:bg-secondary/80 text-textOnSecondary px-2 py-1 rounded-md shadow-soft">View Details</button>
+            </div>
+            <!-- Batch Item Example - OK -->
+            <div class="p-3 bg-background rounded-lg border border-borderLight">
+              <p class="font-semibold text-primary font-sans">Amoxicillin Batch #AMX005B</p>
+              <p class="text-xs text-secondary font-sans">Product: Amoxicillin 250mg</p>
+              <p class="text-xs text-secondary font-sans">Lot No: LOTA01234</p>
+              <p class="text-xs text-primary font-sans">Expires: Dec 30, 2024</p>
+              <p class="text-xs text-secondary font-sans">Quantity: 500 units</p>
+            </div>
+            <!-- More batch items -->
+          </div>
+          <a href="#" class="text-sm font-sans text-secondary hover:text-accent mt-4 block text-center">View All Batches</a>
+        </aside>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-textOnPrimary text-center p-4 text-xs font-sans shadow-soft mt-auto">
+    © <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All Rights Reserved. <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Privacy Policy</a> <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Terms of Service</a>
+  </footer>
+
+  <script>
+    function toggleProfileDropdown() { document.getElementById('profileDropdown').classList.toggle('hidden'); }
+    window.onclick = function(event) {
+      const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]');
+      const profileDropdown = document.getElementById('profileDropdown');
+      if (!profileButton && profileDropdown && !profileDropdown.contains(event.target) && !profileDropdown.classList.contains('hidden')) {
+        profileDropdown.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
