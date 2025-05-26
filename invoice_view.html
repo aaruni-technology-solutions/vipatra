@@ -37,13 +37,37 @@
     .form-element { @apply w-full bg-cardBg border border-borderDefault text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
     .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
 
-    .nav-link { @apply px-3 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150; }
-    .nav-link:hover { @apply bg-primary-dark text-accent; }
-    .nav-link-active { @apply bg-accent text-textDark font-semibold; }
-    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+.nav-link {
+  @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-opacity duration-150 relative; /* Added relative, changed transition to opacity for the overlay effect */
+}
+.nav-link:hover {
+  @apply bg-primary-hover text-textOnPrimary; /* Uses the new 'hover' shade */
+}
+.nav-link:hover::before {
+  content: ""; /* Necessary for pseudo-elements */
+  @apply absolute inset-0 bg-black opacity-10 rounded-md; /* Adjust opacity-10 to opacity-5, opacity-15, etc. */
+                                                          /* Ensure rounded-md matches link's rounding */
+}
 
-    .sidebar-link { @apply flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm text-textOnSecondary hover:bg-white/20 hover:text-accent transition-colors duration-200; }
-    .sidebar-link-active { @apply bg-white/20 text-accent; }
+
+.nav-link-active {
+  @apply bg-accent text-textDark font-semibold px-5 py-2 rounded-md text-sm relative; /* Added relative here too if it might ever have an overlay itself */
+}
+.nav-link-active:hover {
+  @apply bg-accent-dark text-textDark; /* This hover is fine, a direct color change */
+}
+
+   /* This existing CSS in your <style> block will style this sidebar too */
+.sidebar-link {
+  @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary;
+  @apply hover:bg-primary/10 hover:text-primary transition-colors duration-200;
+}
+.sidebar-link-active {
+  @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm;
+  @apply bg-primary text-textOnPrimary font-semibold;
+  @apply hover:bg-primary-dark hover:text-textOnPrimary;
+}
+/* SVG and Span styles also apply */
 
     .status-badge { @apply px-3 py-1 text-xs font-semibold rounded-full inline-block; }
     .status-paid { @apply bg-success-light text-success-dark; }
@@ -55,13 +79,13 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- Top Navigation Bar -->
-  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+ <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
     <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
     <div class="flex items-center space-x-6">
-      <nav class="hidden md:flex space-x-2 font-sans">
-        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
-        <a href="invoice_create.html" class="nav-link nav-link-active">Billing</a> 
-        <a href="#" class="nav-link">Inventory</a>
+      <nav class="hidden md:flex space-x-4 font-sans">
+        <a href="dashboard-admin.html" class="nav-link nav-link-active">Dashboard</a>
+        <a href="invoice_create.html" class="nav-link">Billing</a>
+        <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
         <a href="#" class="nav-link">Analytics</a>
         <a href="#" class="nav-link">Settings</a>
         <a href="#" class="nav-link">Support</a>
@@ -73,32 +97,42 @@
           <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
         <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
-          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1 border-borderLight"> 
-          <a href="login.html" class="block px-4 py-2 text-sm text-primary hover:bg-background">Logout</a>
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a>
+          <hr class="my-1 border-borderLight">
+          <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
         </div>
       </div>
     </div>
   </header>
 
   <div class="flex flex-1">
-    <!-- Sidebar (Optional) -->
-    <aside class="w-64 bg-secondary p-6 space-y-6 hidden lg:block shadow-soft flex-shrink-0">
-        <h2 class="text-xl font-heading font-bold mb-4 border-b border-white/20 pb-2 text-textOnSecondary">Billing Menu</h2>
-        <nav class="space-y-2">
-            <a href="invoice_create.html" class="sidebar-link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>Create Invoice</span>
-            </a>
-            <a href="#" class="sidebar-link sidebar-link-active"> 
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span>All Invoices</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                <span>Recurring Invoices</span>
-            </a>
-        </nav>
-    </aside>
+   <!-- Sidebar (Billing Menu) - Updated Styling -->
+<aside class="w-64 bg-cardBg p-6 hidden lg:block shadow-sidebar border-r border-borderLight flex-shrink-0">
+    <h2 class="text-xl font-heading font-bold mb-7 border-b border-borderDefault pb-3 text-primary">Billing Menu</h2>
+
+   
+    <nav class="space-y-3">
+        <a href="invoice_create.html" class="sidebar-link flex items-center space-x-3"> 
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">Create Invoice</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center space-x-3"> 
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">All Invoices</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center space-x-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">Recurring Invoices</span>
+        </a>
+    </nav>
+</aside>
 
     <!-- Main Content: Invoice View -->
     <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
@@ -131,7 +165,7 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
           <span>Edit Invoice</span>
         </button>
-         <button class="font-sans text-sm bg-danger-DEFAULT hover:bg-danger-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2">
+         <button class="bg-danger-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2 hover:bg-danger-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-soft flex items-center space-x-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
             <span>Void Invoice</span>
         </button>

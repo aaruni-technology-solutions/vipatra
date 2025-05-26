@@ -54,13 +54,13 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- Top Navigation Bar -->
-  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+ <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
     <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
     <div class="flex items-center space-x-6">
-      <nav class="hidden md:flex space-x-2 font-sans">
-        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
+      <nav class="hidden md:flex space-x-4 font-sans">
+        <a href="dashboard-admin.html" class="nav-link nav-link-active">Dashboard</a>
         <a href="invoice_create.html" class="nav-link">Billing</a>
-        <a href="inventory_dashboard.html" class="nav-link nav-link-active">Inventory</a> 
+        <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
         <a href="#" class="nav-link">Analytics</a>
         <a href="#" class="nav-link">Settings</a>
         <a href="#" class="nav-link">Support</a>
@@ -72,41 +72,56 @@
           <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </button>
         <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
-          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> 
-          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1 border-borderLight"> 
-          <a href="login.html" class="block px-4 py-2 text-sm text-primary hover:bg-background">Logout</a>
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a>
+          <hr class="my-1 border-borderLight">
+          <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
         </div>
       </div>
     </div>
   </header>
 
   <div class="flex flex-1">
-    <!-- Sidebar (Optional) -->
-    <aside class="w-64 bg-secondary p-6 space-y-6 hidden lg:block shadow-soft flex-shrink-0">
-        <h2 class="text-xl font-heading font-bold mb-4 border-b border-white/20 pb-2 text-textOnSecondary">Inventory Menu</h2>
-        <nav class="space-y-2">
-            <a href="inventory_dashboard.html" class="sidebar-link sidebar-link-active">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-                <span>Dashboard</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
-                <span>All Products</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>Add New Product</span>
-            </a>
-            <a href="#" class="sidebar-link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                <span>Batch Tracking</span>
-            </a>
-             <a href="#" class="sidebar-link">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                <span>Stock Reports</span>
-            </a>
-        </nav>
-    </aside>
+    <!-- Sidebar (Inventory Menu) - Updated Styling -->
+<aside class="w-64 bg-cardBg p-6 hidden lg:block shadow-sidebar border-r border-borderLight flex-shrink-0"> 
+    <h2 class="text-xl font-heading font-bold mb-7 border-b border-borderDefault pb-3 text-primary"> 
+        Inventory Menu
+    </h2>
+
+    <nav class="space-y-3">
+        
+        <a href="inventory_dashboard.html" class="sidebar-link sidebar-link-active flex items-center space-x-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">Dashboard</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center space-x-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">All Products</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center space-x-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">Add New Product</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center space-x-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">Batch Tracking</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center space-x-3">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <span class="whitespace-nowrap overflow-hidden text-ellipsis">Stock Reports</span>
+        </a>
+    </nav>
+</aside>
 
     <!-- Main Content: Inventory Dashboard -->
     <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
