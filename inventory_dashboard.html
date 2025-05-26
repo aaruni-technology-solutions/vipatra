@@ -186,42 +186,55 @@
             <a href="#" class="text-sm font-sans text-secondary hover:text-accent mt-4 block">View All Critical Items</a>
           </section>
 
-          <section id="lowStockItems" class="dashboard-card">
-             <h3 class="text-xl font-heading text-primary mb-4">Detailed Low Stock Items</h3>
-             <div class="overflow-x-auto">
-                <table class="w-full min-w-[500px] text-sm font-sans">
-                    <thead class="bg-background">
-                        <tr>
-                            <th class="p-2 text-left font-semibold text-primary">Product Name</th>
-                            <th class="p-2 text-center font-semibold text-primary">SKU</th>
-                            <th class="p-2 text-center font-semibold text-primary">Current Stock</th>
-                            <th class="p-2 text-center font-semibold text-primary">Threshold</th>
-                            <th class="p-2 text-center font-semibold text-primary">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-borderLight">
-                            <td class="p-2 text-primary">Syringes (10ml)</td>
-                            <td class="p-2 text-center text-secondary">SYR10ML</td>
-                            <td class="p-2 text-center text-danger-DEFAULT font-semibold">8</td>
-                            <td class="p-2 text-center text-secondary">10</td>
-                            <td class="p-2 text-center">
-                                <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-2 py-1 rounded-md shadow-soft">Restock</button>
-                            </td>
-                        </tr>
-                        <tr class="border-b border-borderLight">
-                            <td class="p-2 text-primary">Pain Relief Spray</td>
-                            <td class="p-2 text-center text-secondary">PRSRAY01</td>
-                            <td class="p-2 text-center text-danger-DEFAULT font-semibold">3</td>
-                            <td class="p-2 text-center text-secondary">5</td>
-                            <td class="p-2 text-center">
-                                <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-2 py-1 rounded-md shadow-soft">Restock</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-             </div>
-          </section>
+         <section id="lowStockItems" class="dashboard-card">
+    <h3 class="text-xl font-heading text-primary mb-4">Detailed Low Stock Items</h3>
+
+    
+    <div class="overflow-x-auto bg-cardBg rounded-lg border border-borderDefault shadow-sm">
+        <table class="w-full min-w-[500px] text-sm font-sans">
+            
+            <thead class="bg-background border-b border-borderDefault"> 
+                <tr>
+                    <th class="p-3 text-left font-semibold text-primary">Product Name</th> 
+                    <th class="p-3 text-center font-semibold text-primary">SKU</th>
+                    <th class="p-3 text-center font-semibold text-primary">Current Stock</th>
+                    <th class="p-3 text-center font-semibold text-primary">Threshold</th>
+                    <th class="p-3 text-center font-semibold text-primary">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-borderLight last:border-b-0"> 
+                    <td class="p-3 text-primary">Syringes (10ml)</td> 
+                    <td class="p-3 text-center text-secondary">SYR10ML</td>
+                    <td class="p-3 text-center text-danger-DEFAULT font-semibold">8</td>
+                    <td class="p-3 text-center text-secondary">10</td>
+                    <td class="p-3 text-center">
+                        <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-3 py-1.5 rounded-md shadow-soft">Restock</button> 
+                    </td>
+                </tr>
+                <tr class="border-b border-borderLight last:border-b-0"> 
+                    <td class="p-3 text-primary">Pain Relief Spray</td>
+                    <td class="p-3 text-center text-secondary">PRSRAY01</td>
+                    <td class="p-3 text-center text-danger-DEFAULT font-semibold">3</td>
+                    <td class="p-3 text-center text-secondary">5</td>
+                    <td class="p-3 text-center">
+                        <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-3 py-1.5 rounded-md shadow-soft">Restock</button>
+                    </td>
+                </tr>
+               
+                <tr class="border-b border-borderLight last:border-b-0">
+                    <td class="p-3 text-primary">Vitamin C Tablets</td>
+                    <td class="p-3 text-center text-secondary">VITC-TAB</td>
+                    <td class="p-3 text-center text-warning-dark font-semibold">12</td> 
+                    <td class="p-3 text-center text-secondary">10</td>
+                    <td class="p-3 text-center">
+                        <button class="text-xs bg-primary hover:bg-primary-dark text-textOnPrimary px-3 py-1.5 rounded-md shadow-soft">Restock</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
         </div>
 
         <!-- 2. Batch Tracking Panel -->
