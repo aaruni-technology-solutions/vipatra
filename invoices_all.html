@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Invoices - BillingApp Pro</title>
+  <!-- Common Header Section (Google Fonts, Tailwind Config, Styles) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { /* ... Same config as previous examples ... */
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' }, secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' },
+            info: { DEFAULT: '#3B82F6', light: '#DBEAFE', dark: '#2563EB'} // For 'Sent' or 'Viewed'
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { /* ... same shadows ... */ soft: '0 4px 10px rgba(0,0,0,0.05)', DEFAULT: '0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px -1px rgba(0,0,0,0.1)', md: '0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1)', sidebar: '0 2px 8px rgba(0,0,0,0.08)'},
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); /* ... */ }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-gray-400 text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+    .nav-link { @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150 relative; }
+    .nav-link:hover { @apply text-textOnPrimary; }
+    .nav-link:hover::before { content: ""; @apply absolute inset-0 bg-black opacity-10 rounded-md; }
+    .nav-link-active { @apply bg-accent text-textDark font-semibold px-5 py-2 rounded-md text-sm relative; }
+    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+    .sidebar-link { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-200; }
+    .sidebar-link-active { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm bg-primary text-textOnPrimary font-semibold hover:bg-primary-dark hover:text-textOnPrimary; }
+    .sidebar-link svg { @apply flex-shrink-0; }
+    .sidebar-link:not(.sidebar-link-active) svg { @apply text-secondary; }
+    .sidebar-link:not(.sidebar-link-active):hover svg { @apply text-primary; }
+    .sidebar-link-active svg { @apply text-textOnPrimary; }
+    .sidebar-link span { @apply whitespace-nowrap overflow-hidden text-ellipsis; }
+
+    /* Status Badges */
+    .status-badge { @apply px-2.5 py-1 text-xs font-semibold rounded-full inline-block leading-tight; }
+    .status-paid { @apply bg-success-light text-success-dark; }
+    .status-pending, .status-sent, .status-viewed { @apply bg-info-light text-info-dark; } /* Grouped pending/sent/viewed */
+    .status-overdue { @apply bg-danger-light text-danger-dark; }
+    .status-partial { @apply bg-warning-light text-warning-dark; } /* Using warning for partial */
+    .status-draft { @apply bg-gray-200 text-gray-700; }
+    .status-void { @apply bg-gray-500 text-white; }
+
+    /* Table action button */
+    .table-action-btn { @apply p-1.5 text-secondary hover:text-primary rounded-md hover:bg-primary/10 transition-colors; }
+    .table-action-btn svg { @apply w-4 h-4; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
+    <div class="flex items-center space-x-6">
+      <nav class="hidden md:flex space-x-4 font-sans">
+        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
+        <a href="invoices_all.html" class="nav-link nav-link-active">Billing</a> 
+        <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
+        <a href="customers.html" class="nav-link">Customers</a>
+        <a href="#" class="nav-link">Analytics</a>
+        <a href="settings.html" class="nav-link">Settings</a>
+        <a href="#" class="nav-link">Support</a>
+      </nav>
+      <div class="relative font-sans">
+        <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+          <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+          <span class="hidden lg:inline text-sm">Administrator</span>
+          <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1 border-borderLight"> <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1">
+    <!-- Sidebar (Billing Menu) -->
+    <aside class="w-64 bg-cardBg p-6 hidden lg:block shadow-sidebar border-r border-borderLight flex-shrink-0">
+        <h2 class="text-xl font-heading font-bold mb-7 border-b border-borderDefault pb-3 text-primary">Billing Menu</h2>
+        <nav class="space-y-3">
+            <a href="invoice_create.html" class="sidebar-link flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">Create Invoice</span> </a>
+            <a href="invoices_all.html" class="sidebar-link sidebar-link-active flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">All Invoices</span> </a>
+            <a href="invoice_recurring_create.html" class="sidebar-link flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">Recurring Invoices</span> </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content: All Invoices Page -->
+    <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
+      <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+        <div>
+            <h2 class="text-3xl font-heading text-primary">All Invoices</h2>
+            <p class="text-secondary font-sans mt-1">View, manage, and track all your invoices.</p>
+        </div>
+        <div class="mt-4 sm:mt-0">
+            <a href="invoice_create.html" class="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-6 py-3 rounded-lg shadow-soft transition-colors duration-200 flex items-center space-x-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span>Create New Invoice</span>
+            </a>
+        </div>
+      </div>
+
+      <!-- Filters and Search Section -->
+      <section class="dashboard-card mb-6">
+        <form class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div>
+                <label for="searchInvoice" class="block text-xs font-medium text-primary mb-1">Search</label>
+                <input type="text" id="searchInvoice" name="searchInvoice" placeholder="Invoice #, Customer..." class="form-element !p-2.5 text-sm">
+            </div>
+            <div>
+                <label for="statusFilter" class="block text-xs font-medium text-primary mb-1">Status</label>
+                <select id="statusFilter" name="statusFilter" class="form-element !p-2.5 text-sm">
+                    <option value="">All Statuses</option>
+                    <option value="draft">Draft</option>
+                    <option value="sent">Sent</option>
+                    <option value="viewed">Viewed</option>
+                    <option value="partial">Partially Paid</option>
+                    <option value="paid">Paid</option>
+                    <option value="overdue">Overdue</option>
+                    <option value="void">Void</option>
+                </select>
+            </div>
+            <div>
+                <label for="dateRange" class="block text-xs font-medium text-primary mb-1">Date Range (Issue Date)</label>
+                <input type="date" id="dateStart" name="dateStart" class="form-element !p-2.5 text-sm">
+              
+              <input type="date" id="dateEnd" name="dateEnd" class="form-element !p-2.5 text-sm mt-1"> 
+            </div>
+            <div class="flex space-x-2">
+                <button type="submit" class="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-4 py-2.5 rounded-lg shadow-soft text-sm w-full sm:w-auto">Apply</button>
+                <button type="reset" class="font-sans bg-background hover:bg-borderLight text-secondary px-4 py-2.5 rounded-lg shadow-sm border border-borderDefault text-sm w-full sm:w-auto">Clear</button>
+            </div>
+        </form>
+      </section>
+
+      <!-- Bulk Actions Bar (Placeholder - would be shown via JS) -->
+      <div id="bulkActionsBar" class="hidden mb-4 bg-primary/10 p-3 rounded-lg flex items-center space-x-3">
+          <span class="text-sm font-medium text-primary">With Selected (<span id="selectedCount">0</span>):</span>
+          <button class="text-xs font-sans bg-accent hover:bg-accent-dark text-textDark px-3 py-1.5 rounded-md shadow-soft">Send Reminders</button>
+          <button class="text-xs font-sans bg-accent hover:bg-accent-dark text-textDark px-3 py-1.5 rounded-md shadow-soft">Mark as Paid</button>
+          <button class="text-xs font-sans bg-secondary hover:bg-secondary/80 text-textOnSecondary px-3 py-1.5 rounded-md shadow-soft">Download PDFs</button>
+      </div>
+
+      <!-- Invoice Table -->
+      <div class="dashboard-card overflow-x-auto">
+        <table class="w-full min-w-[900px] text-sm font-sans">
+            <thead class="bg-background border-b border-borderDefault">
+                <tr>
+                    <th class="p-3 w-10 text-center"><input type="checkbox" id="selectAllInvoices" class="form-checkbox h-4 w-4 text-primary rounded border-gray-400 focus:ring-primary"></th>
+                    <th class="p-3 text-left font-semibold text-primary">Invoice #</th>
+                    <th class="p-3 text-left font-semibold text-primary">Customer</th>
+                    <th class="p-3 text-left font-semibold text-primary">Issue Date</th>
+                    <th class="p-3 text-left font-semibold text-primary">Due Date</th>
+                    <th class="p-3 text-right font-semibold text-primary">Amount (₹)</th>
+                    <th class="p-3 text-center font-semibold text-primary">Status</th>
+                    <th class="p-3 text-center font-semibold text-primary">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Row 1: Partially Paid -->
+                <tr class="border-b border-borderLight hover:bg-background/50">
+                    <td class="p-3 text-center"><input type="checkbox" name="invoice_ids[]" value="1" class="form-checkbox h-4 w-4 text-primary rounded border-gray-400 focus:ring-primary invoice-checkbox"></td>
+                    <td class="p-3 text-primary font-medium"><a href="invoice_view.html" class="hover:text-accent hover:underline">INV-2024-0078</a></td>
+                    <td class="p-3 text-secondary">Wellness Clinic Pvt. Ltd.</td>
+                    <td class="p-3 text-secondary">May 10, 2024</td>
+                    <td class="p-3 text-secondary">May 25, 2024</td>
+                    <td class="p-3 text-right text-primary font-semibold">₹3,500.00</td>
+                    <td class="p-3 text-center"><span class="status-badge status-partial">Partially Paid</span></td>
+                    <td class="p-3 text-center">
+                        <div class="flex justify-center items-center space-x-1">
+                            <a href="invoice_view.html" class="table-action-btn" title="View"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" /></svg></a>
+                            <button class="table-action-btn" title="Edit"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" /></svg></button>
+                            <button class="table-action-btn" title="More Actions" onclick="toggleInvoiceActions(this)">
+                                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>
+                            </button>
+                            <!-- Hidden Actions Dropdown -->
+                            <div class="hidden absolute right-0 mr-12 -mt-2 w-40 bg-cardBg rounded-md shadow-lg border border-borderLight z-10 py-1">
+                                <a href="#" class="block px-4 py-2 text-xs text-primary hover:bg-background">Record Payment</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-primary hover:bg-background">Send Reminder</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-primary hover:bg-background">Download PDF</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-primary hover:bg-background">Duplicate</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-danger-DEFAULT hover:bg-danger-light">Void</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Example Row 2: Paid -->
+                <tr class="border-b border-borderLight hover:bg-background/50">
+                    <td class="p-3 text-center"><input type="checkbox" name="invoice_ids[]" value="2" class="form-checkbox h-4 w-4 text-primary rounded border-gray-400 focus:ring-primary invoice-checkbox"></td>
+                    <td class="p-3 text-primary font-medium"><a href="invoice_view.html" class="hover:text-accent hover:underline">INV-2024-0077</a></td>
+                    <td class="p-3 text-secondary">Rohan Sharma</td>
+                    <td class="p-3 text-secondary">May 08, 2024</td>
+                    <td class="p-3 text-secondary">May 23, 2024</td>
+                    <td class="p-3 text-right text-primary font-semibold">₹1,200.00</td>
+                    <td class="p-3 text-center"><span class="status-badge status-paid">Paid</span></td>
+                    <td class="p-3 text-center">
+                         <div class="flex justify-center items-center space-x-1">
+                            <a href="invoice_view.html" class="table-action-btn" title="View"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.022 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" /></svg></a>
+                            
+                            <button class="table-action-btn" title="More Actions" onclick="toggleInvoiceActions(this)">
+                                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" /></svg>
+                            </button>
+                             <div class="hidden absolute right-0 mr-12 -mt-2 w-40 bg-cardBg rounded-md shadow-lg border border-borderLight z-10 py-1">
+                                <a href="#" class="block px-4 py-2 text-xs text-primary hover:bg-background">Download PDF</a>
+                                <a href="#" class="block px-4 py-2 text-xs text-primary hover:bg-background">Send Receipt</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+                 <tr class="border-b border-borderLight hover:bg-background/50">
+                    <td class="p-3 text-center"><input type="checkbox" name="invoice_ids[]" value="3" class="form-checkbox h-4 w-4 text-primary rounded border-gray-400 focus:ring-primary invoice-checkbox"></td>
+                    <td class="p-3 text-primary font-medium"><a href="invoice_view.html" class="hover:text-accent hover:underline">INV-2024-0076</a></td>
+                    <td class="p-3 text-secondary">Priya Singh</td>
+                    <td class="p-3 text-secondary">May 05, 2024</td>
+                    <td class="p-3 text-secondary text-danger-dark">May 12, 2024</td>
+                    <td class="p-3 text-right text-primary font-semibold">₹850.00</td>
+                    <td class="p-3 text-center"><span class="status-badge status-overdue">Overdue</span></td>
+                    <td class="p-3 text-center">
+                        <div class="flex justify-center items-center space-x-1">
+                         
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-6 flex flex-col sm:flex-row justify-between items-center font-sans text-sm text-secondary">
+        <span>Showing 1 to 10 of 57 invoices</span>
+        <div class="flex space-x-1 mt-2 sm:mt-0">
+            <button class="px-3 py-1 border border-borderDefault rounded-md hover:bg-background disabled:opacity-50" disabled>Previous</button>
+            <button class="px-3 py-1 border border-borderDefault rounded-md bg-primary text-textOnPrimary">1</button>
+            <button class="px-3 py-1 border border-borderDefault rounded-md hover:bg-background">2</button>
+            <button class="px-3 py-1 border border-borderDefault rounded-md hover:bg-background">3</button>
+            <span class="px-3 py-1">...</span>
+            <button class="px-3 py-1 border border-borderDefault rounded-md hover:bg-background">6</button>
+            <button class="px-3 py-1 border border-borderDefault rounded-md hover:bg-background">Next</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-textOnPrimary text-center p-4 text-xs font-sans shadow-soft mt-auto">
+    © <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All Rights Reserved. <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Privacy Policy</a> <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Terms of Service</a>
+  </footer>
+
+  <script>
+    function toggleProfileDropdown() { /* ... same as before ... */ document.getElementById('profileDropdown').classList.toggle('hidden'); }
+    window.addEventListener('click', function(event) { /* ... same as before ... */ const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]'); const profileDropdown = document.getElementById('profileDropdown'); if (!profileButton && profileDropdown && !profileDropdown.contains(event.target) && !profileDropdown.classList.contains('hidden')) { profileDropdown.classList.add('hidden'); } });
+
+    // Toggle individual invoice action dropdowns
+    function toggleInvoiceActions(buttonEl) {
+        const dropdown = buttonEl.nextElementSibling;
+        // Hide all other open action dropdowns first
+        document.querySelectorAll('.table-action-btn + div').forEach(d => {
+            if (d !== dropdown) d.classList.add('hidden');
+        });
+        dropdown.classList.toggle('hidden');
+    }
+
+    // Hide action dropdown if clicked outside
+    window.addEventListener('click', function(event) {
+        if (!event.target.closest('.table-action-btn')) {
+            document.querySelectorAll('.table-action-btn + div').forEach(dropdown => {
+                dropdown.classList.add('hidden');
+            });
+        }
+        // Also hide profile dropdown (consolidated click outside logic)
+        const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]');
+        const profileDropdown = document.getElementById('profileDropdown');
+        if (!profileButton && profileDropdown && !profileDropdown.contains(event.target) && !profileDropdown.classList.contains('hidden')) {
+            profileDropdown.classList.add('hidden');
+        }
+    });
+
+
+    // Bulk actions select all and show bar
+    const selectAllCheckbox = document.getElementById('selectAllInvoices');
+    const invoiceCheckboxes = document.querySelectorAll('.invoice-checkbox');
+    const bulkActionsBar = document.getElementById('bulkActionsBar');
+    const selectedCountSpan = document.getElementById('selectedCount');
+
+    function updateBulkActionsBar() {
+        const selectedInvoices = document.querySelectorAll('.invoice-checkbox:checked').length;
+        selectedCountSpan.textContent = selectedInvoices;
+        if (selectedInvoices > 0) {
+            bulkActionsBar.classList.remove('hidden');
+        } else {
+            bulkActionsBar.classList.add('hidden');
+        }
+    }
+
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function() {
+            invoiceCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+            updateBulkActionsBar();
+        });
+    }
+
+    invoiceCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (!this.checked) {
+                selectAllCheckbox.checked = false;
+            } else {
+                // Check if all are checked
+                const allChecked = Array.from(invoiceCheckboxes).every(cb => cb.checked);
+                selectAllCheckbox.checked = allChecked;
+            }
+            updateBulkActionsBar();
+        });
+    });
+
+  </script>
+</body>
+</html>

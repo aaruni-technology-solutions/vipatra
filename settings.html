@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - BillingApp Pro</title>
+  <!-- Google Fonts Setup -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' },
+            secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' },
+            background: '#FAF9F5',
+            textLight: '#FFFFFF',
+            textDark: '#1F2937',
+            textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF',
+            cardBg: '#FFFFFF',
+            borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' }
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: {
+            soft: '0 4px 10px rgba(0,0,0,0.05)',
+            DEFAULT: '0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px -1px rgba(0,0,0,0.1)',
+            md: '0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1)',
+            sidebar: '0 2px 8px rgba(0,0,0,0.08)'
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-gray-400 text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+
+    /* Top Navigation Bar Links */
+    .nav-link { @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-opacity duration-150 relative; }
+    .nav-link:hover { @apply text-textOnPrimary; }
+    .nav-link:hover::before { content: ""; @apply absolute inset-0 bg-black opacity-10 rounded-md; }
+    .nav-link-active { @apply bg-accent text-textDark font-semibold px-5 py-2 rounded-md text-sm relative; }
+    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+
+    /* Main Sidebar Styles (for other pages, not directly used on settings page itself if settings has its own sub-nav) */
+    .sidebar-link { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-200; }
+    .sidebar-link-active { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm bg-primary text-textOnPrimary font-semibold hover:bg-primary-dark hover:text-textOnPrimary; }
+    .sidebar-link svg { @apply flex-shrink-0; }
+    .sidebar-link:not(.sidebar-link-active) svg { @apply text-secondary; }
+    .sidebar-link:not(.sidebar-link-active):hover svg { @apply text-primary; }
+    .sidebar-link-active svg { @apply text-textOnPrimary; }
+    .sidebar-link span { @apply whitespace-nowrap overflow-hidden text-ellipsis; }
+
+ /* In your <style> block */
+/* In your <style> block */
+
+/*In your <style> block */
+
+/* Settings Sub-Navigation Styles */
+.settings-nav-link {
+  /* `flex items-center space-x-3` are now IN THE HTML directly on the <a> tag */
+  @apply w-full px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150; /* Padding and base text style */
+  @apply text-secondary hover:bg-primary/10 hover:text-primary; /* Default and hover for non-active */
+}
+.settings-nav-link-active {
+  /* `flex items-center space-x-3` are also IN THE HTML directly on the <a> tag for active links */
+  @apply bg-primary text-textOnPrimary font-semibold; /* Active state background and text */
+  @apply hover:bg-primary-dark hover:text-textOnPrimary; /* Hover for active state */
+}
+
+/* SVG Styling - ensure they don't shrink */
+/* The class flex-shrink-0 is already on the SVGs in the HTML */
+
+/* Icon colors based on link state (these can remain as they target the SVG within the link) */
+.settings-nav-link:not(.settings-nav-link-active) svg { @apply text-secondary; }
+.settings-nav-link:not(.settings-nav-link-active):hover svg { @apply text-primary; }
+.settings-nav-link-active svg { @apply text-textOnPrimary; }
+
+/* Span for text (already good with classes in HTML) */
+/* The class whitespace-nowrap overflow-hidden text-ellipsis is on the <span> in the HTML */
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
+    <div class="flex items-center space-x-6">
+      <nav class="hidden md:flex space-x-4 font-sans"> 
+        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
+        <a href="invoice_create.html" class="nav-link">Billing</a>
+        <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
+        <a href="customers.html" class="nav-link">Customers</a>
+        <a href="#" class="nav-link">Analytics</a>
+        <a href="settings.html" class="nav-link nav-link-active">Settings</a> 
+        <a href="#" class="nav-link">Support</a>
+      </nav>
+      <div class="relative font-sans">
+        <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+          <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+          <span class="hidden lg:inline text-sm">Administrator</span>
+          <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a>
+          <hr class="my-1 border-borderLight">
+          <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area for Settings -->
+  <div class="flex-1 flex">
+
+ <!-- Settings Sub-Navigation Sidebar in settings.html -->
+<aside id="settingsSidebar" class="w-72 bg-cardBg p-6 border-r border-borderLight shadow-sm hidden md:block flex-shrink-0">
+  <h2 class="text-xl font-heading text-primary mb-6 font-semibold">Settings</h2>
+  <nav class="space-y-1.5">
+    <a href="#organizationProfile" class="settings-nav-link settings-nav-link-active flex items-center space-x-3" onclick="showSettingsSection('organizationProfile', this)">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+      <span class="whitespace-nowrap overflow-hidden text-ellipsis">Organization Profile</span>
+    </a>
+    <a href="#userManagement" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('userManagement', this)">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M12 12a4 4 0 110-8 4 4 0 010 8z"></path></svg>
+      <span class="whitespace-nowrap overflow-hidden text-ellipsis">User Management</span>
+    </a>
+    <!--REPEAT THIS PATTERN FOR ALL OTHER <a> TAGS IN THIS NAV .--> 
+    <a href="#invoiceCustomization" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('invoiceCustomization', this)">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+      <span class="whitespace-nowrap overflow-hidden text-ellipsis">Invoice Customization</span>
+    </a>
+    <a href="#taxSettings" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('taxSettings', this)">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 0v6m0-6L9 13m6-6l-6 6m6-6v6m0-6H9m3 6h.01M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+      <span class="whitespace-nowrap overflow-hidden text-ellipsis">Tax Settings</span>
+    </a>
+    <a href="#paymentGateways" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('paymentGateways', this)">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+      <span class="whitespace-nowrap overflow-hidden text-ellipsis">Payment Gateways</span>
+    </a>
+    <a href="#emailSettings" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('emailSettings', this)">
+      <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+      <span class="whitespace-nowrap overflow-hidden text-ellipsis">Email Settings</span>
+    </a>
+    <a href="#dataManagement" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('dataManagement', this)">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10m16-5H4m16 0a2 2 0 100-4h-3l-4-4-4 4H4a2 2 0 100 4h16z"></path></svg>
+        <span class="whitespace-nowrap overflow-hidden text-ellipsis">Data Management</span>
+    </a>
+    <a href="#integrations" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('integrations', this)">
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        <span class="whitespace-nowrap overflow-hidden text-ellipsis">Integrations</span>
+    </a>
+  </nav>
+</aside>
+    <!-- Settings Content Area -->
+    <main id="settingsContent" class="flex-1 p-6 sm:p-10 overflow-y-auto">
+
+      <!-- Organization Profile Section (Visible by default) -->
+      <section id="organizationProfileSection" class="settings-section">
+        <div class="dashboard-card">
+          <h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Organization Profile</h3>
+          <form class="space-y-6 font-sans">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="orgName" class="block text-sm font-medium text-primary mb-1">Organization Name <span class="text-danger-DEFAULT">*</span></label>
+                <input type="text" id="orgName" name="orgName" value="BillingApp Pro Inc." class="form-element">
+              </div>
+              <div>
+                <label for="orgIndustry" class="block text-sm font-medium text-primary mb-1">Industry</label>
+                <select id="orgIndustry" name="orgIndustry" class="form-element">
+                  <option>Software</option><option>Healthcare</option><option>Retail</option><option>Services</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="orgAddress" class="block text-sm font-medium text-primary mb-1">Address <span class="text-danger-DEFAULT">*</span></label>
+              <textarea id="orgAddress" name="orgAddress" rows="3" class="form-element" placeholder="Street Address, City, State, Postal Code, Country">123 App Street, Tech City, TC 54321</textarea>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="orgEmail" class="block text-sm font-medium text-primary mb-1">Email <span class="text-danger-DEFAULT">*</span></label>
+                <input type="email" id="orgEmail" name="orgEmail" value="admin@billingapp.pro" class="form-element">
+              </div>
+              <div>
+                <label for="orgPhone" class="block text-sm font-medium text-primary mb-1">Phone <span class="text-danger-DEFAULT">*</span></label>
+                <input type="tel" id="orgPhone" name="orgPhone" value="+1-234-567-8900" class="form-element">
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="orgTaxId" class="block text-sm font-medium text-primary mb-1">GSTIN / Tax ID</label>
+                    <input type="text" id="orgTaxId" name="orgTaxId" value="22AAAAA0000A1Z5" class="form-element">
+                </div>
+                <div>
+                    
+                    <label for="orgLogo" class="block text-sm font-medium text-primary mb-1">Organization Logo</label>
+                    <input type="file" id="orgLogo" name="orgLogo" class="form-element file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20">
+                    <p class="text-xs text-secondary mt-1">Recommended: PNG or JPG, max 2MB. Current: <span id="currentLogoName" class="text-primary">logo.png</span></p>
+                </div>
+            </div>
+             <div>
+                <label for="defaultCurrency" class="block text-sm font-medium text-primary mb-1">Default Currency</label>
+                <select id="defaultCurrency" name="defaultCurrency" class="form-element">
+                  <option value="INR">INR - Indian Rupee</option>
+                  <option value="USD">USD - US Dollar</option>
+                  
+                </select>
+            </div>
+            <div class="pt-4 text-right">
+              <button type="submit" class="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-6 py-3 rounded-lg shadow-soft transition-colors">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- User Management Section (Initially Hidden) -->
+      <section id="userManagementSection" class="settings-section hidden">
+        <div class="dashboard-card">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 border-b border-borderLight pb-3">
+            <h3 class="text-2xl font-heading text-primary">User Management</h3>
+            <button class="mt-3 sm:mt-0 font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-soft text-sm flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                <span>Add New User</span>
+            </button>
+          </div>
+          <p class="font-sans text-secondary mb-6">Manage your team members, their roles, and access permissions.</p>
+       
+          <div class="overflow-x-auto bg-cardBg rounded-lg border border-borderDefault shadow-sm">
+             <table class="w-full min-w-[600px] text-sm font-sans">
+                <thead class="bg-background border-b border-borderDefault">
+                    <tr>
+                        <th class="p-3 text-left font-semibold text-primary">Name</th>
+                        <th class="p-3 text-left font-semibold text-primary">Email</th>
+                        <th class="p-3 text-left font-semibold text-primary">Role</th>
+                        <th class="p-3 text-center font-semibold text-primary">Status</th>
+                        <th class="p-3 text-center font-semibold text-primary">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-borderLight last:border-b-0">
+                        <td class="p-3 text-primary">Administrator</td>
+                        <td class="p-3 text-secondary">admin@billingapp.pro</td>
+                        <td class="p-3 text-secondary">Admin</td>
+                        <td class="p-3 text-center"><span class="px-2 py-0.5 text-xs rounded-full bg-success-light text-success-dark font-medium">Active</span></td>
+                        <td class="p-3 text-center space-x-2">
+                            <button class="text-primary hover:text-accent" title="Edit"><svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></button>
+                            <button class="text-danger-DEFAULT hover:text-danger-dark" title="Disable"><svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"></path></svg></button>
+                        </td>
+                    </tr>
+                  
+                </tbody>
+             </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Placeholder for Invoice Customization Section (Initially Hidden) -->
+      <section id="invoiceCustomizationSection" class="settings-section hidden">
+          <div class="dashboard-card">
+            <h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Invoice Customization</h3>
+            <p class="font-sans text-secondary">Customize your invoice templates, numbering, and default content.</p>
+            <div class="mt-6 bg-background p-6 rounded-lg text-center">Invoice template options, branding, and default fields will appear here.</div>
+          </div>
+      </section>
+
+    
+      <section id="taxSettingsSection" class="settings-section hidden"> <div class="dashboard-card"><h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Tax Settings</h3><div class="mt-6 bg-background p-6 rounded-lg text-center">Tax rate configuration...</div></div> </section>
+      <section id="paymentGatewaysSection" class="settings-section hidden"> <div class="dashboard-card"><h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Payment Gateways</h3><div class="mt-6 bg-background p-6 rounded-lg text-center">Gateway configuration...</div></div> </section>
+      <section id="emailSettingsSection" class="settings-section hidden"> <div class="dashboard-card"><h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Email Settings</h3><div class="mt-6 bg-background p-6 rounded-lg text-center">SMTP and templates...</div></div> </section>
+      <section id="dataManagementSection" class="settings-section hidden"> <div class="dashboard-card"><h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Data Management</h3><div class="mt-6 bg-background p-6 rounded-lg text-center">Import/Export tools...</div></div> </section>
+      <section id="integrationsSection" class="settings-section hidden"> <div class="dashboard-card"><h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">Integrations</h3><div class="mt-6 bg-background p-6 rounded-lg text-center">Third-party integrations...</div></div> </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-textOnPrimary text-center p-4 text-xs font-sans shadow-soft mt-auto">
+    © <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All Rights Reserved. <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Privacy Policy</a> <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Terms of Service</a>
+  </footer>
+
+  <script>
+    function toggleProfileDropdown() { document.getElementById('profileDropdown').classList.toggle('hidden'); }
+    window.addEventListener('click', function(event) {
+      const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]');
+      const profileDropdown = document.getElementById('profileDropdown');
+      if (!profileButton && profileDropdown && !profileDropdown.contains(event.target) && !profileDropdown.classList.contains('hidden')) {
+        profileDropdown.classList.add('hidden');
+      }
+    });
+
+    const settingsSections = document.querySelectorAll('.settings-section');
+    const settingsNavLinks = document.querySelectorAll('.settings-nav-link');
+
+    function showSettingsSection(sectionIdToShow, clickedLink) {
+      settingsSections.forEach(section => {
+        section.classList.add('hidden');
+      });
+      settingsNavLinks.forEach(link => {
+        link.classList.remove('settings-nav-link-active');
+      });
+      const targetSection = document.getElementById(sectionIdToShow + 'Section');
+      if (targetSection) {
+        targetSection.classList.remove('hidden');
+      }
+      if (clickedLink) {
+        clickedLink.classList.add('settings-nav-link-active');
+        // For development: Update hash, but prevent page jump
+        // history.pushState(null, null, '#' + sectionIdToShow);
+      }
+    }
+    // Ensure the first section is shown by default if no hash
+     document.addEventListener('DOMContentLoaded', () => {
+       // Basic default showing the first item, can be enhanced with URL hash later
+       const firstNavLink = document.querySelector('#settingsSidebar nav a.settings-nav-link');
+       if(firstNavLink){
+           const initialSectionId = firstNavLink.getAttribute('href').substring(1);
+           showSettingsSection(initialSectionId, firstNavLink);
+       }
+    });
+  </script>
+</body>
+</html>
