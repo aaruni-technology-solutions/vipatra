@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports - BillingApp Pro</title>
+  <!-- Common Header Section (Google Fonts, Tailwind Config, Styles) -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { /* ... Same config as previous examples ... */
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' }, secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' },
+            info: { DEFAULT: '#3B82F6', light: '#DBEAFE', dark: '#2563EB'}
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { /* ... same shadows ... */ soft: '0 4px 10px rgba(0,0,0,0.05)', DEFAULT: '0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px -1px rgba(0,0,0,0.1)', md: '0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1)', sidebar: '0 2px 8px rgba(0,0,0,0.08)'},
+        }
+      }
+    }
+  </script>
+    <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); /* ... */ }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-gray-400 text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+    .nav-link { @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150 relative; }
+    .nav-link:hover { @apply text-textOnPrimary; }
+    .nav-link:hover::before { content: ""; @apply absolute inset-0 bg-black opacity-10 rounded-md; }
+    .nav-link-active { @apply bg-accent text-textDark font-semibold px-5 py-2 rounded-md text-sm relative; }
+    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+    .sidebar-link { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-200; }
+    .sidebar-link-active { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm bg-primary text-textOnPrimary font-semibold hover:bg-primary-dark hover:text-textOnPrimary; }
+    .sidebar-link svg { @apply flex-shrink-0; } /* SVG specific style for sidebar links */
+    .sidebar-link:not(.sidebar-link-active) svg { @apply text-secondary; }
+    .sidebar-link:not(.sidebar-link-active):hover svg { @apply text-primary; }
+    .sidebar-link-active svg { @apply text-textOnPrimary; }
+    .sidebar-link span { @apply whitespace-nowrap overflow-hidden text-ellipsis; }
+
+    .report-category-card {
+      @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight hover:shadow-md hover:border-primary transition-all duration-200 cursor-pointer flex flex-col items-center text-center;
+    }
+    /*
+      REMOVING THE SIZE FROM CSS - WE WILL PUT IT ON THE HTML SVG TAGS DIRECTLY
+    .report-category-card svg {
+      @apply w-6 h-6 mb-2 text-primary;
+    }
+    */
+    /* We can still keep color and margin here if preferred, or put those on HTML too */
+     .report-category-card svg {
+      @apply mb-2 text-primary; /* Only margin and color here */
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
+    <div class="flex items-center space-x-6">
+      <nav class="hidden md:flex space-x-4 font-sans">
+        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
+        <a href="invoices_all.html" class="nav-link">Billing</a>
+        <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
+        <a href="customers.html" class="nav-link">Customers</a>
+        <a href="reports.html" class="nav-link nav-link-active">Analytics</a> 
+        <a href="settings.html" class="nav-link">Settings</a>
+        <a href="#" class="nav-link">Support</a>
+      </nav>
+      <div class="relative font-sans">
+        <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+          <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a
+4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+          <span class="hidden lg:inline text-sm">Administrator</span>
+          <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1 border-borderLight"> <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-cardBg p-6 hidden lg:block shadow-sidebar border-r border-borderLight flex-shrink-0">
+        <h2 class="text-xl font-heading font-bold mb-7 border-b border-borderDefault pb-3 text-primary">Analytics Menu</h2>
+        <nav class="space-y-3">
+            <a href="dashboard-admin.html" class="sidebar-link flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">Main Dashboard</span> </a>
+            <a href="reports.html" class="sidebar-link sidebar-link-active flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">All Reports</span> </a>
+            <a href="#salesReportsSection" onclick="showReportSection('salesReports')" class="sidebar-link flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">Sales Reports</span> </a>
+            <a href="#paymentStatusReportsSection" onclick="showReportSection('paymentStatusReports')" class="sidebar-link flex items-center space-x-3"> <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg> <span class="whitespace-nowrap overflow-hidden text-ellipsis">Payment Reports</span> </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content: Reports Page -->
+    <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
+      <div class="mb-8">
+        <h2 class="text-3xl font-heading text-primary">Reports & Analytics</h2>
+        <p class="text-secondary font-sans mt-1">Gain insights into your business performance.</p>
+      </div>
+
+      <!-- Report Categories Section -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+        <a href="#salesReportsSection" onclick="showReportSection('salesReports')" class="report-category-card">
+         
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
+          <h3 class="text-lg font-heading text-primary mt-2">Sales Reports</h3>
+          <p class="text-xs text-secondary font-sans mt-1">Track revenue, sales by item, sales by customer, etc.</p>
+        </a>
+
+
+        <a href="#paymentStatusReportsSection" onclick="showReportSection('paymentStatusReports')" class="report-category-card">
+         
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          <h3 class="text-lg font-heading text-primary mt-2">Payment Status Reports</h3>
+          <p class="text-xs text-secondary font-sans mt-1">Monitor received, pending, and overdue payments.</p>
+        </a>
+
+
+        <a href="#taxLiabilityReportsSection" onclick="showReportSection('taxLiabilityReports')" class="report-category-card">
+
+           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+          <h3 class="text-lg font-heading text-primary mt-2">Tax Liability Reports</h3>
+          <p class="text-xs text-secondary font-sans mt-1">View collected taxes for compliance and filing.</p>
+        </a>
+
+
+        <a href="#customerAgingReportsSection" onclick="showReportSection('customerAgingReports')" class="report-category-card">
+       
+           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg>
+          <h3 class="text-lg font-heading text-primary mt-2">Customer Aging Reports</h3>
+          <p class="text-xs text-secondary font-sans mt-1">Analyze outstanding receivables by customer and age.</p>
+        </a>
+
+
+        <a href="#inventoryReportsSection" onclick="showReportSection('inventoryReports')" class="report-category-card">
+           
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <h3 class="text-lg font-heading text-primary mt-2">Inventory Reports</h3>
+            <p class="text-xs text-secondary font-sans mt-1">Stock levels, valuation, and movement.</p>
+        </a>
+
+
+        <a href="#expenseReportsSection" onclick="showReportSection('expenseReports')" class="report-category-card">
+         
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <h3 class="text-lg font-heading text-primary mt-2">Expense Reports</h3>
+            <p class="text-xs text-secondary font-sans mt-1">Track spending and categorize expenses.</p>
+        </a>
+      </section>
+
+      <!-- Placeholder for displaying a selected report's filters and data -->
+      <div id="selectedReportView" class="mt-10 hidden">
+        <section class="dashboard-card">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="selectedReportTitle" class="text-2xl font-heading text-primary">Selected Report Title</h3>
+                <button onclick="hideReportView()" class="text-sm text-secondary hover:text-primary">← Back to All Reports</button>
+            </div>
+            <div class="mb-6 p-4 bg-background rounded-lg border border-borderLight">
+                <p class="text-center text-secondary">Filters specific to this report type will appear here.</p>
+            </div>
+            <div class="p-4 bg-background rounded-lg border border-borderLight">
+                 <p class="text-center text-secondary">Report data (table/chart) will be displayed here.</p>
+            </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary text-textOnPrimary text-center p-4 text-xs font-sans shadow-soft mt-auto">
+    © <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All Rights Reserved. <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Privacy Policy</a> <span class="mx-1">|</span> <a href="#" class="hover:text-accent">Terms of Service</a>
+  </footer>
+
+  <script>
+    function toggleProfileDropdown() { /* ... same ... */ document.getElementById('profileDropdown').classList.toggle('hidden'); }
+    window.addEventListener('click', function(event) { /* ... same improved click outside ... */ const profileButton = event.target.closest('button[onclick="toggleProfileDropdown()"]'); const profileDropdown = document.getElementById('profileDropdown'); if (!profileButton && profileDropdown && !profileDropdown.contains(event.target) && !profileDropdown.classList.contains('hidden')) { profileDropdown.classList.add('hidden'); } });
+
+    const reportCategoriesSection = document.querySelector('main > section.grid');
+    const selectedReportViewDiv = document.getElementById('selectedReportView');
+    const selectedReportTitleEl = document.getElementById('selectedReportTitle');
+
+    function showReportSection(reportType) {
+        event.preventDefault();
+        if (reportCategoriesSection) reportCategoriesSection.classList.add('hidden');
+        selectedReportViewDiv.classList.remove('hidden');
+        let title = "Report Details";
+        if(reportType === 'salesReports') title = "Sales Reports";
+        else if(reportType === 'paymentStatusReports') title = "Payment Status Reports";
+        else if(reportType === 'taxLiabilityReports') title = "Tax Liability Reports";
+        else if(reportType === 'customerAgingReports') title = "Customer Aging Reports";
+        else if(reportType === 'inventoryReports') title = "Inventory Reports";
+        else if(reportType === 'expenseReports') title = "Expense Reports";
+        selectedReportTitleEl.textContent = title;
+    }
+
+    function hideReportView() {
+        selectedReportViewDiv.classList.add('hidden');
+        if (reportCategoriesSection) reportCategoriesSection.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
