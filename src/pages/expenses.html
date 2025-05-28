@@ -53,31 +53,68 @@
 <body class="flex flex-col min-h-screen">
 
   <!-- Top Navigation Bar -->
-  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
-    <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
-    <div class="flex items-center space-x-6">
-      <nav class="hidden md:flex space-x-4 font-sans">
-        <a href="dashboard-admin.html" class="nav-link">Dashboard</a>
-        <a href="invoices_all.html" class="nav-link">Billing</a>
-        <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
-        <a href="customers.html" class="nav-link">Customers</a>
+   
+<header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+  <div class="flex items-center"> <h1 class="text-2xl font-heading">BillingApp Pro</h1> </div>
+  <div class="flex items-center space-x-4"> 
+    <nav class="hidden md:flex space-x-4 font-sans">
+      <a href="dashboard-admin.html" class="nav-link nav-link-active">Dashboard</a>
+      <a href="invoice_create.html" class="nav-link">Billing</a>
+      <a href="inventory_dashboard.html" class="nav-link">Inventory</a>
+      <a href="#" class="nav-link">Analytics</a>
+      <a href="#" class="nav-link">Settings</a>
+      <a href="#" class="nav-link">Support</a>
+    </nav>
+
+    
+    <div class="relative">
+      <button type="button" class="p-2 rounded-full hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary focus:ring-accent transition-colors duration-150" aria-label="View notifications">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+        </svg>
         
-        <a href="reports.html" class="nav-link">Analytics</a>
-        <a href="settings.html" class="nav-link">Settings</a>
-        <a href="#" class="nav-link">Support</a>
-      </nav>
-      <div class="relative font-sans">
-        <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors" onclick="toggleProfileDropdown()">
-          <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
-          <span class="hidden lg:inline text-sm">Administrator</span>
-          <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </button>
-        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border z-20">
-          <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a> <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a> <hr class="my-1"> <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
-        </div>
+        <span class="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-danger-DEFAULT ring-2 ring-primary">
+          <span class="sr-only">New notifications</span>
+        </span>
+      </button>
+      
+      <div id="notificationPanel" class="hidden absolute right-0 mt-2 w-80 bg-cardBg rounded-lg shadow-lg py-1 border border-borderLight z-20">
+          <div class="p-3 border-b border-borderLight">
+              <h4 class="text-sm font-semibold text-primary">Notifications</h4>
+          </div>
+          <div class="max-h-80 overflow-y-auto">
+              <a href="#" class="block px-4 py-3 text-sm text-secondary hover:bg-background">
+                  <p class="font-medium text-primary">Invoice #INV-001 due soon</p>
+                  <p class="text-xs">2 hours ago</p>
+              </a>
+              <a href="#" class="block px-4 py-3 text-sm text-secondary hover:bg-background border-t border-borderLight">
+                  <p class="font-medium text-primary">Payment of ₹500 received</p>
+                  <p class="text-xs">Yesterday</p>
+              </a>
+          </div>
+          <div class="p-2 border-t border-borderLight text-center">
+              <a href="#" class="text-sm font-medium text-primary hover:text-accent">View all notifications</a>
+          </div>
+      </div>
+    
+    </div>
+
+    <div class="relative font-sans">
+      <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+        <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+        <span class="hidden lg:inline text-sm">Administrator</span>
+        <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+        <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">My Profile</a>
+        <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background">Account Settings</a>
+        <hr class="my-1 border-borderLight">
+        <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">Logout</a>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+
 
   <div class="flex flex-1">
     <!-- Sidebar -->
