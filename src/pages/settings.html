@@ -144,6 +144,10 @@
       <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
       <span class="whitespace-nowrap overflow-hidden text-ellipsis">Invoice Customization</span>
     </a>
+    <a href="#eInvoicingSettings" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('eInvoicingSettings', this)"> 
+        <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2zm0-14v3m0 0v3m0-3h3m-3 0H9"></path></svg> 
+        <span class="whitespace-nowrap overflow-hidden text-ellipsis">e-Invoicing</span>
+    </a>
     <a href="#taxSettings" class="settings-nav-link flex items-center space-x-3" onclick="showSettingsSection('taxSettings', this)">
         <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 0v6m0-6L9 13m6-6l-6 6m6-6v6m0-6H9m3 6h.01M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
       <span class="whitespace-nowrap overflow-hidden text-ellipsis">Tax Settings</span>
@@ -267,7 +271,65 @@
           </div>
         </div>
       </section>
+    <section id="eInvoicingSettingsSection" class="settings-section hidden">
+        <div class="dashboard-card">
+          <h3 class="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">e-Invoicing Configuration</h3>
+          <form class="space-y-6 font-sans">
+            <div>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="checkbox" id="enableEInvoicing" name="enableEInvoicing" class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary">
+                <span class="text-md font-medium text-primary">Enable e-Invoicing (e.g., for GST India)</span>
+              </label>
+              <p class="text-xs text-secondary mt-1 pl-8">Enable this to generate IRN and QR codes for applicable invoices.</p>
+            </div>
 
+
+            <div id="eInvoiceProviderDetails" class="space-y-6 border-t border-borderLight pt-6 mt-6 hidden"> 
+                <p class="text-sm text-secondary">
+                    Configure your e-Invoicing Service Provider (GSP - GST Suvidha Provider, or direct API) details.
+                    Ensure these details are accurate for successful e-invoice generation.
+                </p>
+
+                <div>
+                    <label for="eInvoiceProvider" class="block text-sm font-medium text-primary mb-1">Service Provider / GSP</label>
+                    <select id="eInvoiceProvider" name="eInvoiceProvider" class="form-element">
+                        <option value="">-- Select Provider --</option>
+                        <option value="gsp_a">GSP Alpha Services</option>
+                        <option value="gsp_b">Beta e-Invoice Solutions</option>
+                        <option value="nic_einv">NIC e-Invoice Portal (Direct API - if applicable)</option>
+                        <option value="other">Other (Requires manual setup/custom API)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="gspUsername" class="block text-sm font-medium text-primary mb-1">GSP Username / Client ID</label>
+                        <input type="text" id="gspUsername" name="gspUsername" class="form-element">
+                    </div>
+                    <div>
+                        <label for="gspPassword" class="block text-sm font-medium text-primary mb-1">GSP Password / Client Secret</label>
+                        <input type="password" id="gspPassword" name="gspPassword" class="form-element">
+                    </div>
+                </div>
+                <div>
+                    <label for="gspApiEndpoint" class="block text-sm font-medium text-primary mb-1">API Endpoint URL (if applicable)</label>
+                    <input type="url" id="gspApiEndpoint" name="gspApiEndpoint" placeholder="https://api.gsp.com/v1/einvoice" class="form-element">
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button type="button" class="font-sans bg-accent hover:bg-accent-dark text-textDark px-4 py-2 rounded-lg shadow-sm text-sm">
+                        Test Connection
+                    </button>
+                    <span id="testConnectionStatus" class="text-xs text-secondary"></span>
+                </div>
+            </div>
+
+            <div class="pt-6 text-right border-t border-borderLight mt-8">
+              <button type="submit" class="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-6 py-3 rounded-lg shadow-soft transition-colors">Save e-Invoicing Settings</button>
+            </div>
+          </form>
+        </div>
+      </section>
       <!-- Placeholder for Invoice Customization Section (Initially Hidden) -->
       <section id="invoiceCustomizationSection" class="settings-section hidden">
           <div class="dashboard-card">

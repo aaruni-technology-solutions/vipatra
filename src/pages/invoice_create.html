@@ -234,7 +234,17 @@
           </button>
         </section>
 
-        
+        <section class="dashboard-card">
+  <h3 class="text-xl font-heading text-primary mb-4">e-Invoicing Option</h3>
+  <div id="eInvoiceOptionCreate" class="space-y-3"> 
+    <label class="flex items-center space-x-3 cursor-pointer">
+      <input type="checkbox" id="generateEInvoice" name="generateEInvoice" class="form-checkbox h-5 w-5 text-primary rounded focus:ring-primary">
+      <span class="text-md font-medium text-primary font-sans">Generate e-Invoice (IRN & QR Code)</span>
+    </label>
+    <p class="text-xs text-secondary mt-1 pl-8">This will attempt to register the invoice with the GSTN portal upon saving/sending.</p>
+  </div>
+  <p id="eInvoiceDisabledMsgCreate" class="text-sm text-secondary hidden">e-Invoicing is not enabled in settings.</p>
+</section>
         <!-- Section 3: Totals, Discount, Notes -->
         <section class="dashboard-card">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
