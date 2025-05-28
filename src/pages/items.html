@@ -134,7 +134,7 @@
         </div>
       </div>
 
-      <!-- Create Item Form (Initially Hidden) -->
+            <!-- Create Item Form (Initially Hidden) -->
       <div id="createItemFormContainer" class="hidden mt-8">
         <section class="dashboard-card">
           <div class="flex justify-between items-center mb-6">
@@ -194,15 +194,56 @@
                  <div id="file-list" class="mt-2 text-sm text-secondary">No file chosen</div>
             </div>
 
-            <!-- Selling Price -->
-            <div>
-              <label for="sellingPrice" class="block text-sm font-medium text-primary mb-1 font-sans">Selling Price (INR) <span class="text-danger-DEFAULT">*</span></label>
-              <input type="number" id="sellingPrice" name="sellingPrice" placeholder="0.00" step="0.01" class="form-element">
-            </div>
+           
+            <fieldset class="border-t border-borderLight pt-6">
+                <legend class="text-lg font-heading text-primary -mt-3 mb-4 px-2 bg-cardBg inline-block">Pricing & Taxation</legend>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="sellingPrice" class="block text-sm font-medium text-primary mb-1 font-sans">Selling Price (INR) <span class="text-danger-DEFAULT">*</span></label>
+                        <input type="number" id="sellingPrice" name="sellingPrice" placeholder="0.00" step="0.01" class="form-element">
+                    </div>
+                    <div>
+                        <label for="purchasePrice" class="block text-sm font-medium text-primary mb-1 font-sans">Purchase Price (INR) (Optional)</label>
+                        <input type="number" id="purchasePrice" name="purchasePrice" placeholder="0.00" step="0.01" class="form-element">
+                         <p class="text-xs text-secondary mt-1">For internal cost tracking, if applicable.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <label class="block text-sm font-medium text-primary mb-2 font-sans">Tax Preference</label>
+                    <div class="flex space-x-4">
+                        <div class="type-option"> 
+                          <input type="radio" id="taxableItem" name="taxPreference" value="taxable" checked>
+                          <label for="taxableItem">Taxable</label>
+                        </div>
+                        <div class="type-option">
+                          <input type="radio" id="taxExemptItem" name="taxPreference" value="exempt">
+                          <label for="taxExemptItem">Tax Exempt</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="taxRateSection" class="mt-6"> 
+                    <label for="itemTaxRate" class="block text-sm font-medium text-primary mb-1 font-sans">Default Tax Rate</label>
+                    <select id="itemTaxRate" name="itemTaxRate" class="form-element">
+                        <option value="">-- No Default Tax --</option>
+                        {/* These options would ideally be populated from your Tax Settings */}
+                        <option value="gst_0">GST @ 0%</option>
+                        <option value="gst_5">GST @ 5%</option>
+                        <option value="gst_12">GST @ 12%</option>
+                        <option value="gst_18">GST @ 18%</option>
+                        <option value="gst_28">GST @ 28%</option>
+                        <option value="custom_tax_1">Custom Tax A (e.g., Cess @ 2%)</option>
+                    </select>
+                    <p class="text-xs text-secondary mt-1">Select a default tax rate for this item. This can be overridden on individual invoices.</p>
+                </div>
+            </fieldset>
+        
+
 
             <!-- Description -->
-            <div>
-              <label for="itemDescription" class="block text-sm font-medium text-primary mb-1 font-sans">Description</label>
+            <div class="border-t border-borderLight pt-6"> 
+              <label for="itemDescription" class="block text-sm font-medium text-primary mb-1 font-sans">Description (Optional)</label>
               <textarea id="itemDescription" name="itemDescription" rows="3" class="form-element"></textarea>
             </div>
 

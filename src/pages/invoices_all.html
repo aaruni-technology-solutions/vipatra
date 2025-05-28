@@ -158,7 +158,25 @@
           <button class="text-xs font-sans bg-accent hover:bg-accent-dark text-textDark px-3 py-1.5 rounded-md shadow-soft">Mark as Paid</button>
           <button class="text-xs font-sans bg-secondary hover:bg-secondary/80 text-textOnSecondary px-3 py-1.5 rounded-md shadow-soft">Download PDFs</button>
       </div>
-
+ <!-- Summary Stats (Optional) -->
+      <section class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+          <div class="bg-background p-4 rounded-lg shadow-sm text-center">
+              <p class="text-xs text-secondary uppercase">Total Invoices</p>
+              <p class="text-2xl font-bold text-primary">152</p>
+          </div>
+          <div class="bg-background p-4 rounded-lg shadow-sm text-center">
+              <p class="text-xs text-secondary uppercase">Total Outstanding</p>
+              <p class="text-2xl font-bold text-danger-DEFAULT">₹85,300</p>
+          </div>
+          <div class="bg-background p-4 rounded-lg shadow-sm text-center">
+              <p class="text-xs text-secondary uppercase">Overdue</p>
+              <p class="text-2xl font-bold text-danger-dark">₹12,750</p>
+          </div>
+           <div class="bg-background p-4 rounded-lg shadow-sm text-center">
+              <p class="text-xs text-secondary uppercase">Paid (This Month)</p>
+              <p class="text-2xl font-bold text-success-dark">₹1,20,500</p>
+          </div>
+      </section>
       <!-- Invoice Table -->
       <div class="dashboard-card overflow-x-auto">
         <table class="w-full min-w-[900px] text-sm font-sans">
