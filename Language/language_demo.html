@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multilingual UI Demo - BillingApp Pro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { /* ... Same config ... */
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A' }, secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' }
+          },
+          fontFamily: {
+            sans: ['Lato', 'Roboto', 'Noto Sans Devanagari', 'Noto Sans Kannada', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'Noto Serif Devanagari', 'Noto Serif Kannada', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { soft: '0 4px 10px rgba(0,0,0,0.05)', DEFAULT: '0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px -1px rgba(0,0,0,0.1)', md: '0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1)', sidebar: '0 2px 8px rgba(0,0,0,0.08)'},
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-gray-400 text-primary placeholder-secondary p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-accent focus:border-accent; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+    .demo-button { @apply bg-primary hover:bg-primary-dark text-textOnPrimary font-sans font-semibold px-6 py-3 rounded-lg shadow-soft transition-colors duration-150; }
+    .demo-nav-link { @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150 relative hover:bg-primary-dark; }
+    .demo-sidebar-link { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-200; }
+    .demo-sidebar-link svg { @apply flex-shrink-0 text-secondary; }
+    .demo-sidebar-link:hover svg { @apply text-primary; }
+    .demo-sidebar-link span { @apply whitespace-nowrap overflow-hidden text-ellipsis; }
+  </style>
+</head>
+<body class="p-4 sm:p-8">
+
+  <div class="max-w-5xl mx-auto">
+    <header class="mb-10 p-4 bg-primary text-textOnPrimary rounded-lg shadow-md">
+      <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-heading">Multilingual UI Demo</h1>
+        <!-- Language Switcher Dropdown -->
+        <div class="relative font-sans" id="languageSwitcherContainer">
+            <button id="languageSwitcherButton" class="flex items-center space-x-1 text-sm hover:text-accent p-2 rounded-md hover:bg-primary-dark transition-colors duration-150" aria-haspopup="true" aria-expanded="false">
+                <span id="currentLangDisplay">EN</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-36 bg-cardBg rounded-lg shadow-lg py-1 border border-borderLight z-20">
+                <a href="#" class="language-option block px-4 py-2 text-sm text-primary hover:bg-background" data-lang="en" data-lang-display="EN">English (EN)</a>
+                <a href="#" class="language-option block px-4 py-2 text-sm text-primary hover:bg-background" data-lang="hi" data-lang-display="HI">हिन्दी (HI)</a>
+                <a href="#" class="language-option block px-4 py-2 text-sm text-primary hover:bg-background" data-lang="kn" data-lang-display="KN">ಕನ್ನಡ (KN)</a>
+            </div>
+        </div>
+      </div>
+      <p class="text-sm opacity-80 mt-1">Showing examples of UI elements in English, Hindi, and Kannada.</p>
+    </header>
+
+    <!-- English Section -->
+    <section id="lang-en" class="language-section mb-12 p-2"> 
+      <h2 class="text-2xl font-heading text-primary border-b-2 border-primary/30 pb-2 mb-6">English (EN)</h2>
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+        <div class="space-y-3">
+          <h3 class="text-lg font-heading text-secondary mb-2">Navigation Example:</h3>
+          <a href="#" class="demo-nav-link bg-primary">Dashboard</a>
+          <a href="#" class="demo-sidebar-link bg-cardBg border border-borderLight">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>All Invoices</span>
+          </a>
+        </div>
+        <div class="dashboard-card">
+          <h3 class="text-xl font-heading text-primary mb-2">Revenue Overview</h3>
+          <p class="text-sm text-secondary font-sans mb-3">Today's financial performance.</p>
+          <p class="text-3xl font-bold font-sans text-primary">₹12,560</p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label for="en_name" class="block text-sm font-medium text-primary mb-1 font-sans">Customer Name</label>
+            <input type="text" id="en_name" value="John Doe" class="form-element">
+          </div>
+          <button class="demo-button w-full">Create Customer</button>
+        </div>
+      </div>
+    </section>
+    <hr class="my-12 border-borderDefault">
+
+    <!-- Hindi Section (Initially Hidden by JS) -->
+    <section id="lang-hi" class="language-section hidden mb-12 p-2"> 
+      <h2 class="text-2xl font-heading text-primary border-b-2 border-primary/30 pb-2 mb-6">हिन्दी (HI)</h2>
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+        <div class="space-y-3">
+          <h3 class="text-lg font-heading text-secondary mb-2">नेविगेशन उदाहरण:</h3>
+          <a href="#" class="demo-nav-link bg-primary">डैशबोर्ड</a>
+          <a href="#" class="demo-sidebar-link bg-cardBg border border-borderLight">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>सभी चालान</span>
+          </a>
+        </div>
+        <div class="dashboard-card">
+          <h3 class="text-xl font-heading text-primary mb-2">राजस्व अवलोकन</h3>
+          <p class="text-sm text-secondary font-sans mb-3">आज का वित्तीय प्रदर्शन।</p>
+          <p class="text-3xl font-bold font-sans text-primary">₹१२,५६०</p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label for="hi_name" class="block text-sm font-medium text-primary mb-1 font-sans">ग्राहक का नाम</label>
+            <input type="text" id="hi_name" value="जॉन डो" class="form-element">
+          </div>
+          <button class="demo-button w-full">ग्राहक बनाएं</button>
+        </div>
+      </div>
+    </section>
+    <hr class="my-12 border-borderDefault">
+
+    <!-- Kannada Section (Initially Hidden by JS) -->
+    <section id="lang-kn" class="language-section hidden mb-12 p-2"> 
+      <h2 class="text-2xl font-heading text-primary border-b-2 border-primary/30 pb-2 mb-6">ಕನ್ನಡ (KN)</h2>
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+        <div class="space-y-3">
+          <h3 class="text-lg font-heading text-secondary mb-2">ನ್ಯಾವಿಗೇಷನ್ ಉದಾಹರಣೆ:</h3>
+          <a href="#" class="demo-nav-link bg-primary">ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</a>
+          <a href="#" class="demo-sidebar-link bg-cardBg border border-borderLight">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            <span>ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು</span>
+          </a>
+        </div>
+        <div class="dashboard-card">
+          <h3 class="text-xl font-heading text-primary mb-2">ಆದಾಯ ಅವಲೋಕನ</h3>
+          <p class="text-sm text-secondary font-sans mb-3">ಇಂದಿನ ಹಣಕಾಸು ನಿರ್ವಹಣೆ.</p>
+          <p class="text-3xl font-bold font-sans text-primary">₹೧೨,೫೬೦</p>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <label for="kn_name" class="block text-sm font-medium text-primary mb-1 font-sans">ಗ್ರಾಹಕರ ಹೆಸರು</label>
+            <input type="text" id="kn_name" value="ಜಾನ್ ಡೋ" class="form-element">
+          </div>
+          <button class="demo-button w-full">ಗ್ರಾಹಕರನ್ನು ರಚಿಸಿ</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-12 p-6 dashboard-card">
+        <h3 class="text-xl font-heading text-primary mb-4">Key Considerations for Multilingual Support:</h3>
+        <ul class="list-disc list-inside text-secondary font-sans space-y-2 text-sm">
+            <li>**Text Expansion/Contraction:** Layouts should be flexible.</li>
+            <li>**Font Rendering:** Ensure fonts support Devanagari and Kannada.</li>
+            <li>**Line Height & Spacing:** May need script-specific adjustments.</li>
+            <li>**Future Implementation:** This demo uses show/hide. A real app would use an i18n library.</li>
+        </ul>
+    </div>
+
+  </div>
+
+  <script>
+    const langSwitcherButton = document.getElementById('languageSwitcherButton');
+    const langDropdown = document.getElementById('languageDropdown');
+    const currentLangDisplay = document.getElementById('currentLangDisplay');
+    const langOptions = document.querySelectorAll('.language-option');
+    const languageSections = document.querySelectorAll('.language-section');
+
+    // Toggle Dropdown
+    langSwitcherButton.addEventListener('click', () => {
+      langDropdown.classList.toggle('hidden');
+      const isExpanded = langDropdown.classList.contains('hidden') ? 'false' : 'true';
+      langSwitcherButton.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Handle Language Selection
+    langOptions.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedLang = option.getAttribute('data-lang');
+        const selectedLangDisplay = option.getAttribute('data-lang-display');
+
+        // Update displayed language
+        currentLangDisplay.textContent = selectedLangDisplay;
+
+        // Hide all language sections
+        languageSections.forEach(section => {
+          section.classList.add('hidden');
+        });
+
+        // Show the selected language section
+        const sectionToShow = document.getElementById(`lang-${selectedLang}`);
+        if (sectionToShow) {
+          sectionToShow.classList.remove('hidden');
+          // Set html lang attribute for better accessibility and potential font rendering hints
+          document.documentElement.lang = selectedLang;
+        }
+
+        langDropdown.classList.add('hidden'); // Hide dropdown after selection
+        langSwitcherButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close dropdown if clicked outside
+    window.addEventListener('click', function(event) {
+      const switcherContainer = document.getElementById('languageSwitcherContainer');
+      if (!switcherContainer.contains(event.target) && !langDropdown.classList.contains('hidden')) {
+        langDropdown.classList.add('hidden');
+        langSwitcherButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Set initial language (e.g., English)
+    function setInitialLanguage(langCode, langDisplay) {
+        currentLangDisplay.textContent = langDisplay;
+        languageSections.forEach(section => {
+          section.classList.add('hidden');
+        });
+        const initialSection = document.getElementById(`lang-${langCode}`);
+        if (initialSection) {
+          initialSection.classList.remove('hidden');
+          document.documentElement.lang = langCode;
+        }
+    }
+    // Load English by default for this demo
+    setInitialLanguage('en', 'EN');
+
+  </script>
+</body>
+</html>

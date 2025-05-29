@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">Admin Dashboard - BillingApp Pro</title> 
+
+  <!-- UPDATED FONT LINK - Ensure Noto Sans Devanagari & Kannada are included for script support -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Kannada:wght@400;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#3A6F48', dark: '#2E583A', hoverBg: '#315C3F' }, // Used hoverBg for nav link hover
+            secondary: '#8B5A2B',
+            accent: { DEFAULT: '#F4C842', dark: '#d9b735' }, background: '#FAF9F5',
+            textLight: '#FFFFFF', textDark: '#1F2937', textOnPrimary: '#FFFFFF',
+            textOnSecondary: '#FFFFFF', cardBg: '#FFFFFF', borderLight: '#E5E7EB',
+            borderDefault: '#D1D5DB',
+            danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+            success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+            warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' }
+          },
+          fontFamily: {
+            // Ensure Noto fonts are here as fallbacks
+            sans: ['Lato', 'Roboto', 'Noto Sans Devanagari', 'Noto Sans Kannada', 'sans-serif'],
+            heading: ['Playfair Display', 'Poppins', 'Noto Serif Devanagari', 'Noto Serif Kannada', 'serif'],
+          },
+          borderRadius: { lg: '0.75rem' },
+          boxShadow: { /* ... same shadows ... */ soft: '0 4px 10px rgba(0,0,0,0.05)', DEFAULT: '0 1px 3px 0 rgba(0,0,0,0.1),0 1px 2px -1px rgba(0,0,0,0.1)', md: '0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1)', sidebar: '0 2px 8px rgba(0,0,0,0.08)'},
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: theme('fontFamily.sans'); background-color: theme('colors.background'); color: theme('colors.primary.DEFAULT'); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    h1, h2, h3, h4, h5, h6 { font-family: theme('fontFamily.heading'); }
+    .form-element { @apply w-full bg-cardBg border border-gray-400 text-primary placeholder-secondary p-3 rounded-lg shadow-sm focus:ring-2 focus:ring-accent focus:border-accent; }
+    .dashboard-card { @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight; }
+
+    .nav-link { @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150 relative; }
+    .nav-link:hover { @apply bg-primary-hoverBg text-textOnPrimary; } /* Corrected to use hoverBg */
+    .nav-link-active { @apply bg-accent text-textDark font-semibold px-5 py-2 rounded-md text-sm relative; }
+    .nav-link-active:hover { @apply bg-accent-dark text-textDark; }
+
+    .sidebar-link { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary hover:bg-primary/10 hover:text-primary transition-colors duration-200; }
+    .sidebar-link-active { @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm bg-primary text-textOnPrimary font-semibold hover:bg-primary-dark hover:text-textOnPrimary; }
+    .sidebar-link svg { @apply flex-shrink-0; }
+    .sidebar-link:not(.sidebar-link-active) svg { @apply text-secondary; }
+    .sidebar-link:not(.sidebar-link-active):hover svg { @apply text-primary; }
+    .sidebar-link-active svg { @apply text-textOnPrimary; }
+    .sidebar-link span { @apply whitespace-nowrap overflow-hidden text-ellipsis; }
+    .status-badge { @apply px-3 py-1 text-xs font-semibold rounded-full inline-block; }
+    .status-paid { @apply bg-success-light text-success-dark; }
+    .status-pending { @apply bg-warning-light text-warning-dark; }
+    .status-overdue { @apply bg-danger-light text-danger-dark; }
+    .status-partial { @apply bg-accent/20 text-accent-dark; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Top Navigation Bar -->
+  <header class="bg-primary text-textOnPrimary p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center">
+      <h1 class="text-2xl font-heading" data-i18n-key="header_appName">Vipatra</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+        <!-- Language Switcher Dropdown -->
+        <div class="relative font-sans" id="languageSwitcherContainer">
+            <button id="languageSwitcherButton" class="flex items-center space-x-1 text-sm hover:text-accent p-2 rounded-md hover:bg-primary-dark transition-colors duration-150" aria-haspopup="true" aria-expanded="false">
+                <span id="currentLangDisplayHeader">EN</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="languageDropdownHeader" class="hidden absolute right-0 mt-2 w-36 bg-cardBg rounded-lg shadow-lg py-1 border border-borderLight z-30">
+                <a href="#" class="language-option-header block px-4 py-2 text-sm text-primary hover:bg-background" data-lang="en" data-lang-display="EN">English (EN)</a>
+                <a href="#" class="language-option-header block px-4 py-2 text-sm text-primary hover:bg-background" data-lang="hi" data-lang-display="HI">हिन्दी (HI)</a>
+                <a href="#" class="language-option-header block px-4 py-2 text-sm text-primary hover:bg-background" data-lang="kn" data-lang-display="KN">ಕನ್ನಡ (KN)</a>
+            </div>
+        </div>
+        <nav class="hidden md:flex space-x-4 font-sans">
+            <a href="dashboard-admin.html" class="nav-link nav-link-active" data-i18n-key="nav_dashboard">Dashboard</a>
+            <a href="invoice_create.html" class="nav-link" data-i18n-key="nav_billing">Billing</a>
+            <a href="inventory_dashboard.html" class="nav-link" data-i18n-key="nav_inventory">Inventory</a>
+            <a href="customers.html" class="nav-link" data-i18n-key="nav_customers">Customers</a>
+            <a href="items.html" class="nav-link" data-i18n-key="nav_items">Items</a>
+            <a href="expenses.html" class="nav-link" data-i18n-key="nav_expenses">Expenses</a>
+            <a href="reports.html" class="nav-link" data-i18n-key="nav_reports">Reports</a>
+            <a href="settings.html" class="nav-link" data-i18n-key="nav_settingsLink">Settings</a>
+           
+        </nav>
+        <div class="relative">
+            <button type="button" onclick="toggleNotificationPanel()" class="p-2 rounded-full hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary focus:ring-accent transition-colors duration-150" aria-label="View notifications">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span class="absolute top-0 right-0 block h-2.5 w-2.5 transform -translate-y-1/2 translate-x-1/2 rounded-full bg-danger-DEFAULT ring-2 ring-primary">
+                    <span class="sr-only" data-i18n-key="notification_new">New notifications</span>
+                </span>
+            </button>
+            <div id="notificationPanel" class="hidden absolute right-0 mt-2 w-80 bg-cardBg rounded-lg shadow-lg py-1 border border-borderLight z-20">
+                <div class="p-3 border-b border-borderLight">
+                    <h4 class="text-sm font-semibold text-primary" data-i18n-key="notification_title">Notifications</h4>
+                </div>
+                <div class="max-h-80 overflow-y-auto">
+                    <a href="#" class="block px-4 py-3 text-sm text-secondary hover:bg-background">
+                        <p class="font-medium text-primary" data-i18n-key="notification_item1_title">Invoice #INV-001 due soon</p>
+                        <p class="text-xs" data-i18n-key="notification_item1_time">2 hours ago</p>
+                    </a>
+                
+                </div>
+                <div class="p-2 border-t border-borderLight text-center">
+                    <a href="#" class="text-sm font-medium text-primary hover:text-accent" data-i18n-key="notification_viewAll">View all notifications</a>
+                </div>
+            </div>
+        </div>
+        <div class="relative font-sans">
+            <button class="flex items-center space-x-2 hover:bg-primary-dark p-2 rounded-lg transition-colors duration-150" onclick="toggleProfileDropdown()">
+                <img src="https://i.pinimg.com/736x/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.jpg" alt="Admin" class="w-8 h-8 rounded-full border-2 border-accent">
+                <span class="hidden lg:inline text-sm" data-i18n-key="profile_administratorName">Administrator</span>
+                <svg class="w-4 h-4 text-accent hidden lg:inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-cardBg rounded-lg shadow-soft py-1 border border-borderLight z-20">
+                <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background" data-i18n-key="profile_myProfile">My Profile</a>
+                <a href="#" class="block px-4 py-2 text-sm text-primary hover:bg-background" data-i18n-key="profile_accountSettings">Account Settings</a>
+                <hr class="my-1 border-borderLight">
+                <a href="login.html" class="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light" data-i18n-key="profile_logout">Logout</a>
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-cardBg p-6 hidden lg:block shadow-sidebar border-r border-borderLight flex-shrink-0">
+        <h2 class="text-xl font-heading font-bold mb-7 border-b border-borderDefault pb-3 text-primary" data-i18n-key="sidebar_quickMenu">Quick Menu</h2>
+        <nav class="space-y-3">
+            <a href="dashboard-admin.html" class="sidebar-link sidebar-link-active flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_dashboard">Dashboard</span>
+            </a>
+            <a href="invoices_all.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_allInvoices">All Invoices</span>
+            </a>
+            <a href="invoice_create.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_createInvoice">Create Invoice</span>
+            </a>
+            <a href="customers.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M12 12a4 4 0 110-8 4 4 0 010 8z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_customers">Customers</span>
+            </a>
+            <a href="items.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5a2 2 0 012 2v5a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2zm0 10h.01M17 17h.01M17 13h5a2 2 0 012 2v5a2 2 0 01-2 2h-5a2 2 0 01-2-2v-5a2 2 0 012-2zm0 10h.01M7 13H2v5a2 2 0 002 2h5a2 2 0 002-2v-5H7z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_items">Items</span>
+            </a>
+            <a href="expenses.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5-2.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM16.5 13.5a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM21 14H3M21 10H3m5-7h6a2 2 0 012 2v14a2 2 0 01-2 2H8a2 2 0 01-2-2V5a2 2 0 012-2z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_expenses">Expenses</span>
+            </a>
+            <a href="inventory_dashboard.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_manageInventory">Manage Inventory</span>
+            </a>
+            <a href="reports.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V9a2 2 0 012-2h2a2 2 0 012 2v10a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_reports">Reports</span>
+            </a>
+            <a href="settings.html" class="sidebar-link flex items-center space-x-3">
+                <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span class="whitespace-nowrap overflow-hidden text-ellipsis" data-i18n-key="sidebar_settings">Settings</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Dashboard Panels -->
+    <main class="flex-1 p-6 sm:p-8 overflow-y-auto">
+      <div class="mb-6">
+        <h2 class="text-3xl font-heading text-primary" data-i18n-key="main_adminDashboardTitle">Admin Dashboard</h2>
+        <p class="text-secondary font-sans" data-i18n-key="main_adminDashboardSubtitle">Overview of your business performance and alerts.</p>
+      </div>
+
+      <!-- 1. Revenue Overview -->
+      <section class="mb-8">
+        <h3 class="text-xl font-heading text-primary mb-4" data-i18n-key="section_revenueOverview">Revenue Overview</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="dashboard-card text-center">
+            <p class="text-sm text-secondary font-sans uppercase tracking-wider" data-i18n-key="stat_todaysRevenue">Today's Revenue</p>
+            <p class="text-3xl font-bold font-sans text-primary mt-1">₹12,560</p>
+          </div>
+          <div class="dashboard-card text-center">
+            <p class="text-sm text-secondary font-sans uppercase tracking-wider" data-i18n-key="stat_thisWeekRevenue">This Week (MTD)</p>
+            <p class="text-3xl font-bold font-sans text-primary mt-1">₹75,320</p>
+          </div>
+          <div class="dashboard-card text-center">
+            <p class="text-sm text-secondary font-sans uppercase tracking-wider" data-i18n-key="stat_thisMonthRevenue">This Month (MTD)</p>
+            <p class="text-3xl font-bold font-sans text-primary mt-1">₹2,85,900</p>
+          </div>
+          <div class="dashboard-card text-center">
+            <p class="text-sm text-secondary font-sans uppercase tracking-wider" data-i18n-key="stat_collectedPayments">Collected Payments (Month)</p>
+            <p class="text-3xl font-bold font-sans text-primary-dark mt-1">₹2,50,100</p>
+             <p class="text-xs text-secondary font-sans" data-i18n-key="stat_outstanding">Outstanding: <span data-i18n-key="stat_outstandingAmount">₹35,800</span></p>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2 space-y-8">
+          <!-- 3. Pending Invoices -->
+          <section>
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-heading text-primary" data-i18n-key="section_pendingInvoices">Pending Invoices</h3>
+                <a href="#" class="text-sm font-sans text-secondary hover:text-accent" data-i18n-key="link_viewAll">View All</a>
+            </div>
+            <div class="dashboard-card space-y-4">
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-background rounded-lg hover:shadow-md transition-shadow">
+                <div>
+                  <p class="font-semibold text-primary font-sans">INV-2024-0078 <span class="text-xs text-secondary" data-i18n-key="invoice_clientLabel">(Client: Wellness Clinic)</span></p>
+                  <p class="text-xs text-secondary font-sans" data-i18n-key="invoice_dueInfo1">Due: 2 days | Amount: ₹3,500</p>
+                </div>
+                <div class="flex space-x-2 mt-2 sm:mt-0">
+                  <button class="text-xs font-sans bg-accent hover:bg-accent-dark text-textDark px-3 py-1.5 rounded-lg shadow-soft transition-colors" data-i18n-key="button_followUp">Follow-Up</button>
+                  <button class="text-xs font-sans bg-primary/10 hover:bg-primary/20 text-primary-dark px-3 py-1.5 rounded-lg transition-colors" data-i18n-key="button_sendReminder">Send Reminder</button>
+                </div>
+              </div>
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center p-3 bg-background rounded-lg hover:shadow-md transition-shadow">
+                <div>
+                  <p class="font-semibold text-primary font-sans">INV-2024-0075 <span class="text-xs text-secondary" data-i18n-key="invoice_customerLabel">(Customer: Priya Singh)</span></p>
+                  <p class="text-xs text-danger-DEFAULT font-sans" data-i18n-key="invoice_overdueInfo1">OVERDUE: 5 days | Amount: ₹1,850</p>
+                </div>
+                <div class="flex space-x-2 mt-2 sm:mt-0">
+                  <button class="text-xs font-sans bg-accent hover:bg-accent-dark text-textDark px-3 py-1.5 rounded-lg shadow-soft transition-colors" data-i18n-key="button_followUp">Follow-Up</button>
+                  <button class="text-xs font-sans bg-danger-DEFAULT hover:bg-danger-DEFAULT/80 text-textLight px-3 py-1.5 rounded-lg transition-colors" data-i18n-key="button_sendReminder">Send Reminder</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 4. Upcoming Appointments & Scheduled Billing -->
+          <section>
+            <h3 class="text-xl font-heading text-primary mb-4" data-i18n-key="section_todaysSchedule">Today's Schedule & Billing</h3>
+            <div class="dashboard-card space-y-4">
+              <div class="p-3 bg-background rounded-lg">
+                <p class="font-semibold text-primary font-sans" data-i18n-key="schedule_item1_title">10:00 AM - Consultation: Mr. A. Kumar</p>
+                <p class="text-xs text-secondary font-sans" data-i18n-key="schedule_item1_details">Status: Confirmed | Billing: Post-session</p>
+              </div>
+              <div class="p-3 bg-background rounded-lg">
+                <p class="font-semibold text-primary font-sans" data-i18n-key="schedule_item2_title">02:30 PM - Therapy Session: Ms. S. Patel</p>
+                <p class="text-xs text-secondary font-sans" data-i18n-key="schedule_item2_details">Status: Confirmed | Billing: Package (Invoice #P034)</p>
+              </div>
+              <div class="p-3 bg-background rounded-lg">
+                <p class="font-semibold text-primary font-sans" data-i18n-key="schedule_item3_title">Scheduled Batch Billing: Yoga Class (Evening)</p>
+                <p class="text-xs text-secondary font-sans" data-i18n-key="schedule_item3_details">Time: 07:00 PM | Attendees: 12</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- 2. Inventory Alerts -->
+        <aside class="lg:col-span-1 space-y-8">
+            <section>
+                <h3 class="text-xl font-heading text-primary mb-4" data-i18n-key="section_inventoryAlerts">Inventory Alerts</h3>
+                <div class="dashboard-card space-y-4">
+                <div class="p-3 bg-danger-light rounded-lg">
+                    <p class="font-semibold text-danger-dark font-sans" data-i18n-key="alert_syringeLowStock">Syringes (10ml) - Low Stock!</p>
+                    <p class="text-xs text-secondary font-sans" data-i18n-key="alert_syringeDetails">Current: 8 units | Threshold: 10 units</p>
+                    <button class="mt-2 text-xs font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-3 py-1.5 rounded-lg shadow-soft transition-colors" data-i18n-key="button_restock">Restock</button>
+                </div>
+                <div class="p-3 bg-warning-light rounded-lg">
+                    <p class="font-semibold text-warning-dark font-sans" data-i18n-key="alert_balmNearingLimit">Pain Relief Balm - Nearing Limit</p>
+                    <p class="text-xs text-secondary font-sans" data-i18n-key="alert_balmDetails">Current: 25 units | Threshold: 20 units</p>
+                    <button class="mt-2 text-xs font-sans bg-secondary hover:bg-secondary/80 text-textOnSecondary px-3 py-1.5 rounded-lg shadow-soft transition-colors" data-i18n-key="button_viewDetails">View Details</button>
+                </div>
+                <a href="inventory_dashboard.html" class="block text-center text-sm font-sans text-secondary hover:text-accent pt-2" data-i18n-key="link_manageFullInventory">Manage Full Inventory</a>
+                </div>
+            </section>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <footer class="bg-primary text-textOnPrimary text-center p-4 text-xs font-sans shadow-soft mt-auto">
+    <span data-i18n-key="footer_copyright">© <script>document.write(new Date().getFullYear())</script> BillingApp Pro. All Rights Reserved.</span>
+    <span class="mx-1">|</span>
+    <a href="#" class="hover:text-accent" data-i18n-key="footer_privacyPolicy">Privacy Policy</a>
+    <span class="mx-1">|</span>
+    <a href="#" class="hover:text-accent" data-i18n-key="footer_termsOfService">Terms of Service</a>
+  </footer>
+
+<script>
+    // Translations Store
+    const translations = {
+      en: {
+        pageTitle: "Admin Dashboard - BillingApp Pro",
+        header_appName: "Vipatra",
+        nav_dashboard: "Dashboard",
+        nav_billing: "Billing",
+        nav_inventory: "Inventory",
+        nav_customers: "Customers",
+        nav_items: "Items",
+        nav_expenses: "Expenses",
+        nav_reports: "Reports",
+        nav_settingsLink: "Settings",
+        notification_new: "New notifications",
+        notification_title: "Notifications",
+        notification_item1_title: "Invoice #INV-001 due soon",
+        notification_item1_time: "2 hours ago",
+        notification_viewAll: "View all notifications",
+        profile_administratorName: "Administrator",
+        profile_myProfile: "My Profile",
+        profile_accountSettings: "Account Settings",
+        profile_logout: "Logout",
+        sidebar_quickMenu: "Quick Menu",
+        sidebar_dashboard: "Dashboard",
+        sidebar_allInvoices: "All Invoices",
+        sidebar_createInvoice: "Create Invoice",
+        sidebar_customers: "Customers",
+        sidebar_items: "Items",
+        sidebar_expenses: "Expenses",
+        sidebar_manageInventory: "Manage Inventory",
+        sidebar_reports: "Reports",
+        sidebar_settings: "Settings",
+        main_adminDashboardTitle: "Admin Dashboard",
+        main_adminDashboardSubtitle: "Overview of your business performance and alerts.",
+        section_revenueOverview: "Revenue Overview",
+        stat_todaysRevenue: "Today's Revenue",
+        stat_thisWeekRevenue: "This Week (MTD)",
+        stat_thisMonthRevenue: "This Month (MTD)",
+        stat_collectedPayments: "Collected Payments (Month)",
+        stat_outstanding: "Outstanding:",
+        stat_outstandingAmount: "₹35,800", // Keep numbers separate if they don't change with language text
+        section_pendingInvoices: "Pending Invoices",
+        link_viewAll: "View All",
+        invoice_clientLabel: "(Client: Wellness Clinic)",
+        invoice_dueInfo1: "Due: 2 days | Amount: ₹3,500",
+        button_followUp: "Follow-Up",
+        button_sendReminder: "Send Reminder",
+        invoice_customerLabel: "(Customer: Priya Singh)",
+        invoice_overdueInfo1: "OVERDUE: 5 days | Amount: ₹1,850",
+        section_todaysSchedule: "Today's Schedule & Billing",
+        schedule_item1_title: "10:00 AM - Consultation: Mr. A. Kumar",
+        schedule_item1_details: "Status: Confirmed | Billing: Post-session",
+        schedule_item2_title: "02:30 PM - Therapy Session: Ms. S. Patel",
+        schedule_item2_details: "Status: Confirmed | Billing: Package (Invoice #P034)",
+        schedule_item3_title: "Scheduled Batch Billing: Yoga Class (Evening)",
+        schedule_item3_details: "Time: 07:00 PM | Attendees: 12",
+        section_inventoryAlerts: "Inventory Alerts",
+        alert_syringeLowStock: "Syringes (10ml) - Low Stock!",
+        alert_syringeDetails: "Current: 8 units | Threshold: 10 units",
+        button_restock: "Restock",
+        alert_balmNearingLimit: "Pain Relief Balm - Nearing Limit",
+        alert_balmDetails: "Current: 25 units | Threshold: 20 units",
+        button_viewDetails: "View Details",
+        link_manageFullInventory: "Manage Full Inventory",
+        footer_copyright: `© ${new Date().getFullYear()} BillingApp Pro. All Rights Reserved.`,
+        footer_privacyPolicy: "Privacy Policy",
+        footer_termsOfService: "Terms of Service",
+      },
+      hi: {
+        pageTitle: "एडमिन डैशबोर्ड - विपत्र प्रो",
+        header_appName: "विपत्र",
+        nav_dashboard: "डैशबोर्ड",
+        nav_billing: "बिलिंग",
+        nav_inventory: "इन्वेंटरी",
+        nav_customers: "ग्राहक",
+        nav_items: "आइटम",
+        nav_expenses: "खर्चे",
+        nav_reports: "रिपोर्ट",
+        nav_settingsLink: "सेटिंग्स",
+        notification_new: "नई सूचनाएं",
+        notification_title: "सूचनाएं",
+        notification_item1_title: "चालान #INV-001 जल्द ही देय है",
+        notification_item1_time: "2 घंटे पहले",
+        notification_viewAll: "सभी सूचनाएं देखें",
+        profile_administratorName: "व्यवस्थापक",
+        profile_myProfile: "मेरी प्रोफाइल",
+        profile_accountSettings: "अकाउंट सेटिंग",
+        profile_logout: "लॉग आउट",
+        sidebar_quickMenu: "त्वरित मेनू",
+        sidebar_dashboard: "डैशबोर्ड",
+        sidebar_allInvoices: "सभी चालान",
+        sidebar_createInvoice: "चालान बनाएं",
+        sidebar_customers: "ग्राहक",
+        sidebar_items: "आइटम",
+        sidebar_expenses: "खर्चे",
+        sidebar_manageInventory: "इन्वेंटरी प्रबंधित करें",
+        sidebar_reports: "रिपोर्ट",
+        sidebar_settings: "सेटिंग्स",
+        main_adminDashboardTitle: "एडमिन डैशबोर्ड",
+        main_adminDashboardSubtitle: "आपके व्यवसाय के प्रदर्शन और अलर्ट का अवलोकन।",
+        section_revenueOverview: "राजस्व अवलोकन",
+        stat_todaysRevenue: "आज का राजस्व",
+        stat_thisWeekRevenue: "इस सप्ताह (MTD)",
+        stat_thisMonthRevenue: "इस महीने (MTD)",
+        stat_collectedPayments: "एकत्रित भुगतान (माह)",
+        stat_outstanding: " बकाया:",
+        stat_outstandingAmount: "₹३५,८००",
+        section_pendingInvoices: "लंबित चालान",
+        link_viewAll: "सभी देखें",
+        invoice_clientLabel: "(ग्राहक: वेलनेस क्लिनिक)",
+        invoice_dueInfo1: "देय: २ दिन | राशि: ₹३,५००",
+        button_followUp: "फ़ॉलो अप",
+        button_sendReminder: "अनुस्मारक भेजें",
+        invoice_customerLabel: "(ग्राहक: प्रिया सिंह)",
+        invoice_overdueInfo1: "अतिदेय: ५ दिन | राशि: ₹१,८५०",
+        section_todaysSchedule: "आज का शेड्यूल और बिलिंग",
+        schedule_item1_title: "सुबह १०:०० - परामर्श: श्री ए. कुमार",
+        schedule_item1_details: " स्थिति: पुष्टि | बिलिंग: सत्र के बाद",
+        schedule_item2_title: "दोपहर ०२:३० - थेरेपी सत्र: सुश्री एस. पटेल",
+        schedule_item2_details: "स्थिति: पुष्टि | बिलिंग: पैकेज (चालान #P034)",
+        schedule_item3_title: "अनुसूचित बैच बिलिंग: योग कक्षा (शाम)",
+        schedule_item3_details: "समय: शाम ०७:०० | उपस्थितगण: १२",
+        section_inventoryAlerts: "इन्वेंटरी अलर्ट",
+        alert_syringeLowStock: "सिरिंज (१० मिली) - स्टॉक कम!",
+        alert_syringeDetails: "वर्तमान: ८ इकाइयां | थ्रेशोल्ड: १० इकाइयां",
+        button_restock: "पुनः स्टॉक करें",
+        alert_balmNearingLimit: "दर्द निवारक बाम - सीमा के करीब",
+        alert_balmDetails: "वर्तमान: २५ इकाइयां | थ्रेशोल्ड: २० इकाइयां",
+        button_viewDetails: "विवरण देखें",
+        link_manageFullInventory: "पूर्ण इन्वेंटरी प्रबंधित करें",
+        footer_copyright: `© ${new Date().getFullYear()} बिलिंगऐप प्रो। सर्वाधिकार सुरक्षित।`,
+        footer_privacyPolicy: "गोपनीयता नीति",
+        footer_termsOfService: "सेवा की शर्तें",
+      },
+      kn: {
+        pageTitle: "ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್ - ವಿಪತ್ರ ಪ್ರೊ",
+        header_appName: "ವಿಪತ್ರ",
+        nav_dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        nav_billing: "ಬಿಲ್ಲಿಂಗ್",
+        nav_inventory: "ಇನ್ವೆಂಟರಿ",
+        nav_customers: "ಗ್ರಾಹಕರು",
+        nav_items: "ಐಟಂಗಳು",
+        nav_expenses: "ಖರ್ಚುಗಳು",
+        nav_reports: "ವರದಿಗಳು",
+        nav_settingsLink: "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+        notification_new: "ಹೊಸ ಅಧಿಸೂಚನೆಗಳು",
+        notification_title: "ಅಧಿಸೂಚನೆಗಳು",
+        notification_item1_title: "ಇನ್‌ವಾಯ್ಸ್ #INV-001 ಶೀಘ್ರದಲ್ಲೇ ಬಾಕಿ ಇದೆ",
+        notification_item1_time: "2 ಗಂಟೆಗಳ ಹಿಂದೆ",
+        notification_viewAll: "ಎಲ್ಲಾ ಅಧಿಸೂಚನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+        profile_administratorName: "ನಿರ್ವಾಹಕರು",
+        profile_myProfile: "ನನ್ನ ಪ್ರೊಫೈಲ್",
+        profile_accountSettings: "ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+        profile_logout: "ಲಾಗ್ ಔಟ್",
+        sidebar_quickMenu: "ತ್ವರಿತ ಮೆನು",
+        sidebar_dashboard: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        sidebar_allInvoices: "ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+        sidebar_createInvoice: "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
+        sidebar_customers: "ಗ್ರಾಹಕರು",
+        sidebar_items: "ಐಟಂಗಳು",
+        sidebar_expenses: "ಖರ್ಚುಗಳು",
+        sidebar_manageInventory: "ಇನ್ವೆಂಟರಿ ನಿರ್ವಹಿಸಿ",
+        sidebar_reports: "ವರದಿಗಳು",
+        sidebar_settings: "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+        main_adminDashboardTitle: "ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+        main_adminDashboardSubtitle: "ನಿಮ್ಮ ವ್ಯಾಪಾರ ನಿರ್ವಹಣೆ ಮತ್ತು ಎಚ್ಚರಿಕೆಗಳ ಅವಲೋಕನ.",
+        section_revenueOverview: "ಆದಾಯ ಅವಲೋಕನ",
+        stat_todaysRevenue: "ಇಂದಿನ ಆದಾಯ",
+        stat_thisWeekRevenue: "ಈ ವಾರ (MTD)",
+        stat_thisMonthRevenue: "ಈ ತಿಂಗಳು (MTD)",
+        stat_collectedPayments: "ಸಂಗ್ರಹಿಸಿದ ಪಾವತಿಗಳು (ತಿಂಗಳು)",
+        stat_outstanding: "ಬಾಕಿ ಉಳಿದ:",
+        stat_outstandingAmount: "₹೩೫,೮೦೦",
+        section_pendingInvoices: "ಬಾಕಿ ಇರುವ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+        link_viewAll: "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ",
+        invoice_clientLabel: "(ಗ್ರಾಹಕ: ವೆಲ್‌ನೆಸ್ ಕ್ಲಿನಿಕ್)",
+        invoice_dueInfo1: "ಬಾಕಿ: ೨ ದಿನಗಳು | ಮೊತ್ತ: ₹೩,೫೦೦",
+        button_followUp: "ಫಾಲೋ-ಅಪ್",
+        button_sendReminder: "ಜ್ಞಾಪನೆ ಕಳುಹಿಸಿ",
+        invoice_customerLabel: "(ಗ್ರಾಹಕ: ಪ್ರಿಯಾ ಸಿಂಗ್)",
+        invoice_overdueInfo1: "ಅತಿಬಾಕಿ: ೫ ದಿನಗಳು | ಮೊತ್ತ: ₹೧,೮೫೦",
+        section_todaysSchedule: "ಇಂದಿನ ವೇಳಾಪಟ್ಟಿ ಮತ್ತು ಬಿಲ್ಲಿಂಗ್",
+        schedule_item1_title: "ಬೆಳಿಗ್ಗೆ ೧೦:೦೦ - ಸಮಾಲೋಚನೆ: ಶ್ರೀ ಎ. ಕುಮಾರ್",
+        schedule_item1_details: "ಸ್ಥಿತಿ: ದೃಢಪಡಿಸಲಾಗಿದೆ | ಬಿಲ್ಲಿಂಗ್: ಅಧಿವೇಶನದ ನಂತರ",
+        schedule_item2_title: "ಮಧ್ಯಾಹ್ನ ೦೨:೩೦ - ಥೆರಪಿ ಅಧಿವೇಶನ: ಶ್ರೀಮತಿ ಎಸ್. ಪಟೇಲ್",
+        schedule_item2_details: "ಸ್ಥಿತಿ: ದೃಢಪಡಿಸಲಾಗಿದೆ | ಬಿಲ್ಲಿಂಗ್: ಪ್ಯಾಕೇಜ್ (ಇನ್‌ವಾಯ್ಸ್ #P034)",
+        schedule_item3_title: "ನಿಗದಿತ ಬ್ಯಾಚ್ ಬಿಲ್ಲಿಂಗ್: ಯೋಗ ತರಗತಿ (ಸಂಜೆ)",
+        schedule_item3_details: "ಸಮಯ: ಸಂಜೆ ೦೭:೦೦ | ಹಾಜರಾತಿ: ೧೨",
+        section_inventoryAlerts: "ಇನ್ವೆಂಟರಿ ಎಚ್ಚರಿಕೆಗಳು",
+        alert_syringeLowStock: "ಸಿರಿಂಜ್ (೧೦ ಮಿಲಿ) - ಸ್ಟಾಕ್ ಕಡಿಮೆ!",
+        alert_syringeDetails: "ಪ್ರಸ್ತುತ: ೮ ಘಟಕಗಳು | ಮಿತಿ: ೧೦ ಘಟಕಗಳು",
+        button_restock: "ಮರುಸ್ಟಾಕ್ ಮಾಡಿ",
+        alert_balmNearingLimit: "ನೋವು ನಿವಾರಕ ಬಾಮ್ - ಮಿತಿಯ ಹತ್ತಿರ",
+        alert_balmDetails: "ಪ್ರಸ್ತುತ: ೨೫ ಘಟಕಗಳು | ಮಿತಿ: ೨೦ ಘಟಕಗಳು",
+        button_viewDetails: "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+        link_manageFullInventory: "ಪೂರ್ಣ ಇನ್ವೆಂಟರಿ ನಿರ್ವಹಿಸಿ",
+        footer_copyright: `© ${new Date().getFullYear()} ಬಿಲ್ಲಿಂಗ್‌ಆಪ್ ಪ್ರೊ। ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ।`,
+        footer_privacyPolicy: "ಗೌಪ್ಯತಾ ನೀತಿ",
+        footer_termsOfService: "ಸೇವಾ ನಿಯಮಗಳು",
+      }
+    };
+
+    // --- JavaScript for language switcher and dropdowns (keep as is) ---
+    const langSwitcherButtonHeader = document.getElementById('languageSwitcherButton');
+    const langDropdownHeader = document.getElementById('languageDropdownHeader');
+    const currentLangDisplayHeader = document.getElementById('currentLangDisplayHeader');
+    const langOptionsHeader = document.querySelectorAll('.language-option-header');
+
+    function setLanguage(langCode) {
+      document.querySelectorAll('[data-i18n-key]').forEach(element => {
+        const key = element.getAttribute('data-i18n-key');
+        if (translations[langCode] && translations[langCode][key] !== undefined) {
+          element.innerHTML = translations[langCode][key];
+        } else if (translations.en && translations.en[key] !== undefined) {
+          element.innerHTML = translations.en[key]; // Fallback to English
+        } else {
+          // console.warn(`Translation missing for key: ${key} in language: ${langCode} and English fallback.`);
+        }
+      });
+      const pageTitleKey = "pageTitle";
+      if (translations[langCode] && translations[langCode][pageTitleKey]) {
+        document.title = translations[langCode][pageTitleKey];
+      }
+      const selectedOption = document.querySelector(`.language-option-header[data-lang="${langCode}"]`);
+      if (selectedOption) {
+        currentLangDisplayHeader.textContent = selectedOption.getAttribute('data-lang-display');
+      }
+      document.documentElement.lang = langCode;
+    }
+
+    langSwitcherButtonHeader.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langDropdownHeader.classList.toggle('hidden');
+      langSwitcherButtonHeader.setAttribute('aria-expanded', langDropdownHeader.classList.contains('hidden') ? 'false' : 'true');
+    });
+
+    langOptionsHeader.forEach(option => {
+      option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedLang = option.getAttribute('data-lang');
+        setLanguage(selectedLang);
+        langDropdownHeader.classList.add('hidden');
+        langSwitcherButtonHeader.setAttribute('aria-expanded', 'false');
+        localStorage.setItem('preferredLanguage', selectedLang);
+      });
+    });
+
+    function toggleProfileDropdown() {
+        const dropdown = document.getElementById('profileDropdown');
+        dropdown.classList.toggle('hidden');
+    }
+
+    function toggleNotificationPanel() {
+        const panel = document.getElementById('notificationPanel');
+        panel.classList.toggle('hidden');
+    }
+
+    window.addEventListener('click', function(event) {
+      if (!document.getElementById('languageSwitcherContainer').contains(event.target) && !langDropdownHeader.classList.contains('hidden')) {
+        langDropdownHeader.classList.add('hidden');
+        langSwitcherButtonHeader.setAttribute('aria-expanded', 'false');
+      }
+      const profileDropdown = document.getElementById('profileDropdown');
+      if (!event.target.closest('button[onclick="toggleProfileDropdown()"]') && profileDropdown && !profileDropdown.classList.contains('hidden') && !profileDropdown.contains(event.target)) {
+        profileDropdown.classList.add('hidden');
+      }
+      const notificationPanel = document.getElementById('notificationPanel');
+      if (!event.target.closest('button[onclick="toggleNotificationPanel()"]') && notificationPanel && !notificationPanel.classList.contains('hidden') && !notificationPanel.contains(event.target)) {
+        notificationPanel.classList.add('hidden');
+      }
+    });
+
+    const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+    setLanguage(savedLang);
+  </script>
+</body>
+</html>
