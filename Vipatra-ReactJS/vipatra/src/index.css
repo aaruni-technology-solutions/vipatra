@@ -1,0 +1,119 @@
+/* src/index.css (or src/styles/global.css - make sure to import this in your main app entry point, e.g., src/index.js or src/App.js) */
+
+/* 1. Import Tailwind's base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2. Define global base styles (applied to HTML elements) */
+@layer base {
+  body {
+    font-family: theme('fontFamily.sans'); /* Uses 'Lato', 'Roboto' from your config */
+    background-color: theme('colors.background'); /* Uses '#FAF9F5' */
+    color: theme('colors.primary.DEFAULT');    /* Uses '#3A6F48' */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.heading'); /* Uses 'Playfair Display', 'Poppins' */
+    /* You might add default margins or colors for headings here if desired */
+    /* e.g., color: theme('colors.primary.DEFAULT'); */
+    /* e.g., margin-bottom: theme('spacing.4'); */
+  }
+
+  /* Add any other global element styles here */
+  /* For example, if you want all links to have a specific default color (can be overridden by utilities) */
+  /* a {
+    @apply text-primary hover:text-accent transition-colors;
+  } */
+}
+
+/* 3. Define custom component classes (reusable styles) */
+@layer components {
+  .dashboard-card {
+    @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight;
+  }
+
+  .form-element {
+    @apply w-full bg-cardBg border border-borderInput text-primary placeholder-secondary p-3 rounded-lg shadow-sm transition-all duration-150 ease-in-out;
+    /* Note: @tailwindcss/forms plugin will handle most focus styling.
+       If not using it, you'd add focus states here:
+       focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft;
+    */
+  }
+
+  /* --- Top Navigation --- */
+  .nav-link {
+    @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150 relative;
+  }
+  .nav-link:hover {
+    @apply text-textOnPrimary; /* Keep text color consistent on hover */
+  }
+  .nav-link:hover::before {
+    content: ""; /* Necessary for pseudo-elements */
+    @apply absolute inset-0 bg-black opacity-10 rounded-md; /* Subtle dark overlay */
+  }
+  .nav-link-active {
+    /* Active state has its own distinct style */
+    @apply bg-accent text-textDark font-semibold; /* Removed redundant padding/sizing, it inherits from .nav-link */
+  }
+  .nav-link-active:hover {
+    @apply bg-accent-dark text-textDark;
+  }
+
+
+  /* --- Sidebar Navigation --- */
+  .sidebar-link {
+    @apply flex items-center space-x-3 px-3 py-3 rounded-lg text-sm text-secondary;
+    @apply hover:bg-primary/10 hover:text-primary; /* Keep text-primary for icon too */
+  }
+  .sidebar-link-active {
+    @apply bg-primary text-textOnPrimary font-semibold;
+    @apply hover:bg-primary-dark hover:text-textOnPrimary; /* Keep text-textOnPrimary for icon too */
+  }
+  /* SVG colors will now inherit from the parent <a> tag's text color due to `stroke="currentColor"` or by default */
+  .sidebar-link svg {
+      @apply flex-shrink-0;
+  }
+  .sidebar-link span {
+      @apply whitespace-nowrap overflow-hidden text-ellipsis;
+  }
+
+
+  /* --- Other Custom Components --- */
+  .type-option input[type="radio"] { /* For Goods/Service selection */
+    @apply sr-only; /* Visually hide the radio, but keep it accessible. @tailwindcss/forms might handle this better. */
+  }
+  .type-option label {
+    @apply inline-block bg-cardBg border border-borderInput text-primary p-3 px-6 rounded-lg cursor-pointer hover:border-primary transition-all text-center;
+  }
+  .type-option input[type="radio"]:checked + label {
+    @apply bg-primary text-textOnPrimary border-primary font-semibold;
+  }
+  .type-option input[type="radio"]:focus + label { /* Add focus style for accessibility */
+    @apply ring-2 ring-accent ring-offset-1;
+  }
+
+
+  .file-input-area {
+    @apply mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-primary/70 bg-background/50;
+  }
+
+  /* Status Badges */
+  .status-badge { @apply px-3 py-1 text-xs font-semibold rounded-full inline-block; }
+  .status-paid { @apply bg-success-light text-success-dark; }
+  .status-pending { @apply bg-warning-light text-warning-dark; }
+  .status-overdue { @apply bg-danger-light text-danger-dark; }
+  .status-partial { @apply bg-accent/20 text-accent-dark; } /* Assuming accent is goldish */
+  .status-low { @apply bg-danger-light text-danger-dark; }
+  .status-nearing-expiry { @apply bg-warning-light text-warning-dark; }
+  .status-ok { @apply bg-success-light text-success-dark; }
+
+  /* Add other reusable component styles here */
+}
+
+/* 4. Define custom utility classes (if any - less common with Tailwind) */
+/* @layer utilities { */
+/* .custom-utility { @apply ...; } */
+/* } */
