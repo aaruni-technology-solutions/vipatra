@@ -1,0 +1,209 @@
+{
+  "appTitle": "Vipatra Billing Pro",
+  "nav": {
+    "dashboard": "Dashboard",
+    "billing": "Billing",
+    "inventory": "Inventory",
+    "customers": "Customers",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "support": "Support"
+  },
+  "sidebar": {
+    "quickMenu": "Quick Menu",
+    "dashboard": "Dashboard",
+    "allInvoices": "All Invoices",
+    "createInvoice": "Create Invoice",
+    "customers": "Customers",
+    "items": "Manage Items",
+    "expenses": "Expenses",
+    "manageInventory": "Manage Inventory",
+    "reports": "Reports",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "adminTitle": "Admin Dashboard",
+    "adminSubtitle": "Overview of your business performance and alerts.",
+    "revenueOverview": "Revenue Overview",
+    "revenueToday": "Today's Revenue",
+    "revenueWeek": "This Week (MTD)",
+    "revenueMonth": "This Month (MTD)",
+    "collectedMonth": "Collected Payments (Month)",
+    "outstanding": "Outstanding",
+    "pendingInvoices": "Pending Invoices",
+    "todaysSchedule": "Today's Schedule & Billing",
+    "inventoryAlerts": "Inventory Alerts",
+    "manageFullInventory": "Manage Full Inventory"
+  },
+  "client": "Client",
+  "amount": "Amount",
+  "actions": {
+    "followUp": "Follow-Up",
+    "sendReminder": "Send Reminder",
+    "restock": "Restock",
+    "viewDetails": "View Details"
+  },
+  "time": {
+    "hoursAgo": "{{count}} hours ago",
+    "yesterday": "Yesterday"
+  },
+  "notifications": "Notifications",
+  "viewNotifications": "View notifications",
+  "newNotifications": "New notifications",
+  "viewAllNotifications": "View all notifications",
+  "notification": {
+    "invoiceDue": "Invoice #INV-001 due soon",
+    "paymentReceived": "Payment of ₹500 received"
+  },
+  "user": {
+    "administrator": "Administrator"
+  },
+  "profile": {
+    "myProfile": "My Profile",
+    "accountSettings": "Account Settings",
+    "logout": "Logout"
+  },
+  "due_2_days": "Due: 2 days",
+  "overdue_5_days": "OVERDUE: 5 days",
+  "consultation_mr_a_kumar": "Consultation: Mr. A. Kumar",
+  "status_confirmed_billing_post-session": "Status: Confirmed | Billing: Post-session",
+  "therapy_session_ms_s_patel": "Therapy Session: Ms. S. Patel",
+  "status_confirmed_billing_package_invoice_p034": "Status: Confirmed | Billing: Package (Invoice #P034)",
+  "scheduled_batch_billing_yoga_class_evening": "Scheduled Batch Billing: Yoga Class (Evening)",
+  "attendees_12": "Attendees: 12",
+  "syringes_10ml_-_low_stock!": "Syringes (10ml) - Low Stock!",
+  "current_8_units_threshold_10_units": "Current: 8 units | Threshold: 10 units",
+  "pain_relief_balm_-_nearing_limit": "Pain Relief Balm - Nearing Limit",
+  "current_25_units_threshold_20_units": "Current: 25 units | Threshold: 20 units",
+  
+  "invoices": {
+    "allInvoicesTitle": "All Invoices",
+    "allInvoicesSubtitle": "View, manage, and track all your invoices.",
+    "createNewInvoiceBtn": "Create New Invoice",
+    "searchPlaceholder": "Invoice #, Customer...",
+    "withSelected": "With Selected ({{count}}):",
+    "table": {
+      "invoiceNo": "Invoice #",
+      "customer": "Customer",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "amount": "Amount (₹)"
+    },
+    "noInvoicesFound": "No invoices found matching your criteria.",
+    "totalInvoices": "Total Invoices",
+    "totalOutstanding": "Total Outstanding",
+    "overdueAmount": "Overdue",
+    "paidThisMonth": "Paid (This Month)"
+  },
+  "common": {
+    "search": "Search",
+    "status": "Status",
+    "allStatuses": "All Statuses",
+    "dateRangeIssue": "Date Range (Issue Date)",
+    "apply": "Apply",
+    "clear": "Clear",
+    "actions": "Actions"
+  },
+  "status": {
+    "draft": "Draft",
+    "sent": "Sent",
+    "viewed": "Viewed",
+    "partial": "Partially Paid", 
+    "paid": "Paid",
+    "overdue": "Overdue",
+    "void": "Void"
+  },
+  "actions": { 
+    "view": "View",
+    "edit": "Edit",
+    "moreActions": "More Actions",
+    "recordPayment": "Record Payment",
+    "sendReminders": "Send Reminders", 
+    "sendReminder": "Send Reminder",   
+    "markAsPaid": "Mark as Paid",
+    "downloadPDFs": "Download PDFs", 
+    "downloadPDF": "Download PDF",   
+    "duplicate": "Duplicate",
+    "void": "Void",
+    "sendReceipt": "Send Receipt"
+  },
+  "pagination": {
+    "showingRange": "Showing {{start}} to {{end}} of {{total}} invoices",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "invoiceCreate": {
+    "title": "Create New Invoice",
+    "subtitle": "Follow the steps below to generate an invoice.",
+    
+    "stepper": {
+      "step1Name": "Invoice Type",
+      "step2Name": "Customer Details",
+      "step3Name": "Items/Services",
+      "step4Name": "Tax & Discount",
+      "step5Name": "Preview & Send"
+    }
+    
+  },
+  "invoiceCreate": {
+    "step1": {
+      "invoiceFor": "Invoice For", 
+      "chooseType": "-- Choose type --",
+      "types": {
+        "consultation": "Consultation",
+        "therapy": "Therapy Session",
+        "retail": "Retail Product Sale",
+        "batch": "Batch-based Sale (e.g., Class)"
+      }
+    },
+    "step2": {
+        "searchExisting": "Search Existing (Auto-complete)",
+        "searchPlaceholder": "Start typing name, phone, or email...",
+        "addNewDetails": "Add New Details:"
+    },
+    "step3": {
+        "itemName": "Item/Service Name",
+        "itemPlaceholder": "Search or type...",
+        "qty": "Qty",
+        "price": "Price (₹)",
+        "tax": "Tax (%)",
+        "addItemBtn": "Add Item/Service"
+    },
+    "eInvoiceOption": {
+        "title": "e-Invoicing Option",
+        "generateLabel": "Generate e-Invoice (IRN & QR Code)",
+        "description": "This will attempt to register the invoice with the GSTN portal upon saving/sending."
+    },
+    "totalsSection": {
+        "title": "Summary & Notes", 
+        "notesLabel": "Notes / Terms & Conditions",
+        "notesPlaceholder": "E.g., Payment due within 15 days. Thank you for your business!",
+        "privateNotesLabel": "Private Notes (Not visible to customer)",
+        "privateNotesPlaceholder": "Internal notes for this invoice"
+    },
+    "summary": {
+        "subtotal": "Subtotal:",
+        "itemTax": "Total Item Tax:",
+        "overallDiscount": "Overall Discount:",
+        "calculatedDiscount": "Calculated Discount:",
+        "grandTotal": "Grand Total:"
+    },
+    "step5": { 
+        "title": "Preview & Generate", 
+        "previewPlaceholder": "Invoice preview will appear here..."
+    },
+    "actions": { 
+        "generateAndSend": "Generate & Send Invoice"
+    }
+  
+  },
+  "common": {
+    "or": "OR",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "emailAddress": "Email Address",
+    "addressOptional": "Address (Optional)",
+    "downloadPDF": "Download PDF" 
+  }
+
+}

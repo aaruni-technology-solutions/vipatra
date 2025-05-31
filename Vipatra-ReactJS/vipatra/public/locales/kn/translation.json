@@ -1,0 +1,220 @@
+{
+  "appTitle": "ವಿಪತ್ರ ಬಿಲ್ಲಿಂಗ್ ಪ್ರೊ",
+  "nav": {
+    "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "billing": "ಬಿಲ್ಲಿಂಗ್",
+    "inventory": "ದಾಸ್ತಾನು",
+    "customers": "ಗ್ರಾಹಕರು",
+    "analytics": "ವಿಶ್ಲೇಷಣೆಗಳು",
+    "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "support": "ಬೆಂಬಲ"
+  },
+  "sidebar": {
+    "quickMenu": "ತ್ವರಿತ ಮೆನು",
+    "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "allInvoices": "ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+    "createInvoice": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
+    "customers": "ಗ್ರಾಹಕರು",
+    "items": "ಐಟಂಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+    "expenses": "ಖರ್ಚುಗಳು",
+    "manageInventory": "ದಾಸ್ತಾನು ನಿರ್ವಹಿಸಿ",
+    "reports": "ವರದಿಗಳು",
+    "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+  },
+  "dashboard": {
+    "adminTitle": "ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "adminSubtitle": "ನಿಮ್ಮ ವ್ಯಾಪಾರ ಕಾರ್ಯಕ್ಷಮತೆ ಮತ್ತು ಎಚ್ಚರಿಕೆಗಳ ಅವಲೋಕನ.",
+    "revenueOverview": "ಆದಾಯ ಅವಲೋಕನ",
+    "revenueToday": "ಇಂದಿನ ಆದಾಯ",
+    "revenueWeek": "ಈ ವಾರ (MTD)",
+    "revenueMonth": "ಈ ತಿಂಗಳು (MTD)",
+    "collectedMonth": "ಸಂಗ್ರಹಿಸಿದ ಪಾವತಿಗಳು (ತಿಂಗಳು)",
+    "outstanding": "ಬಾಕಿ ಉಳಿದಿದೆ",
+    "pendingInvoices": "ಬಾಕಿ ಇರುವ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+    "todaysSchedule": "ಇಂದಿನ ವೇಳಾಪಟ್ಟಿ ಮತ್ತು ಬಿಲ್ಲಿಂಗ್",
+    "inventoryAlerts": "ದಾಸ್ತಾನು ಎಚ್ಚರಿಕೆಗಳು",
+    "manageFullInventory": "ಪೂರ್ಣ ದಾಸ್ತಾನು ನಿರ್ವಹಿಸಿ"
+  },
+  "client": "ಗ್ರಾಹಕ",
+  "amount": "ಮೊತ್ತ",
+  "actions": {
+    "followUp": "ಫಾಲೋ-ಅಪ್",
+    "sendReminder": "ಜ್ಞಾಪನೆ ಕಳುಹಿಸಿ",
+    "restock": "ಮರುಸ್ಥಾಪಿಸಿ",
+    "viewDetails": "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  },
+  "time": {
+    "hoursAgo": "{{count}} ಗಂಟೆಗಳ ಹಿಂದೆ",
+    "yesterday": "ನಿನ್ನೆ"
+  },
+  "notifications": "ಅಧಿಸೂಚನೆಗಳು",
+  "viewNotifications": "ಅಧಿಸೂಚನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+  "newNotifications": "ಹೊಸ ಅಧಿಸೂಚನೆಗಳು",
+  "viewAllNotifications": "ಎಲ್ಲಾ ಅಧಿಸೂಚನೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+  "notification": {
+    "invoiceDue": "ಇನ್‌ವಾಯ್ಸ್ #INV-001 ಶೀಘ್ರದಲ್ಲೇ ಬಾಕಿ ಇದೆ",
+    "paymentReceived": "₹500 ಪಾವತಿ ಸ್ವೀಕರಿಸಲಾಗಿದೆ"
+  },
+  "user": {
+    "administrator": "ನಿರ್ವಾಹಕರು"
+  },
+  "profile": {
+    "myProfile": "ನನ್ನ ಪ್ರೊಫೈಲ್",
+    "accountSettings": "ಖಾತೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "logout": "ಲಾಗ್ ಔಟ್"
+  },
+  "due_2_days": "ಬಾಕಿ: 2 ದಿನಗಳು",
+  "overdue_5_days": "ಮೀರಿದೆ: 5 ದಿನಗಳು",
+  "consultation_mr_a_kumar": "ಸಮಾಲೋಚನೆ: ಶ್ರೀ ಎ. ಕುಮಾರ್",
+  "status_confirmed_billing_post-session": "ಸ್ಥಿತಿ: ದೃಢೀಕರಿಸಲಾಗಿದೆ | ಬಿಲ್ಲಿಂಗ್: ಅಧಿವೇಶನದ ನಂತರ",
+  "therapy_session_ms_s_patel": "ಚಿಕಿತ್ಸಾ ಅಧಿವೇಶನ: ಶ್ರೀಮತಿ ಎಸ್. ಪಟೇಲ್",
+  "status_confirmed_billing_package_invoice_p034": "ಸ್ಥಿತಿ: ದೃಢೀಕರಿಸಲಾಗಿದೆ | ಬಿಲ್ಲಿಂಗ್: ಪ್ಯಾಕೇಜ್ (ಇನ್‌ವಾಯ್ಸ್ #P034)",
+  "scheduled_batch_billing_yoga_class_evening": "ನಿಗದಿತ ಬ್ಯಾಚ್ ಬಿಲ್ಲಿಂಗ್: ಯೋಗ ತರಗತಿ (ಸಂಜೆ)",
+  "attendees_12": "ಹಾಜರಾದವರು: 12",
+  "syringes_10ml_-_low_stock!": "ಸಿರಿಂಜ್‌ಗಳು (10ml) - ಸ್ಟಾಕ್ ಕಡಿಮೆ!",
+  "current_8_units_threshold_10_units": "ಪ್ರಸ್ತುತ: 8 ಘಟಕಗಳು | ಮಿತಿ: 10 ಘಟಕಗಳು",
+  "pain_relief_balm_-_nearing_limit": "ನೋವು ನಿವಾರಕ ಮುಲಾಮು - ಮಿತಿಗೆ ಹತ್ತಿರ",
+  "current_25_units_threshold_20_units": "ಪ್ರಸ್ತುತ: 25 ಘಟಕಗಳು | ಮಿತಿ: 20 ಘಟಕಗಳು",
+
+  "invoices": {
+    "allInvoicesTitle": "ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+    "allInvoicesSubtitle": "ನಿಮ್ಮ ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ, ನಿರ್ವಹಿಸಿ ಮತ್ತು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ.",
+    "createNewInvoiceBtn": "ಹೊಸ ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
+    "searchPlaceholder": "ಇನ್‌ವಾಯ್ಸ್ #, ಗ್ರಾಹಕ...",
+    "withSelected": "ಆಯ್ಕೆ ಮಾಡಿದವರೊಂದಿಗೆ ({{count}}):",
+    "table": {
+      "invoiceNo": "ಇನ್‌ವಾಯ್ಸ್ #",
+      "customer": "ಗ್ರಾಹಕರು",
+      "issueDate": "ನೀಡಿದ ದಿನಾಂಕ",
+      "dueDate": "ನಿಗದಿತ ದಿನಾಂಕ",
+      "amount": "ಮೊತ್ತ (₹)"
+    },
+    "noInvoicesFound": "ನಿಮ್ಮ ಮಾನದಂಡಗಳಿಗೆ ಸರಿಹೊಂದುವ ಯಾವುದೇ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ.",
+    "totalInvoices": "ಒಟ್ಟು ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+    "totalOutstanding": "ಒಟ್ಟು ಬಾಕಿ",
+    "overdueAmount": "ಮೀರಿದ ಮೊತ್ತ",
+    "paidThisMonth": "ಈ ತಿಂಗಳು ಪಾವತಿಸಲಾಗಿದೆ"
+  },
+  "common": {
+    "search": "ಹುಡುಕಿ",
+    "status": "ಸ್ಥಿತಿ",
+    "allStatuses": "ಎಲ್ಲಾ ಸ್ಥಿತಿಗಳು",
+    "dateRangeIssue": "ದಿನಾಂಕ ಶ್ರೇಣಿ (ನೀಡಿದ ದಿನಾಂಕ)",
+    "apply": "ಅನ್ವಯಿಸಿ",
+    "clear": "ತೆರವುಗೊಳಿಸಿ",
+    "actions": "ಕ್ರಿಯೆಗಳು"
+  },
+  "status": {
+    "draft": "ಕರಡು",
+    "sent": "ಕಳುಹಿಸಲಾಗಿದೆ",
+    "viewed": "ವೀಕ್ಷಿಸಲಾಗಿದೆ",
+    "partial": "ಭಾಗಶಃ ಪಾವತಿಸಲಾಗಿದೆ",
+    "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
+    "overdue": "ಮೀರಿದೆ",
+    "void": "ಅಸಿಂಧು"
+  },
+  "actions": {
+    "view": "ವೀಕ್ಷಿಸಿ",
+    "edit": " ಸಂಪಾದಿಸಿ",
+    "moreActions": "ಹೆಚ್ಚಿನ ಕ್ರಿಯೆಗಳು",
+    "recordPayment": "ಪಾವತಿ ದಾಖಲಿಸಿ",
+    "sendReminders": "ಜ್ಞಾಪನೆಗಳನ್ನು ಕಳುಹಿಸಿ",
+    "sendReminder": "ಜ್ಞಾಪನೆ ಕಳುಹಿಸಿ",
+    "markAsPaid": "ಪಾವತಿಸಲಾಗಿದೆ ಎಂದು ಗುರುತಿಸಿ",
+    "downloadPDFs": "PDFಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+    "duplicate": "ನಕಲು ಮಾಡಿ",
+    "void": "ಅಸಿಂಧುಗೊಳಿಸಿ",
+    "sendReceipt": "ರಶೀದಿ ಕಳುಹಿಸಿ"
+  },
+  "pagination": {
+    "showingRange": "{{total}} ಇನ್‌ವಾಯ್ಸ್‌ಗಳಲ್ಲಿ {{start}} ರಿಂದ {{end}} ವರೆಗೆ ತೋರಿಸಲಾಗುತ್ತಿದೆ",
+    "previous": "ಹಿಂದಿನದು",
+    "next": "ಮುಂದಿನದು"
+  },
+   "invoiceCreate": {
+    "title": "ಹೊಸ ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
+    "subtitle": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಲು ಕೆಳಗಿನ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.",
+    
+    "stepper": {
+      "step1Name": "ಇನ್‌ವಾಯ್ಸ್ ಪ್ರಕಾರ",
+      "step2Name": "ಗ್ರಾಹಕರ ವಿವರಗಳು",
+      "step3Name": "ಐಟಂಗಳು/ಸೇವೆಗಳು",
+      "step4Name": "ತೆರಿಗೆ ಮತ್ತು ರಿಯಾಯಿತಿ",
+      "step5Name": "ಮುನ್ನೋಟ ಮತ್ತು ಕಳುಹಿಸಿ"
+    }
+   
+  },
+  "invoiceCreate": {
+    "title": "ಹೊಸ ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
+    "subtitle": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಲು ಕೆಳಗಿನ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.",
+    "alert": {
+        "atLeastOneItem": "ನೀವು ಕನಿಷ್ಟ ಒಂದು ಐಟಂ ಹೊಂದಿರಬೇಕು.",
+        "formSubmitted": "ಫಾರ್ಮ್ ಸಲ್ಲಿಸಲಾಗಿದೆ (ಡೇಟಾಕ್ಕಾಗಿ ಕನ್ಸೋಲ್ ಪರಿಶೀಲಿಸಿ)"
+    },
+    "stepper": {
+      "step1Name": "ಇನ್‌ವಾಯ್ಸ್ ಪ್ರಕಾರ",
+      "step2Name": "ಗ್ರಾಹಕರ ವಿವರಗಳು",
+      "step3Name": "ಐಟಂಗಳು/ಸೇವೆಗಳು",
+      "step4Name": "ತೆರಿಗೆ ಮತ್ತು ರಿಯಾಯಿತಿ",
+      "step5Name": "ಮುನ್ನೋಟ ಮತ್ತು ಕಳುಹಿಸಿ"
+    },
+    "step1": {
+      "invoiceFor": "ಇದಕ್ಕಾಗಿ ಇನ್‌ವಾಯ್ಸ್",
+      "chooseType": "-- ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ --",
+      "types": {
+        "consultation": "ಸಮಾಲೋಚನೆ",
+        "therapy": "ಚಿಕಿತ್ಸಾ ಅಧಿವೇಶನ",
+        "retail": "ಚಿಲ್ಲರೆ ಉತ್ಪನ್ನ ಮಾರಾಟ",
+        "batch": "ಬ್ಯಾಚ್-ಆಧಾರಿತ ಮಾರಾಟ (ಉದಾಹರಣೆಗೆ, ತರಗತಿ)"
+      }
+    },
+    "step2": {
+        "searchExisting": "ಅಸ್ತಿತ್ವದಲ್ಲಿರುವುದನ್ನು ಹುಡುಕಿ (ಸ್ವಯಂ-ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ)",
+        "searchPlaceholder": "ಹೆಸರು, ಫೋನ್, ಅಥವಾ ಇಮೇಲ್ ಟೈಪ್ ಮಾಡಲು ಪ್ರಾರಂಭಿಸಿ...",
+        "addNewDetails": "ಹೊಸ ವಿವರಗಳನ್ನು ಸೇರಿಸಿ:"
+    },
+    "step3": {
+        "itemName": "ಐಟಂ/ಸೇವೆಯ ಹೆಸರು",
+        "itemPlaceholder": "ಹುಡುಕಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ...",
+        "qty": "ಪ್ರಮಾಣ",
+        "price": "ಬೆಲೆ (₹)",
+        "tax": "ತೆರಿಗೆ (%)",
+        "addItemBtn": "ಐಟಂ/ಸೇವೆ ಸೇರಿಸಿ"
+    },
+    "eInvoiceOption": {
+        "title": "ಇ-ಇನ್‌ವಾಯ್ಸ್ ಆಯ್ಕೆ",
+        "generateLabel": "ಇ-ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ (IRN ಮತ್ತು QR ಕೋಡ್)",
+        "description": "ಇದು ಉಳಿಸುವ/ಕಳುಹಿಸುವಾಗ GSTN ಪೋರ್ಟಲ್‌ನೊಂದಿಗೆ ಇನ್‌ವಾಯ್ಸ್ ಅನ್ನು ನೋಂದಾಯಿಸಲು ಪ್ರಯತ್ನಿಸುತ್ತದೆ."
+    },
+    "totalsSection": {
+        "title": "ಸಾರಾಂಶ ಮತ್ತು ಟಿಪ್ಪಣಿಗಳು",
+        "notesLabel": "ಟಿಪ್ಪಣಿಗಳು / ನಿಯಮಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳು",
+        "notesPlaceholder": "ಉದಾಹರಣೆಗೆ, 15 ದಿನಗಳಲ್ಲಿ ಪಾವತಿ ಬಾಕಿ. ನಿಮ್ಮ ವ್ಯವಹಾರಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು!",
+        "privateNotesLabel": "ಖಾಸಗಿ ಟಿಪ್ಪಣಿಗಳು (ಗ್ರಾಹಕರಿಗೆ ಕಾಣಿಸುವುದಿಲ್ಲ)",
+        "privateNotesPlaceholder": "ಈ ಇನ್‌ವಾಯ್ಸ್‌ಗಾಗಿ ಆಂತರಿಕ ಟಿಪ್ಪಣಿಗಳು"
+    },
+    "summary": {
+        "subtotal": "ಉಪ-ಒಟ್ಟು:",
+        "itemTax": "ಒಟ್ಟು ಐಟಂ ತೆರಿಗೆ:",
+        "overallDiscount": "ಒಟ್ಟಾರೆ ರಿಯಾಯಿತಿ:",
+        "calculatedDiscount": "ಲೆಕ್ಕಾಚಾರ ಮಾಡಿದ ರಿಯಾಯಿತಿ:",
+        "grandTotal": "ಒಟ್ಟು ಮೊತ್ತ:"
+    },
+    "step5": {
+        "title": "ಮುನ್ನೋಟ ಮತ್ತು ರಚಿಸಿ",
+        "previewPlaceholder": "ಇನ್‌ವಾಯ್ಸ್ ಮುನ್ನೋಟ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ..."
+    },
+    "actions": {
+        "generateAndSend": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ ಮತ್ತು ಕಳುಹಿಸಿ"
+    }
+  },
+  "common": {
+    "or": "ಅಥವಾ",
+    "fullName": "ಪೂರ್ಣ ಹೆಸರು",
+    "phoneNumber": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
+    "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ",
+    "addressOptional": "ವಿಳಾಸ (ಐಚ್ಛಿಕ)",
+    "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
+  }
+}

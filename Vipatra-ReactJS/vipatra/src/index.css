@@ -22,6 +22,16 @@
     /* e.g., margin-bottom: theme('spacing.4'); */
   }
 
+   html {
+    @apply h-full antialiased;
+  }
+  body {
+    @apply h-full font-sans text-primary bg-background;
+  }
+  #root {
+    @apply flex flex-col min-h-screen w-full; /* <--- ENSURE w-full IS HERE */
+  }
+
   /* Add any other global element styles here */
   /* For example, if you want all links to have a specific default color (can be overridden by utilities) */
   /* a {
@@ -42,7 +52,43 @@
        focus:ring-2 focus:ring-accent focus:border-accent focus:shadow-soft;
     */
   }
+  /* Add to your src/index.css or global.css in @layer components if you like */
+.stepper-container {
+  @apply mb-10 hidden sm:flex items-start justify-around font-sans text-sm; /* items-start to align text below numbers */
+}
 
+.stepper-item {
+  @apply flex flex-col items-center text-center text-secondary relative px-2; /* flex-col and text-center */
+  min-width: 80px; /* Give some min-width to prevent extreme squeezing */
+}
+
+.stepper-item-active {
+  @apply text-primary font-semibold;
+}
+
+.stepper-item-completed { /* For future use if you want to mark completed steps differently */
+  @apply text-primary;
+}
+
+.stepper-number {
+  @apply text-lg font-semibold mb-1; /* Number slightly larger and above text */
+}
+.stepper-number-active {
+  @apply text-primary;
+}
+.stepper-number-completed {
+  @apply text-green-500; /* Example: green check for completed */
+}
+
+
+.stepper-line {
+  @apply flex-1 border-t-2 border-borderDefault mt-4; /* Adjusted mt to align with middle of numbers */
+  /* Ensure it's between items, not through them */
+  max-width: 100px; /* Limit line length if needed */
+}
+.stepper-line-completed {
+  @apply border-primary;
+}
   /* --- Top Navigation --- */
   .nav-link {
     @apply px-5 py-2 rounded-md text-sm font-medium text-textOnPrimary transition-colors duration-150 relative;
@@ -109,7 +155,9 @@
   .status-low { @apply bg-danger-light text-danger-dark; }
   .status-nearing-expiry { @apply bg-warning-light text-warning-dark; }
   .status-ok { @apply bg-success-light text-success-dark; }
-
+ /* Table action button */
+  .table-action-btn { @apply p-1.5 text-secondary hover:text-primary rounded-md hover:bg-primary/10 transition-colors; }
+  .table-action-btn svg { @apply w-4 h-4; }
   /* Add other reusable component styles here */
 }
 

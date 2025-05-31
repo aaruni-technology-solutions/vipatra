@@ -1,0 +1,222 @@
+{
+  "appTitle": "विपत्र बिलिंग प्रो",
+  "nav": {
+    "dashboard": "डैशबोर्ड",
+    "billing": "बिलिंग",
+    "inventory": "इन्वेंटरी",
+    "customers": "ग्राहक",
+    "analytics": "विश्लेषिकी",
+    "settings": "सेटिंग्स",
+    "support": "सहायता"
+  },
+  "sidebar": {
+    "quickMenu": "त्वरित मेनू",
+    "dashboard": "डैशबोर्ड",
+    "allInvoices": "सभी चालान",
+    "createInvoice": "चालान बनाएं",
+    "customers": "ग्राहक",
+    "items": "आइटम प्रबंधित करें",
+    "expenses": "खर्च",
+    "manageInventory": "इन्वेंटरी प्रबंधित करें",
+    "reports": "रिपोर्ट",
+    "settings": "सेटिंग्स"
+  },
+  "dashboard": {
+    "adminTitle": "एडमिन डैशबोर्ड",
+    "adminSubtitle": "आपके व्यवसाय के प्रदर्शन और अलर्ट का अवलोकन।",
+    "revenueOverview": "राजस्व अवलोकन",
+    "revenueToday": "आज का राजस्व",
+    "revenueWeek": "इस सप्ताह (MTD)",
+    "revenueMonth": "इस महीने (MTD)",
+    "collectedMonth": "एकत्रित भुगतान (माह)",
+    "outstanding": "बकाया",
+    "pendingInvoices": "लंबित चालान",
+    "todaysSchedule": "आज का शेड्यूल और बिलिंग",
+    "inventoryAlerts": "इन्वेंटरी अलर्ट",
+    "manageFullInventory": "पूर्ण इन्वेंटरी प्रबंधित करें"
+  },
+  "client": "ग्राहक",
+  "amount": "रकम",
+  "actions": {
+    "followUp": "फॉलो-अप",
+    "sendReminder": "अनुस्मारक भेजें",
+    "restock": "पुनः स्टॉक करें",
+    "viewDetails": "विवरण देखें"
+  },
+  "time": {
+    "hoursAgo": "{{count}} घंटे पहले",
+    "yesterday": "कल"
+  },
+  "notifications": "सूचनाएं",
+  "viewNotifications": "सूचनाएं देखें",
+  "newNotifications": "नई सूचनाएं",
+  "viewAllNotifications": "सभी सूचनाएं देखें",
+  "notification": {
+    "invoiceDue": "चालान #INV-001 जल्द ही देय है",
+    "paymentReceived": "₹500 का भुगतान प्राप्त हुआ"
+  },
+  "user": {
+    "administrator": "प्रशासक"
+  },
+  "profile": {
+    "myProfile": "मेरी प्रोफाइल",
+    "accountSettings": "खाता सेटिंग्स",
+    "logout": "लॉग आउट करें"
+  },
+  "due_2_days": "देय: 2 दिन",
+  "overdue_5_days": "अतिदेय: 5 दिन",
+  "consultation_mr_a_kumar": "परामर्श: श्री ए. कुमार",
+  "status_confirmed_billing_post-session": "स्थिति: पुष्टि | बिलिंग: सत्र के बाद",
+  "therapy_session_ms_s_patel": "थेरेपी सत्र: सुश्री एस. पटेल",
+  "status_confirmed_billing_package_invoice_p034": "स्थिति: पुष्टि | बिलिंग: पैकेज (चालान #P034)",
+  "scheduled_batch_billing_yoga_class_evening": "अनुसूचित बैच बिलिंग: योग कक्षा (शाम)",
+  "attendees_12": "उपस्थितगण: 12",
+  "syringes_10ml_-_low_stock!": "सिरिंज (10ml) - स्टॉक कम!",
+  "current_8_units_threshold_10_units": "वर्तमान: 8 इकाइयाँ | सीमा: 10 इकाइयाँ",
+  "pain_relief_balm_-_nearing_limit": "दर्द निवारक बाम - सीमा के करीब",
+  "current_25_units_threshold_20_units": "वर्तमान: 25 इकाइयाँ | सीमा: 20 इकाइयाँ",
+
+  "invoices": {
+    "allInvoicesTitle": "सभी चालान",
+    "allInvoicesSubtitle": "अपने सभी चालानों को देखें, प्रबंधित करें और ट्रैक करें।",
+    "createNewInvoiceBtn": "नया चालान बनाएं",
+    "searchPlaceholder": "चालान #, ग्राहक...",
+    "withSelected": "चयनित के साथ ({{count}}):",
+    "table": {
+      "invoiceNo": "चालान #",
+      "customer": "ग्राहक",
+      "issueDate": "जारी करने की तिथि",
+      "dueDate": "देय तिथि",
+      "amount": "राशि (₹)"
+    },
+    "noInvoicesFound": "आपके मानदंडों से मेल खाने वाला कोई चालान नहीं मिला।",
+    "totalInvoices": "कुल चालान",
+    "totalOutstanding": "कुल बकाया",
+    "overdueAmount": "अतिदेय राशि",
+    "paidThisMonth": "इस माह भुगतान किया गया"
+  },
+  "common": {
+    "search": "खोजें",
+    "status": "स्थिति",
+    "allStatuses": "सभी स्थितियाँ",
+    "dateRangeIssue": "तिथि सीमा (जारी करने की तिथि)",
+    "apply": "लागू करें",
+    "clear": "साफ़ करें",
+    "actions": "कार्रवाइयाँ"
+  },
+  "status": {
+    "draft": "प्रारूप",
+    "sent": "भेजा गया",
+    "viewed": "देखा गया",
+    "partial": "आंशिक रूप से भुगतान किया गया",
+    "paid": "भुगतान किया गया",
+    "overdue": "अतिदेय",
+    "void": "अमान्य"
+  },
+  "actions": {
+    "view": "देखें",
+    "edit": "संपादित करें",
+    "moreActions": "और कार्रवाइयाँ",
+    "recordPayment": "भुगतान दर्ज करें",
+    "sendReminders": "अनुस्मारक भेजें",
+    "sendReminder": "अनुस्मारक भेजें",
+    "markAsPaid": "भुगतान के रूप में चिह्नित करें",
+    "downloadPDFs": "पीडीएफ डाउनलोड करें",
+    "downloadPDF": "पीडीएफ डाउनलोड करें",
+    "duplicate": "डुप्लिकेट",
+    "void": "अमान्य करें",
+    "sendReceipt": "रसीद भेजें"
+  },
+  "pagination": {
+    "showingRange": "{{total}} चालानों में से {{start}} से {{end}} दिखा रहा है",
+    "previous": "पिछला",
+    "next": "अगला"
+  },
+  "invoiceCreate": {
+    "title": "नया चालान बनाएं",
+    "subtitle": "चालान बनाने के लिए नीचे दिए गए चरणों का पालन करें।",
+    
+    "stepper": {
+      "step1Name": "चालान का प्रकार",
+      "step2Name": "ग्राहक विवरण",
+      "step3Name": "आइटम/सेवाएं",
+      "step4Name": "कर और छूट",
+      "step5Name": "पूर्वावलोकन और भेजें"
+    }
+   
+  },
+  
+  "invoiceCreate": {
+    "title": "नया चालान बनाएं",
+    "subtitle": "चालान बनाने के लिए नीचे दिए गए चरणों का पालन करें।",
+    "alert": {
+        "atLeastOneItem": "आपके पास कम से कम एक आइटम होना चाहिए।",
+        "formSubmitted": "फ़ॉर्म जमा किया गया (डेटा के लिए कंसोल देखें)"
+    },
+    "stepper": {
+      "step1Name": "चालान का प्रकार",
+      "step2Name": "ग्राहक विवरण",
+      "step3Name": "आइटम/सेवाएं",
+      "step4Name": "कर और छूट",
+      "step5Name": "पूर्वावलोकन और भेजें"
+    },
+    "step1": {
+      "invoiceFor": "इसके लिए चालान",
+      "chooseType": "-- प्रकार चुनें --",
+      "types": {
+        "consultation": "परामर्श",
+        "therapy": "थेरेपी सत्र",
+        "retail": "खुदरा उत्पाद बिक्री",
+        "batch": "बैच-आधारित बिक्री (जैसे, कक्षा)"
+      }
+    },
+    "step2": {
+        "searchExisting": "मौजूदा खोजें (ऑटो-कम्प्लीट)",
+        "searchPlaceholder": "नाम, फ़ोन, या ईमेल टाइप करना शुरू करें...",
+        "addNewDetails": "नए विवरण जोड़ें:"
+    },
+    "step3": {
+        "itemName": "आइटम/सेवा का नाम",
+        "itemPlaceholder": "खोजें या टाइप करें...",
+        "qty": "मात्रा",
+        "price": "मूल्य (₹)",
+        "tax": "कर (%)",
+        "addItemBtn": "आइटम/सेवा जोड़ें"
+    },
+    "eInvoiceOption": {
+        "title": "ई-चालान विकल्प",
+        "generateLabel": "ई-चालान उत्पन्न करें (IRN और QR कोड)",
+        "description": "यह सहेजने/भेजने पर GSTN पोर्टल के साथ चालान को पंजीकृत करने का प्रयास करेगा।"
+    },
+    "totalsSection": {
+        "title": "सारांश और नोट्स",
+        "notesLabel": "नोट्स / नियम और शर्तें",
+        "notesPlaceholder": "जैसे, 15 दिनों के भीतर भुगतान देय। आपके व्यवसाय के लिए धन्यवाद!",
+        "privateNotesLabel": "निजी नोट्स (ग्राहक को दिखाई नहीं देंगे)",
+        "privateNotesPlaceholder": "इस चालान के लिए आंतरिक नोट्स"
+    },
+    "summary": {
+        "subtotal": "उप-योग:",
+        "itemTax": "कुल आइटम कर:",
+        "overallDiscount": "कुल छूट:",
+        "calculatedDiscount": "गणना की गई छूट:",
+        "grandTotal": "महायोग:"
+    },
+    "step5": {
+        "title": "पूर्वावलोकन और उत्पन्न करें",
+        "previewPlaceholder": "चालान का पूर्वावलोकन यहां दिखाई देगा..."
+    },
+    "actions": {
+        "generateAndSend": "चालान उत्पन्न करें और भेजें"
+    }
+  },
+  "common": {
+    "or": "अथवा",
+    "fullName": "पूरा नाम",
+    "phoneNumber": "फ़ोन नंबर",
+    "emailAddress": "ईमेल पता",
+    "addressOptional": "पता (वैकल्पिक)",
+    "downloadPDF": "पीडीएफ डाउनलोड करें"
+  }
+}
+

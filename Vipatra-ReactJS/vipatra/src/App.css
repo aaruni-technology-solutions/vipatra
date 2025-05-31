@@ -4,6 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
+.App { /* Or some other top-level class */
+  max-width: 1280px; /* Example of a constraining style */
+  margin: 0 auto;
+}
 
 .logo {
   height: 6em;
