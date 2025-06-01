@@ -41,6 +41,25 @@
 
 /* 3. Define custom component classes (reusable styles) */
 @layer components {
+
+.tab-link {
+    @apply px-4 py-2.5 border-b-2 font-medium text-sm leading-5 transition-colors duration-150 cursor-pointer;
+    /* -mb-px can be useful if the parent has a border-b to make the active tab's border merge */
+  }
+  .tab-link-inactive {
+    @apply border-transparent text-secondary hover:text-primary hover:border-gray-300 focus:outline-none focus:text-primary focus:border-gray-400;
+  }
+  .tab-link-active {
+    @apply border-primary text-primary focus:outline-none;
+  }
+  .tab-content { /* This is just a marker, actual content styling is per section */
+    @apply pt-6;
+  }
+
+  /* Status Badges for Customer (if different from invoice statuses) */
+  .customer-status-active { @apply bg-success-light text-success-dark status-badge; }
+  .customer-status-inactive { @apply bg-gray-200 text-gray-700 status-badge; }
+
   .dashboard-card {
     @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight;
   }

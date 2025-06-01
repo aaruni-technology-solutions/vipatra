@@ -217,6 +217,255 @@
     "emailAddress": "ईमेल पता",
     "addressOptional": "पता (वैकल्पिक)",
     "downloadPDF": "पीडीएफ डाउनलोड करें"
+  },
+   "invoiceView": {
+    "title": "चालान #{{invoiceId}}",
+    "clientLabel": "ग्राहक:",
+    "statusLabel": "स्थिति:",
+    "issuedLabel": "जारी किया गया:",
+    "dueLabel": "देय:",
+    "actions": {
+      "downloadPDF": "पीडीएफ डाउनलोड करें",
+      "sendReminder": "अनुस्मारक भेजें",
+      "editInvoice": "चालान संपादित करें",
+      "voidInvoice": "चालान अमान्य करें",
+      "cancelIRN": "IRN रद्द करें (यदि लागू हो)",
+      "generateEInvoiceNow": "अभी ई-चालान उत्पन्न करें"
+    },
+    "eInvoiceStatus": {
+      "title": "ई-चालान स्थिति",
+      "statusLabel": "स्थिति:",
+      "generated": "सफलतापूर्वक उत्पन्न",
+      "pending": "उत्पन्न होना बाकी",
+      "notApplicable": "इस चालान के लिए ई-चालान लागू नहीं है या सक्षम नहीं है।",
+      "irnLabel": "IRN:",
+      "ackNoLabel": "पावती संख्या:",
+      "ackDateLabel": "पावती तिथि:"
+    },
+    "itemsSectionTitle": "चालान आइटम",
+    "table": {
+      "itemService": "आइटम/सेवा",
+      "qty": "मात्रा",
+      "unitPrice": "इकाई मूल्य (₹)",
+      "tax": "कर (%)",
+      "amount": "राशि (₹)",
+      "subtotal": "उप-योग:",
+      "totalTax": "कुल कर (GST @{{rate}}%):",
+      "discount": "छूट:",
+      "grandTotal": "महायोग:"
+    },
+    "paymentManagement": {
+      "title": "भुगतान प्रबंधन",
+      "invoiceTotal": "चालान कुल:",
+      "amountPaid": "भुगतान की गई राशि:",
+      "remainingBalance": "शेष राशि:",
+      "recordPaymentForm": {
+        "amountReceived": "प्राप्त राशि",
+        "paymentDate": "भुगतान तिथि",
+        "paymentMethod": "भुगतान विधि",
+        "referenceOptional": "संदर्भ / लेनदेन आईडी (वैकल्पिक)",
+        "referencePlaceholder": "जैसे, UPI संदर्भ संख्या, चेक संख्या",
+        "notesOptional": "नोट्स (वैकल्पिक)",
+        "notesPlaceholder": "कोई अतिरिक्त विवरण...",
+        "recordPaymentBtn": "भुगतान दर्ज करें"
+      },
+      "paymentHistory": {
+        "title": "भुगतान इतिहास",
+        "noPayments": "इस चालान के लिए अभी तक कोई भुगतान दर्ज नहीं किया गया है।"
+      },
+      "paymentMethods": {
+        "upi": "UPI",
+        "card": "कार्ड",
+        "netBanking": "नेट बैंकिंग",
+        "cash": "नकद",
+        "emi": "EMI"
+      }
+    }
+  },
+  "status": {
+    "partiallyPaid": "आंशिक रूप से भुगतान किया गया",
+    "paid": "भुगतान किया गया",
+    "overdue": "अतिदेय",
+    "sent": "भेजा गया",
+    "draft": "प्रारूप",
+    "void": "अमान्य"
+  },
+  
+  "customers": {
+    "manageTitle": "ग्राहक प्रबंधित करें",
+    "manageSubtitle": "अपने ग्राहक संपर्कों को बनाएं, देखें और प्रबंधित करें।",
+    "createCustomerBtn": "ग्राहक बनाएं",
+    "initialView": {
+      "title": "लोगों के बिना व्यवसाय में कोई मज़ा नहीं।",
+      "subtitle": "अपने संपर्कों को एक ही स्थान पर बनाएं और प्रबंधित करें।",
+      "importFromFile": "फ़ाइल से ग्राहक आयात करने के लिए यहां क्लिक करें",
+      "listPlaceholder": "ग्राहक सूची यहां दिखाई देगी...",
+      "searchLabel": "ग्राहक खोजें",
+      "searchPlaceholder": "नाम, ईमेल, फ़ोन...",
+      "typeFilterLabel": "प्रकार",
+      "allTypes": "सभी प्रकार",
+      "businessType": "व्यवसाय",
+      "individualType": "व्यक्तिगत",
+      "statusFilterLabel": "स्थिति",
+      "allStatuses": "सभी स्थितियाँ",
+      "activeStatus": "सक्रिय",
+      "inactiveStatus": "निष्क्रिय",
+      "table": {
+        "customerName": "ग्राहक का नाम",
+        "company": "कंपनी",
+        "email": "ईमेल",
+        "phone": "फ़ोन",
+        "outstanding": "बकाया (₹)",
+        "status": "स्थिति",
+        "actions": "कार्रवाइयाँ"
+      },
+      "noCustomersFound": "कोई ग्राहक नहीं मिला।",
+      "createOneNow": "अभी एक बनाएं"
+    },
+    "newCustomerForm": {
+      "title": "नया ग्राहक",
+      "prefillNote": "ग्राहक के GSTIN का उपयोग करके GST पोर्टल से ग्राहक विवरण पहले से भरें।",
+      "prefillLink": "पहले से भरें",
+      "customerTypeLabel": "ग्राहक प्रकार",
+      "primaryContactLegend": "प्राथमिक संपर्क",
+      "salutationLabel": "संबोधन",
+      "firstNameLabel": "पहला नाम",
+      "lastNameLabel": "अंतिम नाम",
+      "companyNameLabel": "कंपनी का नाम",
+      "displayNameLabel": "प्रदर्शन नाम",
+      "displayNamePlaceholder": "जोड़ने के लिए चुनें या टाइप करें",
+      "currencyLabel": "मुद्रा",
+      "currencyNote": "मुद्रा संपादित नहीं की जा सकती क्योंकि बहु-मुद्रा प्रबंधन अनुपलब्ध है।",
+      "emailAddressLabel": "ईमेल पता",
+      "workPhoneLabel": "कार्य फ़ोन",
+      "mobileLabel": "मोबाइल",
+      "otherDetailsBtn": "अन्य विवरण",
+      "addressLabel": "पता",
+      "addressPlaceholder": "गली, शहर, राज्य, ज़िप, देश",
+      "contactPersonsPlaceholder": "संपर्क व्यक्ति अनुभाग (प्लेसहोल्डर)",
+      "customFieldsPlaceholder": "कस्टम फ़ील्ड अनुभाग (प्लेसहोल्डर)",
+      "remarksLabel": "टिप्पणियां",
+      "panLabel": "पैन",
+      "paymentTermsLabel": "भुगतान शर्तें",
+      "enablePortalLabel": "इस ग्राहक के लिए पोर्टल एक्सेस सक्षम करें",
+      "portalLanguageLabel": "पोर्टल भाषा",
+      "documentsLabel": "दस्तावेज़",
+      "documentsNote": "आप अधिकतम 3 फ़ाइलें, प्रत्येक 10MB तक अपलोड कर सकते हैं।",
+      "customerOwnerNote": "ग्राहक स्वामी: इस ग्राहक के डेटा तक ही पहुँच प्रदान करने के लिए एक उपयोगकर्ता को ग्राहक स्वामी के रूप में निर्दिष्ट करें।",
+      "learnMoreLink": " और जानें",
+      "cancelBtn": "रद्द करें",
+      "saveBtn": "ग्राहक सहेजें",
+      "requiredError": "{{fieldName}} आवश्यक है।"
+    },
+    "paymentTerms": {
+        "dueOnReceipt": "प्राप्ति पर देय",
+        "net15": "नेट 15",
+        "net30": "नेट 30",
+        "net45": "नेट 45",
+        "net60": "नेट 60"
+    }
+  },
+  "common": {
+    "filterBtn": "फ़िल्टर करें"
+  },
+  "status": {
+    "active": "सक्रिय",
+    "inactive": "निष्क्रिय"
+  },
+  
+  "customerView": {
+    "pageTitle": "ग्राहक देखें: {{customerName}}",
+    "backLink": "सभी ग्राहकों पर वापस जाएं",
+    "customerTypeAndStatus": "{{type}} ग्राहक | {{status}}",
+    "actions": {
+      "newInvoice": "नया चालान",
+      "recordPayment": "भुगतान दर्ज करें",
+      "editCustomer": "ग्राहक संपादित करें"
+    },
+    "tabs": {
+      "overview": "अवलोकन",
+      "invoices": "चालान",
+      "payments": "भुगतान",
+      "communication": "संचार",
+      "statements": "विवरण",
+      "notes": "नोट्स"
+    },
+    "overview": {
+      "contactInfoTitle": "संपर्क जानकारी",
+      "primaryContactLabel": "प्राथमिक संपर्क:",
+      "emailLabel": "ईमेल:",
+      "workPhoneLabel": "फ़ोन (कार्य):",
+      "addressLabel": "पता:",
+      "gstinLabel": "GSTIN:",
+      "outstandingBalanceTitle": "बकाया शेष राशि",
+      "lifetimeValueTitle": "आजीवन मूल्य",
+      "recentActivityTitle": "हाल की गतिविधि",
+      "paymentReceivedActivity": "{{invoiceId}} के लिए {{amount}} का भुगतान प्राप्त हुआ।",
+      "invoiceSentActivity": "चालान {{invoiceId}} ({{amount}}) भेजा गया।",
+      "portalAccessEnabledActivity": "ग्राहक पोर्टल एक्सेस सक्षम किया गया।"
+    },
+    "invoicesTab": {
+      "title": "{{customerName}} के लिए चालान",
+      "table": {
+        "invoiceNo": "चालान #",
+        "issueDate": "जारी करने की तिथि",
+        "dueDate": "देय तिथि",
+        "amount": "राशि",
+        "status": "स्थिति"
+      }
+    },
+    "paymentsTab": {
+      "title": "{{customerName}} से भुगतान",
+      "table": {
+        "date": "तिथि",
+        "invoiceNo": "चालान #",
+        "amount": "राशि",
+        "method": "विधि"
+      }
+    },
+    "communicationPrefs": {
+        "title": "संचार प्राथमिकताएँ",
+        "subtitle": "चालान, भुगतान और सामान्य अपडेट के संबंध में हम इस ग्राहक के साथ कैसे संवाद करते हैं, इसे प्रबंधित करें।",
+        "invoiceNotificationsLegend": "चालान सूचनाएं",
+        "sendInvoicesEmailLabel": "ईमेल के माध्यम से चालान भेजें",
+        "sendInvoicesEmailDesc": "ग्राहक के प्राथमिक ईमेल पते पर नए चालान और क्रेडिट नोट स्वचालित रूप से ईमेल करें।",
+        "sendInvoiceSmsLabel": "SMS के माध्यम से चालान लिंक भेजें (यदि मोबाइल प्रदान किया गया हो)",
+        "sendInvoiceSmsDesc": "चालान को ऑनलाइन देखने के लिए एक सुरक्षित लिंक के साथ एक टेक्स्ट संदेश भेजें।",
+        "paymentRemindersLegend": "भुगतान अनुस्मारक",
+        "emailDueRemindersLabel": "देय चालानों के लिए ईमेल अनुस्मारक",
+        "emailDueRemindersDesc": "चालान की देय तिथि से पहले स्वचालित ईमेल अनुस्मारक भेजें (वैश्विक सेटिंग्स में कॉन्फ़िगर करने योग्य)।",
+        "emailOverdueRemindersLabel": "अतिदेय चालानों के लिए ईमेल अनुस्मारक",
+        "emailOverdueRemindersDesc": "चालान अतिदेय होने के बाद स्वचालित ईमेल अनुस्मारक भेजें (वैश्विक सेटिंग्स में कॉन्फ़िगर करने योग्य)।",
+        "smsRemindersLabel": "SMS के माध्यम से भुगतान अनुस्मारक भेजें",
+        "smsRemindersDesc": "देय/अतिदेय भुगतान अनुस्मारक टेक्स्ट संदेश के माध्यम से भेजें।",
+        "generalCommsLegend": "सामान्य और विपणन संचार",
+        "newsletterLabel": "न्यूज़लेटर की सदस्यता लें",
+        "newsletterDesc": "हमसे सामयिक अपडेट, समाचार और प्रचार प्राप्त करें।",
+        "promotionsLabel": "विशेष ऑफ़र और प्रचार प्राप्त करें",
+        "promotionsDesc": "विशेष सौदों और सेवा प्रस्तावों के बारे में सूचित हों।",
+        "preferredLanguageLabel": "संचार के लिए पसंदीदा भाषा",
+        "preferredLanguageDesc": "इसका उपयोग स्वचालित ईमेल और क्लाइंट पोर्टल के लिए किया जाएगा जहां उपलब्ध हो।",
+        "savePrefsBtn": "प्राथमिकताएं सहेजें"
+    },
+    "statementsTab": {
+      "title": "विवरण",
+      "placeholder": "ग्राहक विवरण यहां दिखाए जाएंगे।"
+    },
+    "notesTab": {
+      "title": "आंतरिक नोट्स",
+      "placeholder": "इस ग्राहक के बारे में आंतरिक नोट्स जोड़ें...",
+      "saveNoteBtn": "नोट सहेजें"
+    }
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "active": "सक्रिय",
+    "inactive": "निष्क्रिय",
+    "business": "व्यवसाय",
+    "individual": "व्यक्तिगत",
+    "filterBtn": "फ़िल्टर करें" 
   }
+
+
 }
 

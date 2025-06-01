@@ -204,6 +204,255 @@
     "emailAddress": "Email Address",
     "addressOptional": "Address (Optional)",
     "downloadPDF": "Download PDF" 
+  },
+   "invoiceView": {
+    "title": "Invoice #{{invoiceId}}",
+    "clientLabel": "Client:",
+    "statusLabel": "Status:",
+    "issuedLabel": "Issued:",
+    "dueLabel": "Due:",
+    "actions": {
+      "downloadPDF": "Download PDF",
+      "sendReminder": "Send Reminder",
+      "editInvoice": "Edit Invoice",
+      "voidInvoice": "Void Invoice",
+      "cancelIRN": "Cancel IRN (if applicable)",
+      "generateEInvoiceNow": "Generate e-Invoice Now"
+    },
+    "eInvoiceStatus": {
+      "title": "e-Invoice Status",
+      "statusLabel": "Status:",
+      "generated": "Successfully Generated",
+      "pending": "Pending Generation",
+      "notApplicable": "e-Invoicing not applicable or not enabled for this invoice.",
+      "irnLabel": "IRN:",
+      "ackNoLabel": "Ack. No:",
+      "ackDateLabel": "Ack. Date:"
+    },
+    "itemsSectionTitle": "Invoice Items",
+    "table": {
+      "itemService": "Item/Service",
+      "qty": "Qty",
+      "unitPrice": "Unit Price (₹)",
+      "tax": "Tax (%)",
+      "amount": "Amount (₹)",
+      "subtotal": "Subtotal:",
+      "totalTax": "Total Tax (GST @{{rate}}%):", 
+      "discount": "Discount:",
+      "grandTotal": "Grand Total:"
+    },
+    "paymentManagement": {
+      "title": "Payment Management",
+      "invoiceTotal": "Invoice Total:",
+      "amountPaid": "Amount Paid:",
+      "remainingBalance": "Remaining Balance:",
+      "recordPaymentForm": {
+        "amountReceived": "Amount Received",
+        "paymentDate": "Payment Date",
+        "paymentMethod": "Payment Method",
+        "referenceOptional": "Reference / Transaction ID (Optional)",
+        "referencePlaceholder": "E.g., UPI Ref No., Cheque No.",
+        "notesOptional": "Notes (Optional)",
+        "notesPlaceholder": "Any additional details...",
+        "recordPaymentBtn": "Record Payment"
+      },
+      "paymentHistory": {
+        "title": "Payment History",
+        "noPayments": "No payments recorded yet for this invoice."
+      },
+      "paymentMethods": {
+        "upi": "UPI",
+        "card": "Card",
+        "netBanking": "Net Banking",
+        "cash": "Cash",
+        "emi": "EMI"
+      }
+    }
+  },
+  "status": { 
+    "partiallyPaid": "Partially Paid",
+    "paid": "Paid",
+    "overdue": "Overdue",
+    "sent": "Sent",
+    "draft": "Draft",
+    "void": "Void"
+  },
+  
+  
+  "customers": {
+    "manageTitle": "Manage Customers",
+    "manageSubtitle": "Create, view, and manage your customer contacts.",
+    "createCustomerBtn": "Create Customer",
+    "initialView": {
+      "title": "Business is no fun without people.",
+      "subtitle": "Create and manage your contacts, all in one place.",
+      "importFromFile": "Click here to import customers from file",
+      "listPlaceholder": "Customer list would appear here...",
+      "searchLabel": "Search Customers",
+      "searchPlaceholder": "Name, Email, Phone...",
+      "typeFilterLabel": "Type",
+      "allTypes": "All Types",
+      "businessType": "Business",
+      "individualType": "Individual",
+      "statusFilterLabel": "Status",
+      "allStatuses": "All Statuses",
+      "activeStatus": "Active",
+      "inactiveStatus": "Inactive",
+      "table": {
+        "customerName": "Customer Name",
+        "company": "Company",
+        "email": "Email",
+        "phone": "Phone",
+        "outstanding": "Outstanding (₹)",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "noCustomersFound": "No customers found.",
+      "createOneNow": "Create one now"
+    },
+    "newCustomerForm": {
+      "title": "New Customer",
+      "prefillNote": "Prefill Customer details from the GST portal using the Customer's GSTIN.",
+      "prefillLink": "Prefill",
+      "customerTypeLabel": "Customer Type",
+      "primaryContactLegend": "Primary Contact",
+      "salutationLabel": "Salutation",
+      "firstNameLabel": "First Name",
+      "lastNameLabel": "Last Name",
+      "companyNameLabel": "Company Name",
+      "displayNameLabel": "Display Name",
+      "displayNamePlaceholder": "Select or type to add",
+      "currencyLabel": "Currency",
+      "currencyNote": "Currency cannot be edited as multi-currency handling is unavailable.",
+      "emailAddressLabel": "Email Address",
+      "workPhoneLabel": "Work Phone",
+      "mobileLabel": "Mobile",
+      "otherDetailsBtn": "Other Details",
+      "addressLabel": "Address",
+      "addressPlaceholder": "Street, City, State, ZIP, Country",
+      "contactPersonsPlaceholder": "Contact Persons section (placeholder)",
+      "customFieldsPlaceholder": "Custom Fields section (placeholder)",
+      "remarksLabel": "Remarks",
+      "panLabel": "PAN",
+      "paymentTermsLabel": "Payment Terms",
+      "enablePortalLabel": "Enable Portal Access for this customer",
+      "portalLanguageLabel": "Portal Language",
+      "documentsLabel": "Documents",
+      "documentsNote": "You can upload a maximum of 3 files, 10MB each.",
+      "customerOwnerNote": "Customer Owner: Assign a user as the customer owner to provide access only to the data of this customer.",
+      "learnMoreLink": "Learn More",
+      "cancelBtn": "Cancel",
+      "saveBtn": "Save Customer",
+      "requiredError": "{{fieldName}} is required." 
+    },
+    "paymentTerms": {
+        "dueOnReceipt": "Due on Receipt",
+        "net15": "Net 15",
+        "net30": "Net 30",
+        "net45": "Net 45",
+        "net60": "Net 60"
+    }
+  },
+  "common": { 
+    "filterBtn": "Filter"
+  },
+  "status": { 
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  
+  "customerView": {
+    "pageTitle": "View Customer: {{customerName}}",
+    "backLink": "Back to All Customers",
+    "customerTypeAndStatus": "{{type}} Customer | {{status}}",
+    "actions": {
+      "newInvoice": "New Invoice",
+      "recordPayment": "Record Payment",
+      "editCustomer": "Edit Customer"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "invoices": "Invoices",
+      "payments": "Payments",
+      "communication": "Communication",
+      "statements": "Statements",
+      "notes": "Notes"
+    },
+    "overview": {
+      "contactInfoTitle": "Contact Information",
+      "primaryContactLabel": "Primary Contact:",
+      "emailLabel": "Email:",
+      "workPhoneLabel": "Phone (Work):",
+      "addressLabel": "Address:",
+      "gstinLabel": "GSTIN:",
+      "outstandingBalanceTitle": "Outstanding Balance",
+      "lifetimeValueTitle": "Lifetime Value",
+      "recentActivityTitle": "Recent Activity",
+      "paymentReceivedActivity": "Payment of {{amount}} received for {{invoiceId}}.",
+      "invoiceSentActivity": "Invoice {{invoiceId}} ({{amount}}) sent.",
+      "portalAccessEnabledActivity": "Customer portal access enabled."
+    },
+    "invoicesTab": {
+      "title": "Invoices for {{customerName}}",
+      "table": { 
+        "invoiceNo": "Invoice #",
+        "issueDate": "Issue Date",
+        "dueDate": "Due Date",
+        "amount": "Amount",
+        "status": "Status"
+      }
+    },
+    "paymentsTab": {
+      "title": "Payments from {{customerName}}",
+      "table": {
+        "date": "Date",
+        "invoiceNo": "Invoice #",
+        "amount": "Amount",
+        "method": "Method"
+      }
+    },
+    "communicationPrefs": {
+        "title": "Communication Preferences",
+        "subtitle": "Manage how we communicate with this customer regarding invoices, payments, and general updates.",
+        "invoiceNotificationsLegend": "Invoice Notifications",
+        "sendInvoicesEmailLabel": "Send Invoices via Email",
+        "sendInvoicesEmailDesc": "Automatically email new invoices and credit notes to the customer's primary email address.",
+        "sendInvoiceSmsLabel": "Send Invoice Links via SMS (if mobile provided)",
+        "sendInvoiceSmsDesc": "Send a text message with a secure link to view the invoice online.",
+        "paymentRemindersLegend": "Payment Reminders",
+        "emailDueRemindersLabel": "Email Reminders for Due Invoices",
+        "emailDueRemindersDesc": "Send automated email reminders before an invoice's due date (configurable in global settings).",
+        "emailOverdueRemindersLabel": "Email Reminders for Overdue Invoices",
+        "emailOverdueRemindersDesc": "Send automated email reminders after an invoice becomes overdue (configurable in global settings).",
+        "smsRemindersLabel": "Send Payment Reminders via SMS",
+        "smsRemindersDesc": "Send due/overdue payment reminders via text message.",
+        "generalCommsLegend": "General & Marketing Communications",
+        "newsletterLabel": "Subscribe to Newsletter",
+        "newsletterDesc": "Receive occasional updates, news, and promotions from us.",
+        "promotionsLabel": "Receive Special Offers & Promotions",
+        "promotionsDesc": "Get notified about exclusive deals and service offers.",
+        "preferredLanguageLabel": "Preferred Language for Communications",
+        "preferredLanguageDesc": "This will be used for automated emails and client portal where available.",
+        "savePrefsBtn": "Save Preferences"
+    },
+    "statementsTab": {
+      "title": "Statements",
+      "placeholder": "Customer statements will be shown here."
+    },
+    "notesTab": {
+      "title": "Internal Notes",
+      "placeholder": "Add internal notes about this customer...",
+      "saveNoteBtn": "Save Note"
+    }
+  },
+  "common": { 
+    "loading": "Loading...",
+    "active": "Active",
+    "inactive": "Inactive",
+    "business": "Business", 
+    "individual": "Individual" 
   }
+
+
 
 }

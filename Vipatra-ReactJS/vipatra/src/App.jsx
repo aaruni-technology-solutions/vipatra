@@ -21,6 +21,7 @@ import InventoryDashboardPage from './pages/Inventory/InventoryDashboardPage';
 import SettingsPage from './pages/Settings/SettingsPage';
 // import SupportPage from './pages/Support/SupportPage'; // Assuming
 import NotFoundPage from './pages/NotFoundPage';
+import CustomerViewPage from './pages/Customers/CustomersViewPage';
 
 function App() {
   // Basic concept for authentication state (replace with your actual auth logic)
@@ -62,6 +63,7 @@ const ProtectedRoutes = () => {
       <Route path="dashboard" element={<AdminDashboardPage />} /> {/* Note: paths are relative to the parent "/*" */}
       <Route path="customers" element={<CustomersListPage />} />
       <Route path="customers/new" element={<CustomerCreatePage />} />
+      <Route path="customers/:customerId" element={<CustomerViewPage />} />
       {/* Example for a customer detail page: */}
       {/* <Route path="customers/:customerId" element={<CustomerViewPage />} /> */}
 

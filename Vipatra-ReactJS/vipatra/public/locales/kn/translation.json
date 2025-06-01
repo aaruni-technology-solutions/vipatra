@@ -216,5 +216,254 @@
     "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ",
     "addressOptional": "ವಿಳಾಸ (ಐಚ್ಛಿಕ)",
     "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
+  },
+   "invoiceView": {
+    "title": "ಇನ್‌ವಾಯ್ಸ್ #{{invoiceId}}",
+    "clientLabel": "ಗ್ರಾಹಕ:",
+    "statusLabel": "ಸ್ಥಿತಿ:",
+    "issuedLabel": "ನೀಡಲಾಗಿದೆ:",
+    "dueLabel": "ನಿಗದಿತ:",
+    "actions": {
+      "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+      "sendReminder": "ಜ್ಞಾಪನೆ ಕಳುಹಿಸಿ",
+      "editInvoice": "ಇನ್‌ವಾಯ್ಸ್ ಸಂಪಾದಿಸಿ",
+      "voidInvoice": "ಇನ್‌ವಾಯ್ಸ್ ರದ್ದುಗೊಳಿಸಿ",
+      "cancelIRN": "IRN ರದ್ದುಮಾಡಿ (ಅನ್ವಯವಾದರೆ)",
+      "generateEInvoiceNow": "ಈಗ ಇ-ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ"
+    },
+    "eInvoiceStatus": {
+      "title": "ಇ-ಇನ್‌ವಾಯ್ಸ್ ಸ್ಥಿತಿ",
+      "statusLabel": "ಸ್ಥಿತಿ:",
+      "generated": "ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ",
+      "pending": "ರಚನೆ ಬಾಕಿ ಇದೆ",
+      "notApplicable": "ಈ ಇನ್‌ವಾಯ್ಸ್‌ಗೆ ಇ-ಇನ್‌ವಾಯ್ಸಿಂಗ್ ಅನ್ವಯಿಸುವುದಿಲ್ಲ ಅಥವಾ ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿಲ್ಲ.",
+      "irnLabel": "IRN:",
+      "ackNoLabel": "ಸ್ವೀಕೃತಿ ಸಂಖ್ಯೆ:",
+      "ackDateLabel": "ಸ್ವೀಕೃತಿ ದಿನಾಂಕ:"
+    },
+    "itemsSectionTitle": "ಇನ್‌ವಾಯ್ಸ್ ಐಟಂಗಳು",
+    "table": {
+      "itemService": "ಐಟಂ/ಸೇವೆ",
+      "qty": "ಪ್ರಮಾಣ",
+      "unitPrice": "ಏಕಮಾನ ಬೆಲೆ (₹)",
+      "tax": "ತೆರಿಗೆ (%)",
+      "amount": "ಮೊತ್ತ (₹)",
+      "subtotal": "ಉಪ-ಒಟ್ಟು:",
+      "totalTax": "ಒಟ್ಟು ತೆರಿಗೆ (GST @{{rate}}%):",
+      "discount": "ರಿಯಾಯಿತಿ:",
+      "grandTotal": "ಒಟ್ಟು ಮೊತ್ತ:"
+    },
+    "paymentManagement": {
+      "title": "ಪಾವತಿ ನಿರ್ವಹಣೆ",
+      "invoiceTotal": "ಇನ್‌ವಾಯ್ಸ್ ಒಟ್ಟು:",
+      "amountPaid": "ಪಾವತಿಸಿದ ಮೊತ್ತ:",
+      "remainingBalance": "ಉಳಿದ ಬಾಕಿ:",
+      "recordPaymentForm": {
+        "amountReceived": "ಸ್ವೀಕರಿಸಿದ ಮೊತ್ತ",
+        "paymentDate": "ಪಾವತಿ ದಿನಾಂಕ",
+        "paymentMethod": "ಪಾವತಿ ವಿಧಾನ",
+        "referenceOptional": "ಉಲ್ಲೇಖ / ವಹಿವಾಟು ID (ಐಚ್ಛಿಕ)",
+        "referencePlaceholder": "ಉದಾಹರಣೆಗೆ, UPI ರೆಫರೆನ್ಸ್ ಸಂಖ್ಯೆ, ಚೆಕ್ ಸಂಖ್ಯೆ",
+        "notesOptional": "ಟಿಪ್ಪಣಿಗಳು (ಐಚ್ಛಿಕ)",
+        "notesPlaceholder": "ಯಾವುದೇ ಹೆಚ್ಚುವರಿ ವಿವರಗಳು...",
+        "recordPaymentBtn": "ಪಾವತಿ ದಾಖಲಿಸಿ"
+      },
+      "paymentHistory": {
+        "title": "ಪಾವತಿ ಇತಿಹಾಸ",
+        "noPayments": "ಈ ಇನ್‌ವಾಯ್ಸ್‌ಗಾಗಿ ಇನ್ನೂ ಯಾವುದೇ ಪಾವತಿಗಳನ್ನು ದಾಖಲಿಸಲಾಗಿಲ್ಲ."
+      },
+      "paymentMethods": {
+        "upi": "UPI",
+        "card": "ಕಾರ್ಡ್",
+        "netBanking": "ನೆಟ್ ಬ್ಯಾಂಕಿಂಗ್",
+        "cash": "ನಗದು",
+        "emi": "EMI"
+      }
+    }
+  },
+  "status": {
+    "partiallyPaid": "ಭಾಗಶಃ ಪಾವತಿಸಲಾಗಿದೆ",
+    "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
+    "overdue": "ಮೀರಿದೆ",
+    "sent": "ಕಳುಹಿಸಲಾಗಿದೆ",
+    "draft": "ಕರಡು",
+    "void": "ಅಸಿಂಧು"
+  },
+  
+  "customers": {
+    "manageTitle": "ಗ್ರಾಹಕರನ್ನು ನಿರ್ವಹಿಸಿ",
+    "manageSubtitle": "ನಿಮ್ಮ ಗ್ರಾಹಕರ ಸಂಪರ್ಕಗಳನ್ನು ರಚಿಸಿ, ವೀಕ್ಷಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ.",
+    "createCustomerBtn": "ಗ್ರಾಹಕರನ್ನು ರಚಿಸಿ",
+    "initialView": {
+      "title": "ಜನರಿಲ್ಲದೆ ವ್ಯಾಪಾರದಲ್ಲಿ ಮೋಜಿಲ್ಲ.",
+      "subtitle": "ನಿಮ್ಮ ಸಂಪರ್ಕಗಳನ್ನು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ ರಚಿಸಿ ಮತ್ತು ನಿರ್ವಹಿಸಿ.",
+      "importFromFile": "ಫೈಲ್‌ನಿಂದ ಗ್ರಾಹಕರನ್ನು ಆಮದು ಮಾಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ",
+      "listPlaceholder": "ಗ್ರಾಹಕರ ಪಟ್ಟಿ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ...",
+      "searchLabel": "ಗ್ರಾಹಕರನ್ನು ಹುಡುಕಿ",
+      "searchPlaceholder": "ಹೆಸರು, ಇಮೇಲ್, ಫೋನ್...",
+      "typeFilterLabel": "ಪ್ರಕಾರ",
+      "allTypes": "ಎಲ್ಲಾ ಪ್ರಕಾರಗಳು",
+      "businessType": "ವ್ಯಾಪಾರ",
+      "individualType": "ವೈಯಕ್ತಿಕ",
+      "statusFilterLabel": "ಸ್ಥಿತಿ",
+      "allStatuses": "ಎಲ್ಲಾ ಸ್ಥಿತಿಗಳು",
+      "activeStatus": "ಸಕ್ರಿಯ",
+      "inactiveStatus": "ನಿಷ್ಕ್ರಿಯ",
+      "table": {
+        "customerName": "ಗ್ರಾಹಕರ ಹೆಸರು",
+        "company": "ಕಂಪನಿ",
+        "email": "ಇಮೇಲ್",
+        "phone": "ದೂರವಾಣಿ",
+        "outstanding": "ಬಾಕಿ (₹)",
+        "status": "ಸ್ಥಿತಿ",
+        "actions": "ಕ್ರಿಯೆಗಳು"
+      },
+      "noCustomersFound": "ಯಾವುದೇ ಗ್ರಾಹಕರು ಕಂಡುಬಂದಿಲ್ಲ.",
+      "createOneNow": "ಈಗ ಒಂದನ್ನು ರಚಿಸಿ"
+    },
+    "newCustomerForm": {
+      "title": "ಹೊಸ ಗ್ರಾಹಕರು",
+      "prefillNote": "ಗ್ರಾಹಕರ GSTIN ಬಳಸಿಕೊಂಡು GST ಪೋರ್ಟಲ್‌ನಿಂದ ಗ್ರಾಹಕರ ವಿವರಗಳನ್ನು ಮೊದಲೇ ಭರ್ತಿ ಮಾಡಿ.",
+      "prefillLink": "ಮೊದಲೇ ಭರ್ತಿ ಮಾಡಿ",
+      "customerTypeLabel": "ಗ್ರಾಹಕರ ಪ್ರಕಾರ",
+      "primaryContactLegend": "ಪ್ರಾಥಮಿಕ ಸಂಪರ್ಕ",
+      "salutationLabel": "ಸಂಬೋಧನೆ",
+      "firstNameLabel": "ಮೊದಲ ಹೆಸರು",
+      "lastNameLabel": "ಕೊನೆಯ ಹೆಸರು",
+      "companyNameLabel": "ಕಂಪನಿ ಹೆಸರು",
+      "displayNameLabel": "ಪ್ರದರ್ಶನ ಹೆಸರು",
+      "displayNamePlaceholder": "ಸೇರಿಸಲು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ",
+      "currencyLabel": "ಕರೆನ್ಸಿ",
+      "currencyNote": "ಬಹು-ಕರೆನ್ಸಿ ನಿರ್ವಹಣೆ ಲಭ್ಯವಿಲ್ಲದ ಕಾರಣ ಕರೆನ್ಸಿಯನ್ನು ಸಂಪಾದಿಸಲಾಗುವುದಿಲ್ಲ.",
+      "emailAddressLabel": "ಇಮೇಲ್ ವಿಳಾಸ",
+      "workPhoneLabel": "ಕೆಲಸದ ದೂರವಾಣಿ",
+      "mobileLabel": "ಮೊಬೈಲ್",
+      "otherDetailsBtn": "ಇತರ ವಿವರಗಳು",
+      "addressLabel": "ವಿಳಾಸ",
+      "addressPlaceholder": "ಬೀದಿ, ನಗರ, ರಾಜ್ಯ, ಪಿನ್ ಕೋಡ್, ದೇಶ",
+      "contactPersonsPlaceholder": "ಸಂಪರ್ಕ ವ್ಯಕ್ತಿಗಳ ವಿಭಾಗ (ಸ್ಥಾನಪಾಲಕ)",
+      "customFieldsPlaceholder": "ಕಸ್ಟಮ್ ಕ್ಷೇತ್ರಗಳ ವಿಭಾಗ (ಸ್ಥಾನಪಾಲಕ)",
+      "remarksLabel": "ಟಿಪ್ಪಣಿಗಳು",
+      "panLabel": "ಪ್ಯಾನ್",
+      "paymentTermsLabel": "ಪಾವತಿ ನಿಯಮಗಳು",
+      "enablePortalLabel": "ಈ ಗ್ರಾಹಕರಿಗೆ ಪೋರ್ಟಲ್ ಪ್ರವೇಶವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ",
+      "portalLanguageLabel": "ಪೋರ್ಟಲ್ ಭಾಷೆ",
+      "documentsLabel": "ದಾಖಲೆಗಳು",
+      "documentsNote": "ನೀವು ಗರಿಷ್ಠ 3 ಫೈಲ್‌ಗಳನ್ನು, ಪ್ರತಿ 10MB ವರೆಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡಬಹುದು.",
+      "customerOwnerNote": "ಗ್ರಾಹಕ ಮಾಲೀಕರು: ಈ ಗ್ರಾಹಕರ ಡೇಟಾಗೆ ಮಾತ್ರ ಪ್ರವೇಶವನ್ನು ಒದಗಿಸಲು ಬಳಕೆದಾರರನ್ನು ಗ್ರಾಹಕ ಮಾಲೀಕರಾಗಿ ನಿಯೋಜಿಸಿ.",
+      "learnMoreLink": "ಹೆಚ್ಚಿನ ಮಾಹಿತಿ",
+      "cancelBtn": "ರದ್ದುಮಾಡಿ",
+      "saveBtn": "ಗ್ರಾಹಕರನ್ನು ಉಳಿಸಿ",
+      "requiredError": "{{fieldName}} ಅಗತ್ಯವಿದೆ."
+    },
+    "paymentTerms": {
+        "dueOnReceipt": "ಸ್ವೀಕೃತಿಯ ಮೇಲೆ ಬಾಕಿ",
+        "net15": "ನೆಟ್ 15",
+        "net30": "ನೆಟ್ 30",
+        "net45": "ನೆಟ್ 45",
+        "net60": "ನೆಟ್ 60"
+    }
+  },
+  "common": {
+    "filterBtn": "ಫಿಲ್ಟರ್ ಮಾಡಿ"
+  },
+  "status": {
+    "active": "ಸಕ್ರಿಯ",
+    "inactive": "ನಿಷ್ಕ್ರಿಯ"
+  },
+
+  "customerView": {
+    "pageTitle": "ಗ್ರಾಹಕರನ್ನು ವೀಕ್ಷಿಸಿ: {{customerName}}",
+    "backLink": "ಎಲ್ಲಾ ಗ್ರಾಹಕರಿಗೆ ಹಿಂತಿರುಗಿ",
+    "customerTypeAndStatus": "{{type}} ಗ್ರಾಹಕರು | {{status}}",
+    "actions": {
+      "newInvoice": "ಹೊಸ ಇನ್‌ವಾಯ್ಸ್",
+      "recordPayment": "ಪಾವತಿ ದಾಖಲಿಸಿ",
+      "editCustomer": "ಗ್ರಾಹಕರನ್ನು ಸಂಪಾದಿಸಿ"
+    },
+    "tabs": {
+      "overview": "ಅವಲೋಕನ",
+      "invoices": "ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+      "payments": "ಪಾವತಿಗಳು",
+      "communication": "ಸಂವಹನ",
+      "statements": "ಹೇಳಿಕೆಗಳು",
+      "notes": "ಟಿಪ್ಪಣಿಗಳು"
+    },
+    "overview": {
+      "contactInfoTitle": "ಸಂಪರ್ಕ ಮಾಹಿತಿ",
+      "primaryContactLabel": "ಪ್ರಾಥಮಿಕ ಸಂಪರ್ಕ:",
+      "emailLabel": "ಇಮೇಲ್:",
+      "workPhoneLabel": "ದೂರವಾಣಿ (ಕೆಲಸ):",
+      "addressLabel": "ವಿಳಾಸ:",
+      "gstinLabel": "GSTIN:",
+      "outstandingBalanceTitle": "ಬಾಕಿ ಉಳಿದಿರುವ ಮೊತ್ತ",
+      "lifetimeValueTitle": "ಜೀವಮಾನದ ಮೌಲ್ಯ",
+      "recentActivityTitle": "ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ",
+      "paymentReceivedActivity": "{{invoiceId}} ಗಾಗಿ {{amount}} ಮೊತ್ತದ ಪಾವತಿ ಸ್ವೀಕರಿಸಲಾಗಿದೆ.",
+      "invoiceSentActivity": "ಇನ್‌ವಾಯ್ಸ್ {{invoiceId}} ({{amount}}) ಕಳುಹಿಸಲಾಗಿದೆ.",
+      "portalAccessEnabledActivity": "ಗ್ರಾಹಕ ಪೋರ್ಟಲ್ ಪ್ರವೇಶವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
+    },
+    "invoicesTab": {
+      "title": "{{customerName}} ಗಾಗಿ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+      "table": {
+        "invoiceNo": "ಇನ್‌ವಾಯ್ಸ್ #",
+        "issueDate": "ನೀಡಿದ ದಿನಾಂಕ",
+        "dueDate": "ನಿಗದಿತ ದಿನಾಂಕ",
+        "amount": "ಮೊತ್ತ",
+        "status": "ಸ್ಥಿತಿ"
+      }
+    },
+    "paymentsTab": {
+      "title": "{{customerName}} ರಿಂದ ಪಾವತಿಗಳು",
+      "table": {
+        "date": "ದಿನಾಂಕ",
+        "invoiceNo": "ಇನ್‌ವಾಯ್ಸ್ #",
+        "amount": "ಮೊತ್ತ",
+        "method": "ವಿಧಾನ"
+      }
+    },
+    "communicationPrefs": {
+        "title": "ಸಂವಹನ ಆದ್ಯತೆಗಳು",
+        "subtitle": "ಇನ್‌ವಾಯ್ಸ್‌ಗಳು, ಪಾವತಿಗಳು ಮತ್ತು ಸಾಮಾನ್ಯ ನವೀಕರಣಗಳ ಕುರಿತು ನಾವು ಈ ಗ್ರಾಹಕರೊಂದಿಗೆ ಹೇಗೆ ಸಂವಹನ ನಡೆಸುತ್ತೇವೆ ಎಂಬುದನ್ನು ನಿರ್ವಹಿಸಿ.",
+        "invoiceNotificationsLegend": "ಇನ್‌ವಾಯ್ಸ್ ಅಧಿಸೂಚನೆಗಳು",
+        "sendInvoicesEmailLabel": "ಇಮೇಲ್ ಮೂಲಕ ಇನ್‌ವಾಯ್ಸ್‌ಗಳನ್ನು ಕಳುಹಿಸಿ",
+        "sendInvoicesEmailDesc": "ಗ್ರಾಹಕರ ಪ್ರಾಥಮಿಕ ಇಮೇಲ್ ವಿಳಾಸಕ್ಕೆ ಹೊಸ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು ಮತ್ತು ಕ್ರೆಡಿಟ್ ನೋಟ್‌ಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಇಮೇಲ್ ಮಾಡಿ.",
+        "sendInvoiceSmsLabel": "SMS ಮೂಲಕ ಇನ್‌ವಾಯ್ಸ್ ಲಿಂಕ್‌ಗಳನ್ನು ಕಳುಹಿಸಿ (ಮೊಬೈಲ್ ಒದಗಿಸಿದ್ದರೆ)",
+        "sendInvoiceSmsDesc": "ಇನ್‌ವಾಯ್ಸ್ ಅನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ವೀಕ್ಷಿಸಲು ಸುರಕ್ಷಿತ ಲಿಂಕ್‌ನೊಂದಿಗೆ ಪಠ್ಯ ಸಂದೇಶವನ್ನು ಕಳುಹಿಸಿ.",
+        "paymentRemindersLegend": "ಪಾವತಿ ಜ್ಞಾಪನೆಗಳು",
+        "emailDueRemindersLabel": "ಬಾಕಿ ಇರುವ ಇನ್‌ವಾಯ್ಸ್‌ಗಳಿಗಾಗಿ ಇಮೇಲ್ ಜ್ಞಾಪನೆಗಳು",
+        "emailDueRemindersDesc": "ಇನ್‌ವಾಯ್ಸ್‌ನ ನಿಗದಿತ ದಿನಾಂಕದ ಮೊದಲು ಸ್ವಯಂಚಾಲಿತ ಇಮೇಲ್ ಜ್ಾಪನೆಗಳನ್ನು ಕಳುಹಿಸಿ (ಜಾಗತಿಕ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಕಾನ್ಫಿಗರ್ ಮಾಡಬಹುದು).",
+        "emailOverdueRemindersLabel": "ಮೀರಿದ ಇನ್‌ವಾಯ್ಸ್‌ಗಳಿಗಾಗಿ ಇಮೇಲ್ ಜ್ಞಾಪನೆಗಳು",
+        "emailOverdueRemindersDesc": "ಇನ್‌ವಾಯ್ಸ್ ಮೀರಿದ ನಂತರ ಸ್ವಯಂಚಾಲಿತ ಇಮೇಲ್ ಜ್ಞಾಪನೆಗಳನ್ನು ಕಳುಹಿಸಿ (ಜಾಗತಿಕ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಕಾನ್ಫಿಗರ್ ಮಾಡಬಹುದು).",
+        "smsRemindersLabel": "SMS ಮೂಲಕ ಪಾವತಿ ಜ್ಞಾಪನೆಗಳನ್ನು ಕಳುಹಿಸಿ",
+        "smsRemindersDesc": "ಬಾಕಿ/ಮೀರಿದ ಪಾವತಿ ಜ್ಞಾಪನೆಗಳನ್ನು ಪಠ್ಯ ಸಂದೇಶದ ಮೂಲಕ ಕಳುಹಿಸಿ.",
+        "generalCommsLegend": "ಸಾಮಾನ್ಯ ಮತ್ತು ಮಾರುಕಟ್ಟೆ ಸಂವಹನಗಳು",
+        "newsletterLabel": "ಸುದ್ದಿಪತ್ರಕ್ಕೆ ಚಂದಾದಾರರಾಗಿ",
+        "newsletterDesc": "ನಮ್ಮಿಂದ ಸಾಂದರ್ಭಿಕ ನವೀಕರಣಗಳು, ಸುದ್ದಿ ಮತ್ತು ಪ್ರಚಾರಗಳನ್ನು ಸ್ವೀಕರಿಸಿ.",
+        "promotionsLabel": "ವಿಶೇಷ ಕೊಡುಗೆಗಳು ಮತ್ತು ಪ್ರಚಾರಗಳನ್ನು ಸ್ವೀಕರಿಸಿ",
+        "promotionsDesc": "ವಿಶೇಷ ಡೀಲ್‌ಗಳು ಮತ್ತು ಸೇವಾ ಕೊಡುಗೆಗಳ ಬಗ್ಗೆ ಸೂಚನೆ ಪಡೆಯಿರಿ.",
+        "preferredLanguageLabel": "ಸಂವಹನಗಳಿಗಾಗಿ ಆದ್ಯತೆಯ ಭಾಷೆ",
+        "preferredLanguageDesc": "ಲಭ್ಯವಿರುವಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತ ಇಮೇಲ್‌ಗಳು ಮತ್ತು ಕ್ಲೈಂಟ್ ಪೋರ್ಟಲ್‌ಗಾಗಿ ಇದನ್ನು ಬಳಸಲಾಗುತ್ತದೆ.",
+        "savePrefsBtn": "ಆದ್ಯತೆಗಳನ್ನು ಉಳಿಸಿ"
+    },
+    "statementsTab": {
+      "title": "ಹೇಳಿಕೆಗಳು",
+      "placeholder": "ಗ್ರಾಹಕರ ಹೇಳಿಕೆಗಳು ಇಲ್ಲಿ ತೋರಿಸಲ್ಪಡುತ್ತವೆ."
+    },
+    "notesTab": {
+      "title": "ಆಂತರಿಕ ಟಿಪ್ಪಣಿಗಳು",
+      "placeholder": "ಈ ಗ್ರಾಹಕರ ಬಗ್ಗೆ ಆಂತರಿಕ ಟಿಪ್ಪಣಿಗಳನ್ನು ಸೇರಿಸಿ...",
+      "saveNoteBtn": "ಟಿಪ್ಪಣಿ ಉಳಿಸಿ"
+    }
+  },
+  "common": {
+    "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+    "active": "ಸಕ್ರಿಯ",
+    "inactive": "ನಿಷ್ಕ್ರಿಯ",
+    "business": "ವ್ಯಾಪಾರ",
+    "individual": "ವೈಯಕ್ತಿಕ",
+    "filterBtn": "ಫಿಲ್ಟರ್ ಮಾಡಿ"
   }
+
+
 }
