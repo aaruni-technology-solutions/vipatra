@@ -41,7 +41,9 @@
 
 /* 3. Define custom component classes (reusable styles) */
 @layer components {
-
+ .report-category-card {
+    @apply bg-cardBg p-6 rounded-lg shadow-soft border border-borderLight hover:shadow-md hover:border-primary transition-all duration-200 cursor-pointer flex flex-col items-center text-center;
+  }
 .tab-link {
     @apply px-4 py-2.5 border-b-2 font-medium text-sm leading-5 transition-colors duration-150 cursor-pointer;
     /* -mb-px can be useful if the parent has a border-b to make the active tab's border merge */

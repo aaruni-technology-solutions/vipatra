@@ -22,7 +22,8 @@ import SettingsPage from './pages/Settings/SettingsPage';
 // import SupportPage from './pages/Support/SupportPage'; // Assuming
 import NotFoundPage from './pages/NotFoundPage';
 import CustomerViewPage from './pages/Customers/CustomersViewPage';
-
+import ExpensesPage from './pages/Expenses/ExpensesPage';
+import ReportsPage from './pages/Reports/ReportsPage';
 function App() {
   // Basic concept for authentication state (replace with your actual auth logic)
   // In a real app, this would come from Context API, Redux, Zustand, etc.
@@ -78,12 +79,13 @@ const ProtectedRoutes = () => {
 
       <Route path="inventory" element={<InventoryDashboardPage />} />
       <Route path="settings" element={<SettingsPage />} />
+      <Route path="reports" element={<ReportsPage />} />
       {/* <Route path="support" element={<SupportPage />} /> */}
-
+      <Route path="expenses" element={<ExpensesPage />} />
       {/* Default route for authenticated area if no other sub-path matches (e.g., if user lands on just "/") */}
       {/* This makes `/` (after login) redirect to `/dashboard` */}
       <Route index element={<Navigate to="dashboard" replace />} />
-
+    
       {/* Fallback 404 for any unmatched path within the authenticated area */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

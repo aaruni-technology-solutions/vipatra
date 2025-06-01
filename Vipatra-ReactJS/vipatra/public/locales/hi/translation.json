@@ -15,9 +15,9 @@
     "allInvoices": "सभी चालान",
     "createInvoice": "चालान बनाएं",
     "customers": "ग्राहक",
-    "items": "आइटम प्रबंधित करें",
+    "items": "आइटम ",
     "expenses": "खर्च",
-    "manageInventory": "इन्वेंटरी प्रबंधित करें",
+    "manageInventory": "इन्वेंटरी",
     "reports": "रिपोर्ट",
     "settings": "सेटिंग्स"
   },
@@ -464,7 +464,186 @@
     "business": "व्यवसाय",
     "individual": "व्यक्तिगत",
     "filterBtn": "फ़िल्टर करें" 
+  },
+  
+  "items": {
+    "manageTitle": "आइटम प्रबंधित करें",
+    "manageSubtitle": "वस्तुएँ और सेवाएँ, यदि उन पर मूल्य टैग है, तो उन्हें यहाँ रखें।",
+    "createItemBtn": "आइटम बनाएं",
+    "initialView": {
+      "title": "आपके सभी आइटम एक ही स्थान पर",
+      "subtitle": "नीचे दी गई तालिका से नए आइटम बनाएं या मौजूदा आइटम प्रबंधित करें (प्लेसहोल्डर)।",
+      "tablePlaceholder": "आइटम सूची तालिका यहाँ दिखाई देगी। वर्तमान में खाली या लोड हो रही है..."
+    },
+    "newItemForm": {
+      "title": "नया आइटम",
+      "typeLabel": "प्रकार",
+      "goods": "वस्तुएँ",
+      "service": "सेवा",
+      "nameLabel": "नाम",
+      "unitLabel": "इकाई (उपयोग इकाई)",
+      "unitPlaceholder": "जैसे, नग, किग्रा, घंटे, सत्र",
+      "unitExamples": "जोड़ने के लिए चुनें या टाइप करें। उदाहरण: नग, किग्रा, लीटर, बॉक्स, घंटे, सत्र।",
+      "imageLabel": "आइटम छवि(याँ)",
+      "uploadFile": "एक फ़ाइल अपलोड करें",
+      "dragAndDrop": "या खींचें और छोड़ें",
+      "fileTypes": "PNG, JPG, GIF 10MB तक",
+      "noFileChosen": "कोई फ़ाइल नहीं चुनी गई",
+      "pricingTaxationLegend": "मूल्य निर्धारण और कराधान",
+      "sellingPriceLabel": "बिक्री मूल्य (INR)",
+      "purchasePriceLabel": "खरीद मूल्य (INR) (वैकल्पिक)",
+      "purchasePriceHelp": "आंतरिक लागत ट्रैकिंग के लिए, यदि लागू हो।",
+      "taxPreferenceLabel": "कर वरीयता",
+      "taxable": "कर योग्य",
+      "taxExempt": "कर मुक्त",
+      "defaultTaxRateLabel": "डिफ़ॉल्ट कर दर",
+      "noDefaultTaxOption": "-- कोई डिफ़ॉल्ट कर नहीं --",
+      "gst0": "GST @ 0%",
+      "gst5": "GST @ 5%",
+      "gst12": "GST @ 12%",
+      "gst18": "GST @ 18%",
+      "gst28": "GST @ 28%",
+      "customTaxExample": "कस्टम टैक्स ए (जैसे, उपकर @ 2%)",
+      "defaultTaxRateHelp": "इस आइटम के लिए एक डिफ़ॉल्ट कर दर चुनें। इसे व्यक्तिगत चालानों पर ओवरराइड किया जा सकता है।",
+      "descriptionLabel": "विवरण (वैकल्पिक)",
+      "saveItemBtn": "आइटम सहेजें"
+    }
+  },
+  "common": {
+    "cancel": "रद्द करें",
+    "required": "*"
+  },
+  
+  "expenses": {
+    "manageTitle": "व्यय प्रबंधन",
+    "manageSubtitle": "अपने व्यवसाय और विक्रेता व्यय को रिकॉर्ड और ट्रैक करें।",
+    "recordNewExpenseBtn": "नया व्यय रिकॉर्ड करें",
+    "initialView": {
+      "title": "अपने व्यय ट्रैक करें",
+      "subtitle": "अभी तक कोई व्यय रिकॉर्ड नहीं किया गया है, या हाल के व्यय की सूची यहाँ दिखाई देगी।",
+      "tablePlaceholder": "व्यय सूची तालिका यहाँ दिखाई देगी..."
+    },
+    "newExpenseForm": {
+      "title": "नया व्यय रिकॉर्ड करें",
+      "expenseDateLabel": "व्यय तिथि",
+      "categoryLabel": "श्रेणी",
+      "selectCategoryOption": "-- श्रेणी चुनें --",
+      "categories": {
+        "officeSupplies": "कार्यालय आपूर्ति",
+        "rentUtilities": "किराया और उपयोगिताएँ",
+        "travel": "यात्रा",
+        "softwareSubscriptions": "सॉफ्टवेयर/सदस्यताएँ",
+        "marketing": "विपणन और विज्ञापन",
+        "vendorPayment": "विक्रेता भुगतान (माल/सेवाएँ)",
+        "other": "अन्य"
+      },
+      "vendorNameLabel": "विक्रेता का नाम (वैकल्पिक)",
+      "vendorNamePlaceholder": "जैसे, ऑफिसमैक्स, AWS",
+      "amountLabel": "राशि (INR)",
+      "descriptionLabel": "विवरण",
+      "descriptionPlaceholder": "व्यय का संक्षिप्त विवरण दें",
+      "attachReceiptLabel": "रसीद(एँ) संलग्न करें (वैकल्पिक)",
+      "uploadFile": "एक फ़ाइल अपलोड करें",
+      "dragAndDrop": "या खींचें और छोड़ें",
+      "maxFileSize": "प्रति फ़ाइल अधिकतम 5MB",
+      "noFileChosen": "कोई फ़ाइल नहीं चुनी गई",
+      "reimbursableLegend": "प्रतिपूर्ति योग्य / बिल करने योग्य (वैकल्पिक)",
+      "isReimbursableLabel": "यह व्यय प्रतिपूर्ति योग्य / किसी ग्राहक/परियोजना के लिए बिल करने योग्य है",
+      "linkToClientLabel": "ग्राहक/क्लाइंट से लिंक करें",
+      "selectCustomerOption": "-- ग्राहक चुनें --",
+      "linkToProjectLabel": "परियोजना से लिंक करें (वैकल्पिक)",
+      "linkToProjectPlaceholder": "परियोजना का नाम या आईडी",
+      "saveExpenseBtn": "व्यय सहेजें",
+      "expenseSavedMsg": "व्यय सहेजा गया (कंसोल देखें)!"
+    }
+  },
+  
+  "inventoryDashboard": {
+    "title": "इन्वेंटरी प्रबंधन डैशबोर्ड",
+    "subtitle": "स्टॉक स्तरों की निगरानी करें, बैचों को ट्रैक करें और उत्पादों का प्रबंधन करें।",
+    "stats": {
+      "totalSKUs": "कुल SKU",
+      "lowStockItems": "कम स्टॉक वाले आइटम",
+      "fastMovingProducts": "तेजी से बिकने वाले उत्पाद (माह)",
+      "batchesNearingExpiry": "समाप्ति के करीब बैच"
+    },
+    "criticalItems": {
+      "title": "महत्वपूर्ण आइटम: रीयल-टाइम स्टॉक",
+      "viewAll": "सभी महत्वपूर्ण आइटम देखें",
+      "units": "इकाइयाँ",
+      "inStock": "स्टॉक में",
+      "lowStockExclamation": "स्टॉक कम!"
+    },
+    "detailedLowStock": {
+      "title": "विस्तृत कम स्टॉक वाले आइटम",
+      "productName": "उत्पाद का नाम",
+      "sku": "SKU",
+      "currentStock": "वर्तमान स्टॉक",
+      "threshold": "सीमा",
+      "actions": "कार्रवाइयाँ",
+      "restock": "पुनः स्टॉक करें"
+    },
+    "batchTracking": {
+      "title": "बैच ट्रैकिंग और समाप्ति अलर्ट",
+      "productLabel": "उत्पाद:",
+      "lotNoLabel": "लॉट नंबर:",
+      "expiresLabel": "समाप्त होता है:",
+      "expiresInDays": " ({{count}} दिनों में)",
+      "quantityLabel": "मात्रा:",
+      "viewAllBatches": "सभी बैच देखें"
+    },
+    "common": {
+        "viewDetails": "विवरण देखें"
+    }
+  },
+  
+  "reports": {
+   "testReportKey": "हिन्दी टेस्ट काम करता है!",
+    "pageTitle": "रिपोर्ट और विश्लेषण",
+    "pageSubtitle": "अपने व्यवसाय के प्रदर्शन में अंतर्दृष्टि प्राप्त करें।",
+    "categories": {
+      "sales": {
+        "title": "बिक्री रिपोर्ट",
+        "description": "राजस्व, आइटम द्वारा बिक्री, ग्राहक द्वारा बिक्री आदि ट्रैक करें।"
+      },
+      "paymentStatus": {
+        "title": "भुगतान स्थिति रिपोर्ट",
+        "description": "प्राप्त, लंबित और अतिदेय भुगतानों की निगरानी करें।"
+      },
+      "taxLiability": {
+        "title": "कर देयता रिपोर्ट",
+        "description": "अनुपालन और फाइलिंग के लिए एकत्र किए गए करों को देखें।"
+      },
+      "customerAging": {
+        "title": "ग्राहक एजिंग रिपोर्ट",
+        "description": "ग्राहक और आयु के अनुसार बकाया प्राप्तियों का विश्लेषण करें।"
+      },
+      "inventory": {
+        "title": "इन्वेंटरी रिपोर्ट",
+        "description": "स्टॉक स्तर, मूल्यांकन और आवाजाही।"
+      },
+      "expense": {
+        "title": "व्यय रिपोर्ट",
+        "description": "खर्च को ट्रैक करें और व्यय को वर्गीकृत करें।"
+      }
+    },
+    "selectedReport": {
+      "titlePlaceholder": "रिपोर्ट विवरण",
+      "backToAll": "← सभी रिपोर्ट पर वापस जाएं",
+      "filtersPlaceholder": "इस रिपोर्ट प्रकार के लिए विशिष्ट फ़िल्टर यहाँ दिखाई देंगे।",
+      "dataPlaceholder": "रिपोर्ट डेटा (तालिका/चार्ट) यहाँ प्रदर्शित किया जाएगा।"
+    }
+  },
+  "sidebar": {
+    "mainDashboard": "मुख्य डैशबोर्ड",
+    "allReports": "सभी रिपोर्ट",
+    "salesReports": "बिक्री रिपोर्ट",
+    "paymentReports": "भुगतान रिपोर्ट"
   }
+
+
+
+
 
 
 }

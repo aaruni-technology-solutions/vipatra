@@ -15,9 +15,9 @@
     "allInvoices": "All Invoices",
     "createInvoice": "Create Invoice",
     "customers": "Customers",
-    "items": "Manage Items",
+    "items": "Items",
     "expenses": "Expenses",
-    "manageInventory": "Manage Inventory",
+    "manageInventory": "Inventory",
     "reports": "Reports",
     "settings": "Settings"
   },
@@ -451,8 +451,185 @@
     "inactive": "Inactive",
     "business": "Business", 
     "individual": "Individual" 
+  },
+  
+  "items": {
+    "manageTitle": "Manage Items",
+    "manageSubtitle": "Goods and Services, if they have a price tag, put them here.",
+    "createItemBtn": "Create Item",
+    "initialView": {
+      "title": "All Your Items in One Place",
+      "subtitle": "Create new items or manage existing ones from the table below (placeholder).",
+      "tablePlaceholder": "Item list table will appear here. Currently empty or loading..."
+    },
+    "newItemForm": {
+      "title": "New Item",
+      "typeLabel": "Type",
+      "goods": "Goods",
+      "service": "Service",
+      "nameLabel": "Name",
+      "unitLabel": "Unit (Usage Unit)",
+      "unitPlaceholder": "e.g., pcs, kg, hrs, session",
+      "unitExamples": "Select or type to add. Examples: pcs, kg, ltr, box, hrs, session.",
+      "imageLabel": "Item Image(s)",
+      "uploadFile": "Upload a file",
+      "dragAndDrop": "or drag and drop",
+      "fileTypes": "PNG, JPG, GIF up to 10MB",
+      "noFileChosen": "No file chosen",
+      "pricingTaxationLegend": "Pricing & Taxation",
+      "sellingPriceLabel": "Selling Price (INR)",
+      "purchasePriceLabel": "Purchase Price (INR) (Optional)",
+      "purchasePriceHelp": "For internal cost tracking, if applicable.",
+      "taxPreferenceLabel": "Tax Preference",
+      "taxable": "Taxable",
+      "taxExempt": "Tax Exempt",
+      "defaultTaxRateLabel": "Default Tax Rate",
+      "noDefaultTaxOption": "-- No Default Tax --",
+      "gst0": "GST @ 0%",
+      "gst5": "GST @ 5%",
+      "gst12": "GST @ 12%",
+      "gst18": "GST @ 18%",
+      "gst28": "GST @ 28%",
+      "customTaxExample": "Custom Tax A (e.g., Cess @ 2%)",
+      "defaultTaxRateHelp": "Select a default tax rate for this item. This can be overridden on individual invoices.",
+      "descriptionLabel": "Description (Optional)",
+      "saveItemBtn": "Save Item"
+    }
+  },
+ 
+  "expenses": {
+    "manageTitle": "Expense Management",
+    "manageSubtitle": "Record and track your business and vendor expenses.",
+    "recordNewExpenseBtn": "Record New Expense",
+    "initialView": {
+      "title": "Track Your Expenses",
+      "subtitle": "No expenses recorded yet, or list of recent expenses will appear here.",
+      "tablePlaceholder": "Expense list table will appear here..."
+    },
+    "newExpenseForm": {
+      "title": "Record New Expense",
+      "expenseDateLabel": "Expense Date",
+      "categoryLabel": "Category",
+      "selectCategoryOption": "-- Select Category --",
+      "categories": {
+        "officeSupplies": "Office Supplies",
+        "rentUtilities": "Rent & Utilities",
+        "travel": "Travel",
+        "softwareSubscriptions": "Software/Subscriptions",
+        "marketing": "Marketing & Advertising",
+        "vendorPayment": "Vendor Payment (Goods/Services)",
+        "other": "Other"
+      },
+      "vendorNameLabel": "Vendor Name (Optional)",
+      "vendorNamePlaceholder": "E.g., OfficeMax, AWS",
+      "amountLabel": "Amount (INR)",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Briefly describe the expense",
+      "attachReceiptLabel": "Attach Receipt(s) (Optional)",
+      "uploadFile": "Upload a file",
+      "dragAndDrop": "or drag and drop",
+      "maxFileSize": "Max 5MB per file",
+      "noFileChosen": "No file chosen",
+      "reimbursableLegend": "Reimbursable / Billable (Optional)",
+      "isReimbursableLabel": "This expense is reimbursable / billable to a client/project",
+      "linkToClientLabel": "Link to Customer/Client",
+      "selectCustomerOption": "-- Select Customer --",
+      "linkToProjectLabel": "Link to Project (Optional)",
+      "linkToProjectPlaceholder": "Project Name or ID",
+      "saveExpenseBtn": "Save Expense",
+      "expenseSavedMsg": "Expense saved (check console)!"
+    }
+  },
+  "common": { 
+    "cancel": "Cancel",
+    "required": "*"
+  },
+ 
+  "inventoryDashboard": {
+    "title": "Inventory Management Dashboard",
+    "subtitle": "Monitor stock levels, track batches, and manage products.",
+    "stats": {
+      "totalSKUs": "Total SKUs",
+      "lowStockItems": "Low Stock Items",
+      "fastMovingProducts": "Fast-Moving Products (Month)",
+      "batchesNearingExpiry": "Batches Nearing Expiry"
+    },
+    "criticalItems": {
+      "title": "Critical Items: Real-Time Stock",
+      "viewAll": "View All Critical Items",
+      "units": "units",
+      "inStock": "In Stock",
+      "lowStockExclamation": "Low Stock!"
+    },
+    "detailedLowStock": {
+      "title": "Detailed Low Stock Items",
+      "productName": "Product Name",
+      "sku": "SKU",
+      "currentStock": "Current Stock",
+      "threshold": "Threshold",
+      "actions": "Actions",
+      "restock": "Restock"
+    },
+    "batchTracking": {
+      "title": "Batch Tracking & Expiry Alerts",
+      "productLabel": "Product:",
+      "lotNoLabel": "Lot No:",
+      "expiresLabel": "Expires:",
+      "expiresInDays": " (In {{count}} days)",
+      "quantityLabel": "Quantity:",
+      "viewAllBatches": "View All Batches"
+    },
+    "common": { 
+        "viewDetails": "View Details"
+    },
+   
+ 
+  
+  "reports": {
+    "testReportKey": "English Reports Test Works!",
+    "pageTitle": "Reports & Analytics",
+    "pageSubtitle": "Gain insights into your business performance.",
+    "categories": {
+      "sales": {
+        "title": "Sales Reports",
+        "description": "Track revenue, sales by item, sales by customer, etc."
+      },
+      "paymentStatus": {
+        "title": "Payment Status Reports",
+        "description": "Monitor received, pending, and overdue payments."
+      },
+      "taxLiability": {
+        "title": "Tax Liability Reports",
+        "description": "View collected taxes for compliance and filing."
+      },
+      "customerAging": {
+        "title": "Customer Aging Reports",
+        "description": "Analyze outstanding receivables by customer and age."
+      },
+      "inventory": {
+        "title": "Inventory Reports",
+        "description": "Stock levels, valuation, and movement."
+      },
+      "expense": {
+        "title": "Expense Reports",
+        "description": "Track spending and categorize expenses."
+      }
+    },
+    "selectedReport": {
+      "titlePlaceholder": "Report Details",
+      "backToAll": "← Back to All Reports",
+      "filtersPlaceholder": "Filters specific to this report type will appear here.",
+      "dataPlaceholder": "Report data (table/chart) will be displayed here."
+    }
+  },
+  "sidebar": { 
+    "mainDashboard": "Main Dashboard",
+    "allReports": "All Reports",
+    "salesReports": "Sales Reports",
+    "paymentReports": "Payment Reports" 
   }
 
-
+  
+  }
 
 }

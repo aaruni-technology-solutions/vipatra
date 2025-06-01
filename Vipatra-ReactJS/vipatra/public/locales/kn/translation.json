@@ -15,9 +15,9 @@
     "allInvoices": "ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
     "createInvoice": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
     "customers": "ಗ್ರಾಹಕರು",
-    "items": "ಐಟಂಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+    "items": "ಐಟಂಗಳನ್ನು",
     "expenses": "ಖರ್ಚುಗಳು",
-    "manageInventory": "ದಾಸ್ತಾನು ನಿರ್ವಹಿಸಿ",
+    "manageInventory": "ದಾಸ್ತಾನು",
     "reports": "ವರದಿಗಳು",
     "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
   },
@@ -463,7 +463,185 @@
     "business": "ವ್ಯಾಪಾರ",
     "individual": "ವೈಯಕ್ತಿಕ",
     "filterBtn": "ಫಿಲ್ಟರ್ ಮಾಡಿ"
+  },
+  
+  "items": {
+    "manageTitle": "ಐಟಂಗಳನ್ನು ನಿರ್ವಹಿಸಿ",
+    "manageSubtitle": "ಸರಕುಗಳು ಮತ್ತು ಸೇವೆಗಳು, ಅವುಗಳಿಗೆ ಬೆಲೆ ಟ್ಯಾಗ್ ಇದ್ದರೆ, ಅವುಗಳನ್ನು ಇಲ್ಲಿ ಇರಿಸಿ.",
+    "createItemBtn": "ಐಟಂ ರಚಿಸಿ",
+    "initialView": {
+      "title": "ನಿಮ್ಮ ಎಲ್ಲಾ ಐಟಂಗಳು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ",
+      "subtitle": "ಕೆಳಗಿನ ಕೋಷ್ಟಕದಿಂದ ಹೊಸ ಐಟಂಗಳನ್ನು ರಚಿಸಿ ಅಥವಾ ಅಸ್ತಿತ್ವದಲ್ಲಿರುವವನ್ನು ನಿರ್ವಹಿಸಿ (ಸ್ಥಳধারಕ).",
+      "tablePlaceholder": "ಐಟಂಗಳ ಪಟ್ಟಿ ಕೋಷ್ಟಕ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ. ಪ್ರಸ್ತುತ ಖಾಲಿ ಅಥವಾ ಲೋಡ್ ಆಗುತ್ತಿದೆ..."
+    },
+    "newItemForm": {
+      "title": "ಹೊಸ ಐಟಂ",
+      "typeLabel": "ಪ್ರಕಾರ",
+      "goods": "ಸರಕುಗಳು",
+      "service": "ಸೇವೆ",
+      "nameLabel": "ಹೆಸರು",
+      "unitLabel": "ಘಟಕ (ಬಳಕೆಯ ಘಟಕ)",
+      "unitPlaceholder": "ಉದಾಹರಣೆಗೆ, ಪಿಸಿಗಳು, ಕೆಜಿ, ಗಂಟೆಗಳು, ಅಧಿವೇಶನ",
+      "unitExamples": "ಸೇರಿಸಲು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ. ಉದಾಹರಣೆಗಳು: ಪಿಸಿಗಳು, ಕೆಜಿ, ಲೀಟರ್, ಬಾಕ್ಸ್, ಗಂಟೆಗಳು, ಅಧಿವೇಶನ.",
+      "imageLabel": "ಐಟಂ ಚಿತ್ರ(ಗಳು)",
+      "uploadFile": "ಫೈಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+      "dragAndDrop": "ಅಥವಾ ಎಳೆದು ಬಿಡಿ",
+      "fileTypes": "PNG, JPG, GIF 10MB ವರೆಗೆ",
+      "noFileChosen": "ಯಾವುದೇ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿಲ್ಲ",
+      "pricingTaxationLegend": "ಬೆಲೆ ನಿಗದಿ ಮತ್ತು ತೆರಿಗೆ",
+      "sellingPriceLabel": "ಮಾರಾಟದ ಬೆಲೆ (INR)",
+      "purchasePriceLabel": "ಖರೀದಿ ಬೆಲೆ (INR) (ಐಚ್ಛಿಕ)",
+      "purchasePriceHelp": "ಆಂತರಿಕ ವೆಚ್ಚ ಟ್ರ್ಯಾಕಿಂಗ್‌ಗಾಗಿ, ಅನ್ವಯವಾದರೆ.",
+      "taxPreferenceLabel": "ತೆರಿಗೆ ಆದ್ಯತೆ",
+      "taxable": "ತೆರಿಗೆಗೆ ಒಳಪಟ್ಟಿರುತ್ತದೆ",
+      "taxExempt": "ತೆರಿಗೆ ವಿನಾಯಿತಿ",
+      "defaultTaxRateLabel": "ಡೀಫಾಲ್ಟ್ ತೆರಿಗೆ ದರ",
+      "noDefaultTaxOption": "-- ಡೀಫಾಲ್ಟ್ ತೆರಿಗೆ ಇಲ್ಲ --",
+      "gst0": "GST @ 0%",
+      "gst5": "GST @ 5%",
+      "gst12": "GST @ 12%",
+      "gst18": "GST @ 18%",
+      "gst28": "GST @ 28%",
+      "customTaxExample": "ಕಸ್ಟಮ್ ತೆರಿಗೆ ಎ (ಉದಾ., ಸೆಸ್ @ 2%)",
+      "defaultTaxRateHelp": "ಈ ಐಟಂಗೆ ಡೀಫಾಲ್ಟ್ ತೆರಿಗೆ ದರವನ್ನು ಆಯ್ಕೆಮಾಡಿ. ಇದನ್ನು ವೈಯಕ್ತಿಕ ಇನ್‌ವಾಯ್ಸ್‌ಗಳಲ್ಲಿ ಅತಿಕ್ರಮಿಸಬಹುದು.",
+      "descriptionLabel": "ವಿವರಣೆ (ಐಚ್ಛಿಕ)",
+      "saveItemBtn": "ಐಟಂ ಉಳಿಸಿ"
+    }
+  },
+  "common": {
+    "cancel": "ರದ್ದುಮಾಡಿ",
+    "required": "*"
+  },
+  
+  "expenses": {
+    "manageTitle": "ವೆಚ್ಚ ನಿರ್ವಹಣೆ",
+    "manageSubtitle": "ನಿಮ್ಮ ವ್ಯಾಪಾರ ಮತ್ತು ಮಾರಾಟಗಾರರ ವೆಚ್ಚಗಳನ್ನು ದಾಖಲಿಸಿ ಮತ್ತು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ.",
+    "recordNewExpenseBtn": "ಹೊಸ ವೆಚ್ಚವನ್ನು ದಾಖಲಿಸಿ",
+    "initialView": {
+      "title": "ನಿಮ್ಮ ವೆಚ್ಚಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ",
+      "subtitle": "ಇನ್ನೂ ಯಾವುದೇ ವೆಚ್ಚಗಳನ್ನು ದಾಖಲಿಸಲಾಗಿಲ್ಲ, ಅಥವಾ ಇತ್ತೀಚಿನ ವೆಚ್ಚಗಳ ಪಟ್ಟಿ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ.",
+      "tablePlaceholder": "ವೆಚ್ಚಗಳ ಪಟ್ಟಿ ಕೋಷ್ಟಕ ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ..."
+    },
+    "newExpenseForm": {
+      "title": "ಹೊಸ ವೆಚ್ಚವನ್ನು ದಾಖಲಿಸಿ",
+      "expenseDateLabel": "ವೆಚ್ಚದ ದಿನಾಂಕ",
+      "categoryLabel": "ವರ್ಗ",
+      "selectCategoryOption": "-- ವರ್ಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ --",
+      "categories": {
+        "officeSupplies": "ಕಚೇರಿ ಸರಬರಾಜುಗಳು",
+        "rentUtilities": "ಬಾಡಿಗೆ ಮತ್ತು ಉಪಯುಕ್ತತೆಗಳು",
+        "travel": "ಪ್ರಯಾಣ",
+        "softwareSubscriptions": "ಸಾಫ್ಟ್‌ವೇರ್/ಚಂದಾದಾರಿಕೆಗಳು",
+        "marketing": "ಮಾರ್ಕೆಟಿಂಗ್ ಮತ್ತು ಜಾಹೀರಾತು",
+        "vendorPayment": "ಮಾರಾಟಗಾರರ ಪಾವತಿ (ಸರಕುಗಳು/ಸೇವೆಗಳು)",
+        "other": "ಇತರೆ"
+      },
+      "vendorNameLabel": "ಮಾರಾಟಗಾರರ ಹೆಸರು (ಐಚ್ಛಿಕ)",
+      "vendorNamePlaceholder": "ಉದಾಹರಣೆಗೆ, ಆಫೀಸ್‌ಮ್ಯಾಕ್ಸ್, AWS",
+      "amountLabel": "ಮೊತ್ತ (INR)",
+      "descriptionLabel": "ವಿವರಣೆ",
+      "descriptionPlaceholder": "ವೆಚ್ಚವನ್ನು ಸಂಕ್ಷಿಪ್ತವಾಗಿ ವಿವರಿಸಿ",
+      "attachReceiptLabel": "ರಶೀದಿ(ಗಳನ್ನು) ಲಗತ್ತಿಸಿ (ಐಚ್ಛಿಕ)",
+      "uploadFile": "ಫೈಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+      "dragAndDrop": "ಅಥವಾ ಎಳೆದು ಬಿಡಿ",
+      "maxFileSize": "ಪ್ರತಿ ಫೈಲ್‌ಗೆ ಗರಿಷ್ಠ 5MB",
+      "noFileChosen": "ಯಾವುದೇ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿಲ್ಲ",
+      "reimbursableLegend": "ಮರುಪಾವತಿಸಬಹುದಾದ / ಬಿಲ್ ಮಾಡಬಹುದಾದ (ಐಚ್ಛಿಕ)",
+      "isReimbursableLabel": "ಈ ವೆಚ್ಚವು ಮರುಪಾವತಿಸಬಹುದಾದ / ಗ್ರಾಹಕ/ಯೋಜನೆಗೆ ಬಿಲ್ ಮಾಡಬಹುದಾಗಿದೆ",
+      "linkToClientLabel": "ಗ್ರಾಹಕ/ಕ್ಲೈಂಟ್‌ಗೆ ಲಿಂಕ್ ಮಾಡಿ",
+      "selectCustomerOption": "-- ಗ್ರಾಹಕರನ್ನು ಆಯ್ಕೆಮಾಡಿ --",
+      "linkToProjectLabel": "ಯೋಜನೆಗೆ ಲಿಂಕ್ ಮಾಡಿ (ಐಚ್ಛಿಕ)",
+      "linkToProjectPlaceholder": "ಯೋಜನೆಯ ಹೆಸರು ಅಥವಾ ID",
+      "saveExpenseBtn": "ವೆಚ್ಚವನ್ನು ಉಳಿಸಿ",
+      "expenseSavedMsg": "ವೆಚ್ಚವನ್ನು ಉಳಿಸಲಾಗಿದೆ (ಕನ್ಸೋಲ್ ಪರಿಶೀಲಿಸಿ)!"
+    }
+  },
+ 
+  "inventoryDashboard": {
+    "title": "ದಾಸ್ತಾನು ನಿರ್ವಹಣಾ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "subtitle": "ಸ್ಟಾಕ್ ಮಟ್ಟಗಳನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಿ, ಬ್ಯಾಚ್‌ಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ ಮತ್ತು ಉತ್ಪನ್ನಗಳನ್ನು ನಿರ್ವಹಿಸಿ.",
+    "stats": {
+      "totalSKUs": "ಒಟ್ಟು SKUಗಳು",
+      "lowStockItems": "ಕಡಿಮೆ ಸ್ಟಾಕ್ ಐಟಂಗಳು",
+      "fastMovingProducts": "ವೇಗವಾಗಿ ಚಲಿಸುವ ಉತ್ಪನ್ನಗಳು (ತಿಂಗಳು)",
+      "batchesNearingExpiry": "ಮುಕ್ತಾಯದ ಹತ್ತಿರವಿರುವ ಬ್ಯಾಚ್‌ಗಳು"
+    },
+    "criticalItems": {
+      "title": "ನಿರ್ಣಾಯಕ ಐಟಂಗಳು: ನೈಜ-ಸಮಯದ ಸ್ಟಾಕ್",
+      "viewAll": "ಎಲ್ಲಾ ನಿರ್ಣಾಯಕ ಐಟಂಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
+      "units": "ಘಟಕಗಳು",
+      "inStock": "ಸ್ಟಾಕ್‌ನಲ್ಲಿದೆ",
+      "lowStockExclamation": "ಸ್ಟಾಕ್ ಕಡಿಮೆ!"
+    },
+    "detailedLowStock": {
+      "title": "ವಿವರವಾದ ಕಡಿಮೆ ಸ್ಟಾಕ್ ಐಟಂಗಳು",
+      "productName": "ಉತ್ಪನ್ನದ ಹೆಸರು",
+      "sku": "SKU",
+      "currentStock": "ಪ್ರಸ್ತುತ ಸ್ಟಾಕ್",
+      "threshold": "ಮಿತಿ",
+      "actions": "ಕ್ರಿಯೆಗಳು",
+      "restock": "ಮರುಸ್ಥಾಪಿಸಿ"
+    },
+    "batchTracking": {
+      "title": "ಬ್ಯಾಚ್ ಟ್ರ್ಯಾಕಿಂಗ್ ಮತ್ತು ಮುಕ್ತಾಯ ಎಚ್ಚರಿಕೆಗಳು",
+      "productLabel": "ಉತ್ಪನ್ನ:",
+      "lotNoLabel": "ಲಾಟ್ ಸಂಖ್ಯೆ:",
+      "expiresLabel": "ಮುಕ್ತಾಯಗೊಳ್ಳುತ್ತದೆ:",
+      "expiresInDays": " ({{count}} ದಿನಗಳಲ್ಲಿ)",
+      "quantityLabel": "ಪ್ರಮಾಣ:",
+      "viewAllBatches": "ಎಲ್ಲಾ ಬ್ಯಾಚ್‌ಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+    },
+    "common": {
+        "viewDetails": "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+    }
+  },
+  
+  "reports": {
+    "pageTitle": "ವರದಿಗಳು ಮತ್ತು ವಿಶ್ಲೇಷಣೆಗಳು",
+    "pageSubtitle": "ನಿಮ್ಮ ವ್ಯಾಪಾರ ಕಾರ್ಯಕ್ಷಮತೆಯ ಒಳನೋಟಗಳನ್ನು ಪಡೆಯಿರಿ.",
+    "categories": {
+      "sales": {
+        "title": "ಮಾರಾಟ ವರದಿಗಳು",
+        "description": "ಆದಾಯ, ಐಟಂವಾರು ಮಾರಾಟ, ಗ್ರಾಹಕವಾರು ಮಾರಾಟ ಇತ್ಯಾದಿಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ."
+      },
+      "paymentStatus": {
+        "title": "ಪಾವತಿ ಸ್ಥಿತಿ ವರದಿಗಳು",
+        "description": "ಸ್ವೀಕರಿಸಿದ, ಬಾಕಿ ಇರುವ ಮತ್ತು ಮೀರಿದ ಪಾವತಿಗಳನ್ನು ಮೇಲ್ವಿಚಾರಣೆ ಮಾಡಿ."
+      },
+      "taxLiability": {
+        "title": "ತೆರಿಗೆ ಹೊಣೆಗಾರಿಕೆ ವರದಿಗಳು",
+        "description": "ಅನುಸರಣೆ ಮತ್ತು ಫೈಲಿಂಗ್‌ಗಾಗಿ ಸಂಗ್ರಹಿಸಿದ ತೆರಿಗೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ."
+      },
+      "customerAging": {
+        "title": "ಗ್ರಾಹಕರ ವಯಸ್ಸಾದ ವರದಿಗಳು",
+        "description": "ಗ್ರಾಹಕರು ಮತ್ತು ವಯಸ್ಸಿನ ಪ್ರಕಾರ ಬಾಕಿ ಇರುವ ಸ್ವೀಕೃತಿಗಳನ್ನು ವಿಶ್ಲೇಷಿಸಿ."
+      },
+      "inventory": {
+        "title": "ದಾಸ್ತಾನು ವರದಿಗಳು",
+        "description": "ಸ್ಟಾಕ್ ಮಟ್ಟಗಳು, ಮೌಲ್ಯಮಾಪನ ಮತ್ತು ಚಲನೆ."
+      },
+      "expense": {
+        "title": "ವೆಚ್ಚ ವರದಿಗಳು",
+        "description": "ಖರ್ಚುಗಳನ್ನು ಟ್ರ್ಯಾಕ್ ಮಾಡಿ ಮತ್ತು ವೆಚ್ಚಗಳನ್ನು ವರ್ಗೀಕರಿಸಿ."
+      }
+    },
+    "selectedReport": {
+      "titlePlaceholder": "ವರದಿ ವಿವರಗಳು",
+      "backToAll": "← ಎಲ್ಲಾ ವರದಿಗಳಿಗೆ ಹಿಂತಿರುಗಿ",
+      "filtersPlaceholder": "ಈ ವರದಿ ಪ್ರಕಾರಕ್ಕೆ ನಿರ್ದಿಷ್ಟವಾದ ಫಿಲ್ಟರ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ.",
+      "dataPlaceholder": "ವರದಿ ಡೇಟಾ (ಕೋಷ್ಟಕ/ಚಾರ್ಟ್) ಇಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ."
+    }
+  },
+  "sidebar": {
+    "mainDashboard": "ಮುಖ್ಯ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
+    "allReports": "ಎಲ್ಲಾ ವರದಿಗಳು",
+    "salesReports": "ಮಾರಾಟ ವರದಿಗಳು",
+    "paymentReports": "ಪಾವತಿ ವರದಿಗಳು"
   }
+
+
+
+
 
 
 }
