@@ -16,6 +16,7 @@
     "createInvoice": "चालान बनाएं",
     "customers": "ग्राहक",
     "items": "आइटम ",
+    "newQuote": "कोटेशन",
     "expenses": "खर्च",
     "manageInventory": "इन्वेंटरी",
     "reports": "रिपोर्ट",
@@ -37,12 +38,7 @@
   },
   "client": "ग्राहक",
   "amount": "रकम",
-  "actions": {
-    "followUp": "फॉलो-अप",
-    "sendReminder": "अनुस्मारक भेजें",
-    "restock": "पुनः स्टॉक करें",
-    "viewDetails": "विवरण देखें"
-  },
+ 
   "time": {
     "hoursAgo": "{{count}} घंटे पहले",
     "yesterday": "कल"
@@ -95,24 +91,8 @@
     "overdueAmount": "अतिदेय राशि",
     "paidThisMonth": "इस माह भुगतान किया गया"
   },
-  "common": {
-    "search": "खोजें",
-    "status": "स्थिति",
-    "allStatuses": "सभी स्थितियाँ",
-    "dateRangeIssue": "तिथि सीमा (जारी करने की तिथि)",
-    "apply": "लागू करें",
-    "clear": "साफ़ करें",
-    "actions": "कार्रवाइयाँ"
-  },
-  "status": {
-    "draft": "प्रारूप",
-    "sent": "भेजा गया",
-    "viewed": "देखा गया",
-    "partial": "आंशिक रूप से भुगतान किया गया",
-    "paid": "भुगतान किया गया",
-    "overdue": "अतिदेय",
-    "void": "अमान्य"
-  },
+  
+ 
   "actions": {
     "view": "देखें",
     "edit": "संपादित करें",
@@ -125,28 +105,23 @@
     "downloadPDF": "पीडीएफ डाउनलोड करें",
     "duplicate": "डुप्लिकेट",
     "void": "अमान्य करें",
-    "sendReceipt": "रसीद भेजें"
+    "sendReceipt": "रसीद भेजें",
+    
+    "followUp": "फॉलो-अप",
+   
+    "restock": "पुनः स्टॉक करें",
+    "viewDetails": "विवरण देखें"
+  
   },
   "pagination": {
     "showingRange": "{{total}} चालानों में से {{start}} से {{end}} दिखा रहा है",
     "previous": "पिछला",
     "next": "अगला"
   },
-  "invoiceCreate": {
-    "title": "नया चालान बनाएं",
-    "subtitle": "चालान बनाने के लिए नीचे दिए गए चरणों का पालन करें।",
-    
-    "stepper": {
-      "step1Name": "चालान का प्रकार",
-      "step2Name": "ग्राहक विवरण",
-      "step3Name": "आइटम/सेवाएं",
-      "step4Name": "कर और छूट",
-      "step5Name": "पूर्वावलोकन और भेजें"
-    }
-   
-  },
+  
   
   "invoiceCreate": {
+    
     "title": "नया चालान बनाएं",
     "subtitle": "चालान बनाने के लिए नीचे दिए गए चरणों का पालन करें।",
     "alert": {
@@ -210,14 +185,7 @@
         "generateAndSend": "चालान उत्पन्न करें और भेजें"
     }
   },
-  "common": {
-    "or": "अथवा",
-    "fullName": "पूरा नाम",
-    "phoneNumber": "फ़ोन नंबर",
-    "emailAddress": "ईमेल पता",
-    "addressOptional": "पता (वैकल्पिक)",
-    "downloadPDF": "पीडीएफ डाउनलोड करें"
-  },
+ 
    "invoiceView": {
     "title": "चालान #{{invoiceId}}",
     "clientLabel": "ग्राहक:",
@@ -282,14 +250,7 @@
       }
     }
   },
-  "status": {
-    "partiallyPaid": "आंशिक रूप से भुगतान किया गया",
-    "paid": "भुगतान किया गया",
-    "overdue": "अतिदेय",
-    "sent": "भेजा गया",
-    "draft": "प्रारूप",
-    "void": "अमान्य"
-  },
+ 
   
   "customers": {
     "manageTitle": "ग्राहक प्रबंधित करें",
@@ -365,12 +326,22 @@
         "net60": "नेट 60"
     }
   },
-  "common": {
-    "filterBtn": "फ़िल्टर करें"
-  },
+ 
   "status": {
     "active": "सक्रिय",
-    "inactive": "निष्क्रिय"
+    "inactive": "निष्क्रिय",
+   
+    "draft": "प्रारूप",
+    "sent": "भेजा गया",
+    "viewed": "देखा गया",
+    "partial": "आंशिक रूप से भुगतान किया गया",
+    "paid": "भुगतान किया गया",
+    "overdue": "अतिदेय",
+    "void": "अमान्य",
+  
+    "partiallyPaid": "आंशिक रूप से भुगतान किया गया"
+  
+  
   },
   
   "customerView": {
@@ -463,7 +434,29 @@
     "inactive": "निष्क्रिय",
     "business": "व्यवसाय",
     "individual": "व्यक्तिगत",
-    "filterBtn": "फ़िल्टर करें" 
+    "filterBtn": "फ़िल्टर करें" ,
+  
+    "search": "खोजें",
+    "status": "स्थिति",
+    "allStatuses": "सभी स्थितियाँ",
+    "dateRangeIssue": "तिथि सीमा (जारी करने की तिथि)",
+    "apply": "लागू करें",
+    "clear": "साफ़ करें",
+    "actions": "कार्रवाइयाँ",
+    
+    "or": "अथवा",
+    "fullName": "पूरा नाम",
+    "phoneNumber": "फ़ोन नंबर",
+    "emailAddress": "ईमेल पता",
+    "addressOptional": "पता (वैकल्पिक)",
+    "downloadPDF": "पीडीएफ डाउनलोड करें",
+  
+  
+   
+  
+    "cancel": "रद्द करें",
+    "required": "*"
+  
   },
   
   "items": {
@@ -509,10 +502,7 @@
       "saveItemBtn": "आइटम सहेजें"
     }
   },
-  "common": {
-    "cancel": "रद्द करें",
-    "required": "*"
-  },
+ 
   
   "expenses": {
     "manageTitle": "व्यय प्रबंधन",
@@ -598,7 +588,7 @@
   },
   
   "reports": {
-   "testReportKey": "हिन्दी टेस्ट काम करता है!",
+  
     "pageTitle": "रिपोर्ट और विश्लेषण",
     "pageSubtitle": "अपने व्यवसाय के प्रदर्शन में अंतर्दृष्टि प्राप्त करें।",
     "categories": {
@@ -634,15 +624,93 @@
       "dataPlaceholder": "रिपोर्ट डेटा (तालिका/चार्ट) यहाँ प्रदर्शित किया जाएगा।"
     }
   },
+  
+  "quotes": {
+    "pageTitle": "नया कोटेशन",
+    "useSimplifiedView": "सरलीकृत दृश्य का उपयोग करें",
+    "customerNameLabel": "ग्राहक का नाम",
+    "customerNamePlaceholder": "ग्राहक चुनें या जोड़ें",
+    "quoteNoLabel": "कोटेशन #",
+    "referenceNoLabel": "संदर्भ #",
+    "quoteDateLabel": "कोटेशन तिथि",
+    "expiryDateLabel": "समाप्ति तिथि",
+    "expiryDatePlaceholder": "dd/MM/yyyy",
+    "salespersonLabel": "सेल्सपर्सन",
+    "salespersonPlaceholder": "सेल्सपर्सन चुनें",
+    "projectNameLabel": "परियोजना का नाम",
+    "projectNameHelp": "परियोजना को जोड़ने के लिए एक ग्राहक चुनें।",
+    "projectNamePlaceholder": "परियोजना का नाम दर्ज करें",
+    "subjectLabel": "विषय",
+    "subjectPlaceholder": "अपने ग्राहक को बताएं कि यह कोटेशन किस लिए है",
+    "itemTable": {
+      "dragHelp": "आइटम को ऊपर या नीचे खींचें",
+      "itemDetails": "आइटम विवरण",
+      "quantity": "मात्रा",
+      "rate": "दर",
+      "amount": "राशि (₹)"
+    },
+    "addItemBtn": "आइटम जोड़ें",
+    "customerNotesLabel": "ग्राहक नोट्स",
+    "customerNotesPlaceholder": "आपके व्यवसाय के लिए तत्पर हैं।",
+    "summary": {
+      "subTotal": "उप-योग",
+      "discount": "छूट",
+      "tds": "टीडीएस",
+      "tcs": "टीसीएस",
+      "adjustment": "समायोजन",
+      "total": "कुल (₹)"
+    },
+    "termsConditionsLabel": "नियम और शर्तें",
+    "termsConditionsPlaceholder": "अपने लेनदेन में प्रदर्शित होने वाले अपने व्यवसाय के नियम और शर्तें दर्ज करें",
+    "attachFilesLabel": "कोटेशन में फ़ाइल(एँ) संलग्न करें",
+    "attachFilesHelp": "आप अधिकतम 3 फ़ाइलें, प्रत्येक 10MB तक अपलोड कर सकते हैं",
+    "uploadFile": "एक फ़ाइल अपलोड करें",
+    "dragAndDrop": "या खींचें और छोड़ें",
+    "noFileChosen": "कोई फ़ाइल नहीं चुनी गई",
+    "additionalFieldsInfo": "अतिरिक्त फ़ील्ड: सेटिंग्स > कोटेशन पर जाकर अपने कोटेशन के लिए कस्टम फ़ील्ड जोड़ना शुरू करें।",
+    "saveAsDraftBtn": "ड्राफ़्ट के रूप में सहेजें",
+    "saveAndSendBtn": "सहेजें और भेजें"
+  },
+  
+  "deliveryChallans": {
+    "pageTitle": "नया डिलीवरी चालान",
+    "customerNameLabel": "ग्राहक का नाम",
+    "customerNamePlaceholder": "ग्राहक चुनें या जोड़ें",
+    "challanNoLabel": "डिलीवरी चालान #",
+    "referenceNoLabel": "संदर्भ #",
+    "challanDateLabel": "डिलीवरी चालान तिथि",
+    "challanTypeLabel": "चालान का प्रकार",
+    "challanTypePlaceholder": "-- चालान का प्रकार चुनें --",
+    "types": {
+      "jobWork": "जॉब वर्क",
+      "supplyOnApproval": "अनुमोदन पर आपूर्ति",
+      "supplyLiquidGas": "तरल गैस की आपूर्ति",
+      "others": "अन्य"
+    },
+    "itemTable": {
+      "dragHelp": "आइटम को ऊपर या नीचे खींचें",
+      "itemDetails": "आइटम विवरण",
+      "quantity": "मात्रा",
+      "descriptionOptional": "विवरण (वैकल्पिक)"
+    },
+    "addItemBtn": "आइटम जोड़ें",
+    "customerNotesLabel": "ग्राहक नोट्स",
+    "customerNotesPlaceholder": "अपने लेनदेन में प्रदर्शित होने वाले कोई भी नोट्स दर्ज करें",
+    "summary": {
+      "totalQuantity": "कुल मात्रा",
+      "notes": "टिप्पणियाँ"
+    },
+    "termsConditionsLabel": "नियम और शर्तें",
+    "termsConditionsPlaceholder": "डिलीवरी के लिए नियम और शर्तें दर्ज करें",
+    "attachFilesLabel": "डिलीवरी चालान में फ़ाइल(एँ) संलग्न करें",
+    "attachFilesHelp": "आप अधिकतम 3 फ़ाइलें, प्रत्येक 10MB तक अपलोड कर सकते हैं",
+    "saveAndSendBtn": "चालान सहेजें और भेजें",
+    "saveAsDraftBtn": "ड्राफ़्ट के रूप में सहेजें"
+  },
   "sidebar": {
-    "mainDashboard": "मुख्य डैशबोर्ड",
-    "allReports": "सभी रिपोर्ट",
-    "salesReports": "बिक्री रिपोर्ट",
-    "paymentReports": "भुगतान रिपोर्ट"
+    "newDeliveryChallan": "नया डिलीवरी चालान",
+    "allDeliveryChallans": "सभी डिलीवरी चालान"
   }
-
-
-
 
 
 

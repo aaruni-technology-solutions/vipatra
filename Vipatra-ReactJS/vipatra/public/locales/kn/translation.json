@@ -16,6 +16,7 @@
     "createInvoice": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
     "customers": "ಗ್ರಾಹಕರು",
     "items": "ಐಟಂಗಳನ್ನು",
+    "newQuote": "ಉಲ್ಲೇಖ", 
     "expenses": "ಖರ್ಚುಗಳು",
     "manageInventory": "ದಾಸ್ತಾನು",
     "reports": "ವರದಿಗಳು",
@@ -37,12 +38,7 @@
   },
   "client": "ಗ್ರಾಹಕ",
   "amount": "ಮೊತ್ತ",
-  "actions": {
-    "followUp": "ಫಾಲೋ-ಅಪ್",
-    "sendReminder": "ಜ್ಞಾಪನೆ ಕಳುಹಿಸಿ",
-    "restock": "ಮರುಸ್ಥಾಪಿಸಿ",
-    "viewDetails": "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-  },
+ 
   "time": {
     "hoursAgo": "{{count}} ಗಂಟೆಗಳ ಹಿಂದೆ",
     "yesterday": "ನಿನ್ನೆ"
@@ -95,15 +91,7 @@
     "overdueAmount": "ಮೀರಿದ ಮೊತ್ತ",
     "paidThisMonth": "ಈ ತಿಂಗಳು ಪಾವತಿಸಲಾಗಿದೆ"
   },
-  "common": {
-    "search": "ಹುಡುಕಿ",
-    "status": "ಸ್ಥಿತಿ",
-    "allStatuses": "ಎಲ್ಲಾ ಸ್ಥಿತಿಗಳು",
-    "dateRangeIssue": "ದಿನಾಂಕ ಶ್ರೇಣಿ (ನೀಡಿದ ದಿನಾಂಕ)",
-    "apply": "ಅನ್ವಯಿಸಿ",
-    "clear": "ತೆರವುಗೊಳಿಸಿ",
-    "actions": "ಕ್ರಿಯೆಗಳು"
-  },
+  
   "status": {
     "draft": "ಕರಡು",
     "sent": "ಕಳುಹಿಸಲಾಗಿದೆ",
@@ -111,7 +99,15 @@
     "partial": "ಭಾಗಶಃ ಪಾವತಿಸಲಾಗಿದೆ",
     "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
     "overdue": "ಮೀರಿದೆ",
-    "void": "ಅಸಿಂಧು"
+    "void": "ಅಸಿಂಧು",
+    
+    "partiallyPaid": "ಭಾಗಶಃ ಪಾವತಿಸಲಾಗಿದೆ",
+    
+  
+    "active": "ಸಕ್ರಿಯ",
+    "inactive": "ನಿಷ್ಕ್ರಿಯ"
+  
+  
   },
   "actions": {
     "view": "ವೀಕ್ಷಿಸಿ",
@@ -125,26 +121,21 @@
     "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
     "duplicate": "ನಕಲು ಮಾಡಿ",
     "void": "ಅಸಿಂಧುಗೊಳಿಸಿ",
-    "sendReceipt": "ರಶೀದಿ ಕಳುಹಿಸಿ"
+    "sendReceipt": "ರಶೀದಿ ಕಳುಹಿಸಿ",
+    
+    "followUp": "ಫಾಲೋ-ಅಪ್",
+  
+    "restock": "ಮರುಸ್ಥಾಪಿಸಿ",
+    "viewDetails": "ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
+  
+
   },
   "pagination": {
     "showingRange": "{{total}} ಇನ್‌ವಾಯ್ಸ್‌ಗಳಲ್ಲಿ {{start}} ರಿಂದ {{end}} ವರೆಗೆ ತೋರಿಸಲಾಗುತ್ತಿದೆ",
     "previous": "ಹಿಂದಿನದು",
     "next": "ಮುಂದಿನದು"
   },
-   "invoiceCreate": {
-    "title": "ಹೊಸ ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
-    "subtitle": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಲು ಕೆಳಗಿನ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.",
-    
-    "stepper": {
-      "step1Name": "ಇನ್‌ವಾಯ್ಸ್ ಪ್ರಕಾರ",
-      "step2Name": "ಗ್ರಾಹಕರ ವಿವರಗಳು",
-      "step3Name": "ಐಟಂಗಳು/ಸೇವೆಗಳು",
-      "step4Name": "ತೆರಿಗೆ ಮತ್ತು ರಿಯಾಯಿತಿ",
-      "step5Name": "ಮುನ್ನೋಟ ಮತ್ತು ಕಳುಹಿಸಿ"
-    }
-   
-  },
+  
   "invoiceCreate": {
     "title": "ಹೊಸ ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
     "subtitle": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಲು ಕೆಳಗಿನ ಹಂತಗಳನ್ನು ಅನುಸರಿಸಿ.",
@@ -209,14 +200,7 @@
         "generateAndSend": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ ಮತ್ತು ಕಳುಹಿಸಿ"
     }
   },
-  "common": {
-    "or": "ಅಥವಾ",
-    "fullName": "ಪೂರ್ಣ ಹೆಸರು",
-    "phoneNumber": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
-    "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ",
-    "addressOptional": "ವಿಳಾಸ (ಐಚ್ಛಿಕ)",
-    "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ"
-  },
+
    "invoiceView": {
     "title": "ಇನ್‌ವಾಯ್ಸ್ #{{invoiceId}}",
     "clientLabel": "ಗ್ರಾಹಕ:",
@@ -281,14 +265,7 @@
       }
     }
   },
-  "status": {
-    "partiallyPaid": "ಭಾಗಶಃ ಪಾವತಿಸಲಾಗಿದೆ",
-    "paid": "ಪಾವತಿಸಲಾಗಿದೆ",
-    "overdue": "ಮೀರಿದೆ",
-    "sent": "ಕಳುಹಿಸಲಾಗಿದೆ",
-    "draft": "ಕರಡು",
-    "void": "ಅಸಿಂಧು"
-  },
+ 
   
   "customers": {
     "manageTitle": "ಗ್ರಾಹಕರನ್ನು ನಿರ್ವಹಿಸಿ",
@@ -364,13 +341,8 @@
         "net60": "ನೆಟ್ 60"
     }
   },
-  "common": {
-    "filterBtn": "ಫಿಲ್ಟರ್ ಮಾಡಿ"
-  },
-  "status": {
-    "active": "ಸಕ್ರಿಯ",
-    "inactive": "ನಿಷ್ಕ್ರಿಯ"
-  },
+ 
+ 
 
   "customerView": {
     "pageTitle": "ಗ್ರಾಹಕರನ್ನು ವೀಕ್ಷಿಸಿ: {{customerName}}",
@@ -462,7 +434,27 @@
     "inactive": "ನಿಷ್ಕ್ರಿಯ",
     "business": "ವ್ಯಾಪಾರ",
     "individual": "ವೈಯಕ್ತಿಕ",
-    "filterBtn": "ಫಿಲ್ಟರ್ ಮಾಡಿ"
+    "filterBtn": "ಫಿಲ್ಟರ್ ಮಾಡಿ",
+ 
+    "search": "ಹುಡುಕಿ",
+    "status": "ಸ್ಥಿತಿ",
+    "allStatuses": "ಎಲ್ಲಾ ಸ್ಥಿತಿಗಳು",
+    "dateRangeIssue": "ದಿನಾಂಕ ಶ್ರೇಣಿ (ನೀಡಿದ ದಿನಾಂಕ)",
+    "apply": "ಅನ್ವಯಿಸಿ",
+    "clear": "ತೆರವುಗೊಳಿಸಿ",
+    "actions": "ಕ್ರಿಯೆಗಳು",
+    
+    "or": "ಅಥವಾ",
+    "fullName": "ಪೂರ್ಣ ಹೆಸರು",
+    "phoneNumber": "ದೂರವಾಣಿ ಸಂಖ್ಯೆ",
+    "emailAddress": "ಇಮೇಲ್ ವಿಳಾಸ",
+    "addressOptional": "ವಿಳಾಸ (ಐಚ್ಛಿಕ)",
+    "downloadPDF": "PDF ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+  
+  
+    "cancel": "ರದ್ದುಮಾಡಿ",
+    "required": "*"
+  
   },
   
   "items": {
@@ -508,10 +500,7 @@
       "saveItemBtn": "ಐಟಂ ಉಳಿಸಿ"
     }
   },
-  "common": {
-    "cancel": "ರದ್ದುಮಾಡಿ",
-    "required": "*"
-  },
+ 
   
   "expenses": {
     "manageTitle": "ವೆಚ್ಚ ನಿರ್ವಹಣೆ",
@@ -632,16 +621,94 @@
       "dataPlaceholder": "ವರದಿ ಡೇಟಾ (ಕೋಷ್ಟಕ/ಚಾರ್ಟ್) ಇಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲಾಗುತ್ತದೆ."
     }
   },
+  
+  "quotes": {
+    "pageTitle": "ಹೊಸ ಉಲ್ಲೇಖ",
+    "useSimplifiedView": "ಸರಳೀಕೃತ ನೋಟವನ್ನು ಬಳಸಿ",
+    "customerNameLabel": "ಗ್ರಾಹಕರ ಹೆಸರು",
+    "customerNamePlaceholder": "ಗ್ರಾಹಕರನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಸೇರಿಸಿ",
+    "quoteNoLabel": "ಉಲ್ಲೇಖ #",
+    "referenceNoLabel": "ಉಲ್ಲೇಖ #",
+    "quoteDateLabel": "ಉಲ್ಲೇಖ ದಿನಾಂಕ",
+    "expiryDateLabel": "ಮುಕ್ತಾಯ ದಿನಾಂಕ",
+    "expiryDatePlaceholder": "dd/MM/yyyy",
+    "salespersonLabel": "ಮಾರಾಟಗಾರ",
+    "salespersonPlaceholder": "ಮಾರಾಟಗಾರರನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    "projectNameLabel": "ಯೋಜನೆಯ ಹೆಸರು",
+    "projectNameHelp": "ಯೋಜನೆಯನ್ನು ಸಂಯೋಜಿಸಲು ಗ್ರಾಹಕರನ್ನು ಆಯ್ಕೆಮಾಡಿ.",
+    "projectNamePlaceholder": "ಯೋಜನೆಯ ಹೆಸರನ್ನು ನಮೂದಿಸಿ",
+    "subjectLabel": "ವಿಷಯ",
+    "subjectPlaceholder": "ಈ ಉಲ್ಲೇಖ ಯಾವುದಕ್ಕಾಗಿ ಎಂದು ನಿಮ್ಮ ಗ್ರಾಹಕರಿಗೆ ತಿಳಿಸಿ",
+    "itemTable": {
+      "dragHelp": "ಐಟಂ ಅನ್ನು ಮೇಲೆ ಅಥವಾ ಕೆಳಗೆ ಎಳೆಯಿರಿ",
+      "itemDetails": "ಐಟಂ ವಿವರಗಳು",
+      "quantity": "ಪ್ರಮಾಣ",
+      "rate": "ದರ",
+      "amount": "ಮೊತ್ತ (₹)"
+    },
+    "addItemBtn": "ಐಟಂ ಸೇರಿಸಿ",
+    "customerNotesLabel": "ಗ್ರಾಹಕರ ಟಿಪ್ಪಣಿಗಳು",
+    "customerNotesPlaceholder": "ನಿಮ್ಮ ವ್ಯವಹಾರಕ್ಕಾಗಿ ಎದುರು ನೋಡುತ್ತಿದ್ದೇನೆ.",
+    "summary": {
+      "subTotal": "ಉಪ-ಒಟ್ಟು",
+      "discount": "ರಿಯಾಯಿತಿ",
+      "tds": "ಟಿಡಿಎಸ್",
+      "tcs": "ಟಿಸಿಎಸ್",
+      "adjustment": "ಹೊಂದಾಣಿಕೆ",
+      "total": "ಒಟ್ಟು (₹)"
+    },
+    "termsConditionsLabel": "ನಿಯಮಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳು",
+    "termsConditionsPlaceholder": "ನಿಮ್ಮ ವಹಿವಾಟಿನಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲು ನಿಮ್ಮ ವ್ಯಾಪಾರದ ನಿಯಮಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳನ್ನು ನಮೂದಿಸಿ",
+    "attachFilesLabel": "ಉಲ್ಲೇಖಕ್ಕೆ ಫೈಲ್(ಗಳನ್ನು) ಲಗತ್ತಿಸಿ",
+    "attachFilesHelp": "ನೀವು ಗರಿಷ್ಠ 3 ಫೈಲ್‌ಗಳನ್ನು, ಪ್ರತಿ 10MB ವರೆಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡಬಹುದು",
+    "uploadFile": "ಫೈಲ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+    "dragAndDrop": "ಅಥವಾ ಎಳೆದು ಬಿಡಿ",
+    "noFileChosen": "ಯಾವುದೇ ಫೈಲ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿಲ್ಲ",
+    "additionalFieldsInfo": "ಹೆಚ್ಚುವರಿ ಕ್ಷೇತ್ರಗಳು: ಸೆಟ್ಟಿಂಗ್‌ಗಳು > ಉಲ್ಲೇಖಗಳಿಗೆ ಹೋಗಿ ನಿಮ್ಮ ಉಲ್ಲೇಖಗಳಿಗಾಗಿ ಕಸ್ಟಮ್ ಕ್ಷೇತ್ರಗಳನ್ನು ಸೇರಿಸಲು ಪ್ರಾರಂಭಿಸಿ.",
+    "saveAsDraftBtn": "ಕರಡು ಎಂದು ಉಳಿಸಿ",
+    "saveAndSendBtn": "ಉಳಿಸಿ ಮತ್ತು ಕಳುಹಿಸಿ"
+  },
+  
+  "deliveryChallans": {
+    "pageTitle": "ಹೊಸ ಡೆಲಿವರಿ ಚಲನ್",
+    "customerNameLabel": "ಗ್ರಾಹಕರ ಹೆಸರು",
+    "customerNamePlaceholder": "ಗ್ರಾಹಕರನ್ನು ಆಯ್ಕೆಮಾಡಿ ಅಥವಾ ಸೇರಿಸಿ",
+    "challanNoLabel": "ಡೆಲಿವರಿ ಚಲನ್ #",
+    "referenceNoLabel": "ಉಲ್ಲೇಖ #",
+    "challanDateLabel": "ಡೆಲಿವರಿ ಚಲನ್ ದಿನಾಂಕ",
+    "challanTypeLabel": "ಚಲನ್ ಪ್ರಕಾರ",
+    "challanTypePlaceholder": "-- ಚಲನ್ ಪ್ರಕಾರವನ್ನು ಆಯ್ಕೆಮಾಡಿ --",
+    "types": {
+      "jobWork": "ಜಾಬ್ ವರ್ಕ್",
+      "supplyOnApproval": "ಅನುಮೋದನೆಯ ಮೇರೆಗೆ ಪೂರೈಕೆ",
+      "supplyLiquidGas": "ದ್ರವ ಅನಿಲ ಪೂರೈಕೆ",
+      "others": "ಇತರೆ"
+    },
+    "itemTable": {
+      "dragHelp": "ಐಟಂ ಅನ್ನು ಮೇಲೆ ಅಥವಾ ಕೆಳಗೆ ಎಳೆಯಿರಿ",
+      "itemDetails": "ಐಟಂ ವಿವರಗಳು",
+      "quantity": "ಪ್ರಮಾಣ",
+      "descriptionOptional": "ವಿವರಣೆ (ಐಚ್ಛಿಕ)"
+    },
+    "addItemBtn": "ಐಟಂ ಸೇರಿಸಿ",
+    "customerNotesLabel": "ಗ್ರಾಹಕರ ಟಿಪ್ಪಣಿಗಳು",
+    "customerNotesPlaceholder": "ನಿಮ್ಮ ವಹಿವಾಟಿನಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲು ಯಾವುದೇ ಟಿಪ್ಪಣಿಗಳನ್ನು ನಮೂದಿಸಿ",
+    "summary": {
+      "totalQuantity": "ಒಟ್ಟು ಪ್ರಮಾಣ",
+      "notes": "ಟಿಪ್ಪಣಿಗಳು"
+    },
+    "termsConditionsLabel": "ನಿಯಮಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳು",
+    "termsConditionsPlaceholder": "ವಿತರಣೆಗಾಗಿ ನಿಯಮಗಳು ಮತ್ತು ನಿಬಂಧನೆಗಳನ್ನು ನಮೂದಿಸಿ",
+    "attachFilesLabel": "ಡೆಲಿವರಿ ಚಲನ್‌ಗೆ ಫೈಲ್(ಗಳನ್ನು) ಲಗತ್ತಿಸಿ",
+    "attachFilesHelp": "ನೀವು ಗರಿಷ್ಠ 3 ಫೈಲ್‌ಗಳನ್ನು, ಪ್ರತಿ 10MB ವರೆಗೆ ಅಪ್‌ಲೋಡ್ ಮಾಡಬಹುದು",
+    "saveAndSendBtn": "ಚಲನ್ ಉಳಿಸಿ ಮತ್ತು ಕಳುಹಿಸಿ",
+    "saveAsDraftBtn": "ಕರಡು ಎಂದು ಉಳಿಸಿ"
+  },
   "sidebar": {
-    "mainDashboard": "ಮುಖ್ಯ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    "allReports": "ಎಲ್ಲಾ ವರದಿಗಳು",
-    "salesReports": "ಮಾರಾಟ ವರದಿಗಳು",
-    "paymentReports": "ಪಾವತಿ ವರದಿಗಳು"
+    "newDeliveryChallan": "ಹೊಸ ಡೆಲಿವರಿ ಚಲನ್",
+    "allDeliveryChallans": "ಎಲ್ಲಾ ಡೆಲಿವರಿ ಚಲನ್‌ಗಳು"
   }
 
 
-
-
-
-
+  
 }

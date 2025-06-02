@@ -12,8 +12,13 @@ module.exports = {
         primary: {
           DEFAULT: '#3A6F48', // Deep Green
           dark: '#2E583A',    // Darker green for hover
-          hover: '#315C3F'   // Optional: A specific hover shade if needed
+          hover: '#315C3F'  , // Optional: A specific hover shade if needed
+          danger: { DEFAULT: '#DC2626', light: '#FEE2E2', dark: '#B91C1C' },
+        success: { DEFAULT: '#16A34A', light: '#DCFCE7', dark: '#15803D' },
+        warning: { DEFAULT: '#F59E0B', light: '#FEF3C7', dark: '#D97706' },
+        info: { DEFAULT: '#3B82F6', light: '#DBEAFE', dark: '#2563EB'}
         },
+      
         secondary: '#8B5A2B', // Earthy Brown
         accent: {
           DEFAULT: '#F4C842', // Soft Gold
@@ -60,6 +65,7 @@ module.exports = {
         lg: '0.75rem',     // Your custom larger radius (12px)
         full: '9999px',
       },
+       
       boxShadow: {
         soft: '0 4px 10px rgba(0, 0, 0, 0.05)',
         DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)', // Tailwind's sm

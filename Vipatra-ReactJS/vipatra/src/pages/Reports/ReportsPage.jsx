@@ -61,7 +61,7 @@ const ReportsPage = () => {
     return (
         <div className="flex flex-col min-h-screen">
             <Header />
-            <p>TESTING: {t('testReportKey')}</p>
+           
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar /> {/* Ensure "Reports" or "Analytics" is active */}
                 <main className="flex-1 p-6 sm:p-8 overflow-y-auto">

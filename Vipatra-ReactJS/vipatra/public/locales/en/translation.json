@@ -16,7 +16,9 @@
     "createInvoice": "Create Invoice",
     "customers": "Customers",
     "items": "Items",
+    "newQuote": "Quotes",
     "expenses": "Expenses",
+     "newDeliveryChallan": "Delivery Challan",
     "manageInventory": "Inventory",
     "reports": "Reports",
     "settings": "Settings"
@@ -34,15 +36,11 @@
     "todaysSchedule": "Today's Schedule & Billing",
     "inventoryAlerts": "Inventory Alerts",
     "manageFullInventory": "Manage Full Inventory"
+    
   },
   "client": "Client",
   "amount": "Amount",
-  "actions": {
-    "followUp": "Follow-Up",
-    "sendReminder": "Send Reminder",
-    "restock": "Restock",
-    "viewDetails": "View Details"
-  },
+  
   "time": {
     "hoursAgo": "{{count}} hours ago",
     "yesterday": "Yesterday"
@@ -95,15 +93,7 @@
     "overdueAmount": "Overdue",
     "paidThisMonth": "Paid (This Month)"
   },
-  "common": {
-    "search": "Search",
-    "status": "Status",
-    "allStatuses": "All Statuses",
-    "dateRangeIssue": "Date Range (Issue Date)",
-    "apply": "Apply",
-    "clear": "Clear",
-    "actions": "Actions"
-  },
+  
   "status": {
     "draft": "Draft",
     "sent": "Sent",
@@ -111,7 +101,15 @@
     "partial": "Partially Paid", 
     "paid": "Paid",
     "overdue": "Overdue",
-    "void": "Void"
+    "void": "Void",
+     
+    "partiallyPaid": "Partially Paid",
+   
+    
+    "active": "Active",
+    "inactive": "Inactive"
+  
+  
   },
   "actions": { 
     "view": "View",
@@ -125,13 +123,18 @@
     "downloadPDF": "Download PDF",   
     "duplicate": "Duplicate",
     "void": "Void",
-    "sendReceipt": "Send Receipt"
+    "sendReceipt": "Send Receipt",
+    "followUp": "Follow-Up",
+   
+    "restock": "Restock",
+    "viewDetails": "View Details"
   },
   "pagination": {
     "showingRange": "Showing {{start}} to {{end}} of {{total}} invoices",
     "previous": "Previous",
     "next": "Next"
   },
+ 
   "invoiceCreate": {
     "title": "Create New Invoice",
     "subtitle": "Follow the steps below to generate an invoice.",
@@ -142,10 +145,7 @@
       "step3Name": "Items/Services",
       "step4Name": "Tax & Discount",
       "step5Name": "Preview & Send"
-    }
-    
-  },
-  "invoiceCreate": {
+    },
     "step1": {
       "invoiceFor": "Invoice For", 
       "chooseType": "-- Choose type --",
@@ -203,7 +203,25 @@
     "phoneNumber": "Phone Number",
     "emailAddress": "Email Address",
     "addressOptional": "Address (Optional)",
-    "downloadPDF": "Download PDF" 
+    "downloadPDF": "Download PDF" ,
+     "filterBtn": "Filter",
+    "search": "Search",
+    "status": "Status",
+    "allStatuses": "All Statuses",
+    "dateRangeIssue": "Date Range (Issue Date)",
+    "apply": "Apply",
+    "clear": "Clear",
+    "actions": "Actions",
+       "loading": "Loading...",
+    "active": "Active",
+    "inactive": "Inactive",
+    "business": "Business", 
+    "individual": "Individual" ,
+   
+    "cancel": "Cancel",
+    "required": "*"
+  
+  
   },
    "invoiceView": {
     "title": "Invoice #{{invoiceId}}",
@@ -269,14 +287,7 @@
       }
     }
   },
-  "status": { 
-    "partiallyPaid": "Partially Paid",
-    "paid": "Paid",
-    "overdue": "Overdue",
-    "sent": "Sent",
-    "draft": "Draft",
-    "void": "Void"
-  },
+ 
   
   
   "customers": {
@@ -353,13 +364,8 @@
         "net60": "Net 60"
     }
   },
-  "common": { 
-    "filterBtn": "Filter"
-  },
-  "status": { 
-    "active": "Active",
-    "inactive": "Inactive"
-  },
+ 
+ 
   
   "customerView": {
     "pageTitle": "View Customer: {{customerName}}",
@@ -445,13 +451,7 @@
       "saveNoteBtn": "Save Note"
     }
   },
-  "common": { 
-    "loading": "Loading...",
-    "active": "Active",
-    "inactive": "Inactive",
-    "business": "Business", 
-    "individual": "Individual" 
-  },
+ 
   
   "items": {
     "manageTitle": "Manage Items",
@@ -540,10 +540,7 @@
       "expenseSavedMsg": "Expense saved (check console)!"
     }
   },
-  "common": { 
-    "cancel": "Cancel",
-    "required": "*"
-  },
+  
  
   "inventoryDashboard": {
     "title": "Inventory Management Dashboard",
@@ -621,15 +618,102 @@
       "filtersPlaceholder": "Filters specific to this report type will appear here.",
       "dataPlaceholder": "Report data (table/chart) will be displayed here."
     }
-  },
-  "sidebar": { 
-    "mainDashboard": "Main Dashboard",
-    "allReports": "All Reports",
-    "salesReports": "Sales Reports",
-    "paymentReports": "Payment Reports" 
   }
+  
 
   
+  },
+  
+  "quotes": {
+    "pageTitle": "New Quote",
+    "useSimplifiedView": "Use Simplified View", 
+    "customerNameLabel": "Customer Name",
+    "customerNamePlaceholder": "Select or Add Customer",
+    "quoteNoLabel": "Quote #",
+    "referenceNoLabel": "Reference #",
+    "quoteDateLabel": "Quote Date",
+    "expiryDateLabel": "Expiry Date",
+    "expiryDatePlaceholder": "dd/MM/yyyy",
+    "salespersonLabel": "Salesperson",
+    "salespersonPlaceholder": "Select Salesperson",
+    "projectNameLabel": "Project Name",
+    "projectNameHelp": "Select a customer to associate a project.",
+    "projectNamePlaceholder": "Enter project name",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Let your customer know what this Quote is for",
+    "itemTable": {
+      "dragHelp": "Drag item up or down",
+      "itemDetails": "Item Details",
+      "quantity": "Quantity",
+      "rate": "Rate",
+      "amount": "Amount (₹)"
+    },
+    "addItemBtn": "Add Item",
+    "customerNotesLabel": "Customer Notes",
+    "customerNotesPlaceholder": "Looking forward for your business.",
+    "summary": {
+      "subTotal": "Sub Total",
+      "discount": "Discount",
+      "tds": "TDS", 
+      "tcs": "TCS", 
+      "adjustment": "Adjustment",
+      "total": "Total (₹)"
+    },
+    "termsConditionsLabel": "Terms & Conditions",
+    "termsConditionsPlaceholder": "Enter the terms and conditions of your business to be displayed in your transaction",
+    "attachFilesLabel": "Attach File(s) to Quote",
+    "attachFilesHelp": "You can upload a maximum of 3 files, 10MB each.",
+    "uploadFile": "Upload a file",
+    "dragAndDrop": "or drag and drop",
+    "noFileChosen": "No file chosen",
+    "additionalFieldsInfo": "Additional Fields: Start adding custom fields for your quotes by going to Settings > Quotes.",
+    "saveAsDraftBtn": "Save as Draft",
+    "saveAndSendBtn": "Save & Send"
+  },
+  "common": { 
+    "selectPlaceholder": "-- Select --",
+    "searchOrType": "Search or type...",
+    "required": "*"
+  },
+  
+  
+  "deliveryChallans": {
+    "pageTitle": "New Delivery Challan",
+    "customerNameLabel": "Customer Name",
+    "customerNamePlaceholder": "Select or Add Customer",
+    "challanNoLabel": "Delivery Challan #",
+    "referenceNoLabel": "Reference #",
+    "challanDateLabel": "Delivery Challan Date",
+    "challanTypeLabel": "Challan Type",
+    "challanTypePlaceholder": "-- Select Challan Type --",
+    "types": { 
+      "jobWork": "Job Work",
+      "supplyOnApproval": "Supply on Approval",
+      "supplyLiquidGas": "Supply of Liquid Gas",
+      "others": "Others"
+    },
+    "itemTable": {
+      "dragHelp": "Drag item up or down",
+      "itemDetails": "Item Details",
+      "quantity": "Quantity",
+      
+      "descriptionOptional": "Description (Optional)" 
+    },
+    "addItemBtn": "Add Item",
+    "customerNotesLabel": "Customer Notes",
+    "customerNotesPlaceholder": "Enter any notes to be displayed in your transaction",
+    "summary": { 
+      "totalQuantity": "Total Quantity",
+      "notes": "Notes" 
+    },
+    "termsConditionsLabel": "Terms & Conditions",
+    "termsConditionsPlaceholder": "Enter the terms and conditions for the delivery",
+    "attachFilesLabel": "Attach File(s) to Delivery Challan",
+    "attachFilesHelp": "You can upload a maximum of 3 files, 10MB each.",
+    "saveAndSendBtn": "Save & Send Challan",
+    "saveAsDraftBtn": "Save as Draft"
   }
+ 
 
-}
+
+  }
