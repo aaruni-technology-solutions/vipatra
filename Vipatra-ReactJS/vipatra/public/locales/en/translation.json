@@ -712,8 +712,98 @@
     "attachFilesHelp": "You can upload a maximum of 3 files, 10MB each.",
     "saveAndSendBtn": "Save & Send Challan",
     "saveAsDraftBtn": "Save as Draft"
+  },
+  
+
+  "settings": {
+    "pageTitle": "Settings",
+    "sidebarTitle": "Settings Menu",
+    "nav": {
+      "organizationProfile": "Organization Profile",
+      "userManagement": "User Management",
+      "invoiceCustomization": "Invoice Customization",
+      "eInvoicing": "e-Invoicing",
+      "taxSettings": "Tax Settings",
+      "paymentGateways": "Payment Gateways",
+      "emailSettings": "Email Settings",
+      "dataManagement": "Data Management",
+      "integrations": "Integrations"
+    },
+    "organizationProfile": {
+      "title": "Organization Profile",
+      "orgNameLabel": "Organization Name",
+      "industryLabel": "Industry",
+      "addressLabel": "Address",
+      "addressPlaceholder": "Street Address, City, State, Postal Code, Country",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "taxIdLabel": "GSTIN / Tax ID",
+      "logoLabel": "Organization Logo",
+      "logoHelpText": "Recommended: PNG or JPG, max 2MB. Current: {{fileName}}",
+      "defaultCurrencyLabel": "Default Currency",
+      "currencies": {
+        "inr": "INR - Indian Rupee",
+        "usd": "USD - US Dollar"
+      },
+      "saveChangesBtn": "Save Changes"
+    },
+    "userManagement": {
+      "title": "User Management",
+      "addNewUserBtn": "Add New User",
+      "description": "Manage your team members, their roles, and access permissions.",
+      "table": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "roles": {
+          "admin": "Admin",
+          "billing": "Billing Staff",
+          "inventory": "Inventory Manager"
+      },
+      "userStatus": {
+          "active": "Active",
+          "inactive": "Inactive"
+      }
+    },
+    "eInvoicing": {
+        "title": "e-Invoicing Configuration",
+        "enableLabel": "Enable e-Invoicing (e.g., for GST India)",
+        "enableHelp": "Enable this to generate IRN and QR codes for applicable invoices.",
+        "providerDetailsIntro": "Configure your e-Invoicing Service Provider (GSP - GST Suvidha Provider, or direct API) details. Ensure these details are accurate for successful e-invoice generation.",
+        "providerLabel": "Service Provider / GSP",
+        "selectProviderOption": "-- Select Provider --",
+        "providers": {
+            "gsp_a": "GSP Alpha Services",
+            "gsp_b": "Beta e-Invoice Solutions",
+            "nic_einv": "NIC e-Invoice Portal (Direct API - if applicable)",
+            "other": "Other (Requires manual setup/custom API)"
+        },
+        "usernameLabel": "GSP Username / Client ID",
+        "passwordLabel": "GSP Password / Client Secret",
+        "apiEndpointLabel": "API Endpoint URL (if applicable)",
+        "apiEndpointPlaceholder": "https://api.gsp.com/v1/einvoice",
+        "testConnectionBtn": "Test Connection",
+        "saveSettingsBtn": "Save e-Invoicing Settings"
+    },
+    "invoiceCustomization": {
+      "title": "Invoice Customization",
+      "description": "Customize your invoice templates, numbering, and default content.",
+      "placeholder": "Invoice template options, branding, and default fields will appear here."
+    },
+    "taxSettingsContent": { "title": "Tax Settings", "placeholder": "Tax rate configuration..." },
+    "paymentGatewaysContent": { "title": "Payment Gateways", "placeholder": "Gateway configuration..." },
+    "emailSettingsContent": { "title": "Email Settings", "placeholder": "SMTP and templates..." },
+    "dataManagementContent": { "title": "Data Management", "placeholder": "Import/Export tools..." },
+    "integrationsContent": { "title": "Integrations", "placeholder": "Third-party integrations..." }
+  },
+  "common": {
+    "required": "*"
+    
   }
- 
+
 
 
   }

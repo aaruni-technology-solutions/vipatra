@@ -18,9 +18,14 @@
     "items": "आइटम ",
     "newQuote": "कोटेशन",
     "expenses": "खर्च",
+    "allDeliveryChallans": "डिलिवरी चालान",
+    "newDeliveryChallan": "नया डिलिवरी चालान",
     "manageInventory": "इन्वेंटरी",
     "reports": "रिपोर्ट",
     "settings": "सेटिंग्स"
+     
+    
+    
   },
   "dashboard": {
     "adminTitle": "एडमिन डैशबोर्ड",
@@ -707,10 +712,93 @@
     "saveAndSendBtn": "चालान सहेजें और भेजें",
     "saveAsDraftBtn": "ड्राफ़्ट के रूप में सहेजें"
   },
-  "sidebar": {
-    "newDeliveryChallan": "नया डिलीवरी चालान",
-    "allDeliveryChallans": "सभी डिलीवरी चालान"
+ 
+  "settings": {
+    "pageTitle": "सेटिंग्स",
+    "sidebarTitle": "सेटिंग्स मेनू",
+    "nav": {
+      "organizationProfile": "संगठन प्रोफाइल",
+      "userManagement": "उपयोगकर्ता प्रबंधन",
+      "invoiceCustomization": "चालान अनुकूलन",
+      "eInvoicing": "ई-चालान",
+      "taxSettings": "कर सेटिंग्स",
+      "paymentGateways": "भुगतान गेटवे",
+      "emailSettings": "ईमेल सेटिंग्स",
+      "dataManagement": "डेटा प्रबंधन",
+      "integrations": "एकीकरण"
+    },
+    "organizationProfile": {
+      "title": "संगठन प्रोफाइल",
+      "orgNameLabel": "संगठन का नाम",
+      "industryLabel": "उद्योग",
+      "addressLabel": "पता",
+      "addressPlaceholder": "गली का पता, शहर, राज्य, पिन कोड, देश",
+      "emailLabel": "ईमेल",
+      "phoneLabel": "फ़ोन",
+      "taxIdLabel": "GSTIN / कर आईडी",
+      "logoLabel": "संगठन का लोगो",
+      "logoHelpText": "अनुशंसित: PNG या JPG, अधिकतम 2MB। वर्तमान: {{fileName}}",
+      "defaultCurrencyLabel": "डिफ़ॉल्ट मुद्रा",
+      "currencies": {
+        "inr": "INR - भारतीय रुपया",
+        "usd": "USD - अमेरिकी डॉलर"
+      },
+      "saveChangesBtn": "परिवर्तन सहेजें"
+    },
+    "userManagement": {
+      "title": "उपयोगकर्ता प्रबंधन",
+      "addNewUserBtn": "नया उपयोगकर्ता जोड़ें",
+      "description": "अपनी टीम के सदस्यों, उनकी भूमिकाओं और पहुँच अनुमतियों का प्रबंधन करें।",
+      "table": {
+        "name": "नाम",
+        "email": "ईमेल",
+        "role": "भूमिका",
+        "status": "स्थिति",
+        "actions": "कार्रवाइयाँ"
+      },
+       "roles": {
+          "admin": "व्यवस्थापक",
+          "billing": "बिलिंग कर्मचारी",
+          "inventory": "इन्वेंटरी प्रबंधक"
+      },
+      "userStatus": {
+          "active": "सक्रिय",
+          "inactive": "निष्क्रिय"
+      }
+    },
+    "eInvoicing": {
+        "title": "ई-चालान कॉन्फ़िगरेशन",
+        "enableLabel": "ई-चालान सक्षम करें (जैसे, GST भारत के लिए)",
+        "enableHelp": "लागू चालानों के लिए IRN और QR कोड उत्पन्न करने के लिए इसे सक्षम करें।",
+        "providerDetailsIntro": "अपने ई-चालान सेवा प्रदाता (GSP - GST सुविधा प्रदाता, या प्रत्यक्ष API) विवरण कॉन्फ़िगर करें। सफल ई-चालान पीढ़ी के लिए सुनिश्चित करें कि ये विवरण सटीक हैं।",
+        "providerLabel": "सेवा प्रदाता / GSP",
+        "selectProviderOption": "-- प्रदाता चुनें --",
+        "providers": {
+            "gsp_a": "GSP अल्फा सर्विसेज",
+            "gsp_b": "बीटा ई-चालान समाधान",
+            "nic_einv": "NIC ई-चालान पोर्टल (प्रत्यक्ष API - यदि लागू हो)",
+            "other": "अन्य (मैनुअल सेटअप/कस्टम API की आवश्यकता है)"
+        },
+        "usernameLabel": "GSP उपयोगकर्ता नाम / क्लाइंट आईडी",
+        "passwordLabel": "GSP पासवर्ड / क्लाइंट सीक्रेट",
+        "apiEndpointLabel": "API एंडपॉइंट URL (यदि लागू हो)",
+        "apiEndpointPlaceholder": "https://api.gsp.com/v1/einvoice",
+        "testConnectionBtn": "कनेक्शन का परीक्षण करें",
+        "saveSettingsBtn": "ई-चालान सेटिंग्स सहेजें"
+    },
+    "invoiceCustomization": {
+      "title": "चालान अनुकूलन",
+      "description": "अपने चालान टेम्पलेट्स, नंबरिंग और डिफ़ॉल्ट सामग्री को अनुकूलित करें।",
+      "placeholder": "चालान टेम्पलेट विकल्प, ब्रांडिंग और डिफ़ॉल्ट फ़ील्ड यहाँ दिखाई देंगे।"
+    },
+    "taxSettingsContent": { "title": "कर सेटिंग्स", "placeholder": "कर दर कॉन्फ़िगरेशन..." },
+    "paymentGatewaysContent": { "title": "भुगतान गेटवे", "placeholder": "गेटवे कॉन्फ़िगरेशन..." },
+    "emailSettingsContent": { "title": "ईमेल सेटिंग्स", "placeholder": "SMTP और टेम्पलेट्स..." },
+    "dataManagementContent": { "title": "डेटा प्रबंधन", "placeholder": "आयात/निर्यात उपकरण..." },
+    "integrationsContent": { "title": "एकीकरण", "placeholder": "तृतीय-पक्ष एकीकरण..." }
   }
+
+ 
 
 
 

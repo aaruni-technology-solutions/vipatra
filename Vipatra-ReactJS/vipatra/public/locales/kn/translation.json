@@ -20,7 +20,8 @@
     "expenses": "ಖರ್ಚುಗಳು",
     "manageInventory": "ದಾಸ್ತಾನು",
     "reports": "ವರದಿಗಳು",
-    "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು"
+    "settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+     "newDeliveryChallan": "ವಿತರಣಾ ಚಲನ್"
   },
   "dashboard": {
     "adminTitle": "ನಿರ್ವಾಹಕ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
@@ -704,10 +705,93 @@
     "saveAndSendBtn": "ಚಲನ್ ಉಳಿಸಿ ಮತ್ತು ಕಳುಹಿಸಿ",
     "saveAsDraftBtn": "ಕರಡು ಎಂದು ಉಳಿಸಿ"
   },
-  "sidebar": {
-    "newDeliveryChallan": "ಹೊಸ ಡೆಲಿವರಿ ಚಲನ್",
-    "allDeliveryChallans": "ಎಲ್ಲಾ ಡೆಲಿವರಿ ಚಲನ್‌ಗಳು"
+  
+  "settings": {
+    "pageTitle": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "sidebarTitle": "ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನು",
+    "nav": {
+      "organizationProfile": "ಸಂಸ್ಥೆಯ ಪ್ರೊಫೈಲ್",
+      "userManagement": "ಬಳಕೆದಾರ ನಿರ್ವಹಣೆ",
+      "invoiceCustomization": "ಇನ್‌ವಾಯ್ಸ್ ಕಸ್ಟಮೈಸೇಶನ್",
+      "eInvoicing": "ಇ-ಇನ್‌ವಾಯ್ಸಿಂಗ್",
+      "taxSettings": "ತೆರಿಗೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+      "paymentGateways": "ಪಾವತಿ ಗೇಟ್‌ವೇಗಳು",
+      "emailSettings": "ಇಮೇಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+      "dataManagement": "ಡೇಟಾ ನಿರ್ವಹಣೆ",
+      "integrations": "ಏಕೀಕರಣಗಳು"
+    },
+    "organizationProfile": {
+      "title": "ಸಂಸ್ಥೆಯ ಪ್ರೊಫೈಲ್",
+      "orgNameLabel": "ಸಂಸ್ಥೆಯ ಹೆಸರು",
+      "industryLabel": "ಕೈಗಾರಿಕೆ",
+      "addressLabel": "ವಿಳಾಸ",
+      "addressPlaceholder": "ಬೀದಿ ವಿಳಾಸ, ನಗರ, ರಾಜ್ಯ, ಪೋಸ್ಟಲ್ ಕೋಡ್, ದೇಶ",
+      "emailLabel": "ಇಮೇಲ್",
+      "phoneLabel": "ದೂರವಾಣಿ",
+      "taxIdLabel": "GSTIN / ತೆರಿಗೆ ID",
+      "logoLabel": "ಸಂಸ್ಥೆಯ ಲೋಗೋ",
+      "logoHelpText": "ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ: PNG ಅಥವಾ JPG, ಗರಿಷ್ಠ 2MB. ಪ್ರಸ್ತುತ: {{fileName}}",
+      "defaultCurrencyLabel": "ಡೀಫಾಲ್ಟ್ ಕರೆನ್ಸಿ",
+      "currencies": {
+        "inr": "INR - ಭಾರತೀಯ ರೂಪಾಯಿ",
+        "usd": "USD - ಯುಎಸ್ ಡಾಲರ್"
+      },
+      "saveChangesBtn": "ಬದಲಾವಣೆಗಳನ್ನು ಉಳಿಸಿ"
+    },
+    "userManagement": {
+      "title": "ಬಳಕೆದಾರ ನಿರ್ವಹಣೆ",
+      "addNewUserBtn": "ಹೊಸ ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಿ",
+      "description": "ನಿಮ್ಮ ತಂಡದ ಸದಸ್ಯರು, ಅವರ ಪಾತ್ರಗಳು ಮತ್ತು ಪ್ರವೇಶ ಅನುಮತಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ.",
+      "table": {
+        "name": "ಹೆಸರು",
+        "email": "ಇಮೇಲ್",
+        "role": "ಪಾತ್ರ",
+        "status": "ಸ್ಥಿತಿ",
+        "actions": "ಕ್ರಿಯೆಗಳು"
+      },
+       "roles": {
+          "admin": "ನಿರ್ವಾಹಕರು",
+          "billing": "ಬಿಲ್ಲಿಂಗ್ ಸಿಬ್ಬಂದಿ",
+          "inventory": "ದಾಸ್ತಾನು ನಿರ್ವಾಹಕರು"
+      },
+      "userStatus": {
+          "active": "ಸಕ್ರಿಯ",
+          "inactive": "ನಿಷ್ಕ್ರಿಯ"
+      }
+    },
+     "eInvoicing": {
+        "title": "ಇ-ಇನ್‌ವಾಯ್ಸಿಂಗ್ ಕಾನ್ಫಿಗರೇಶನ್",
+        "enableLabel": "ಇ-ಇನ್‌ವಾಯ್ಸಿಂಗ್ ಸಕ್ರಿಯಗೊಳಿಸಿ (ಉದಾ., GST ಭಾರತಕ್ಕಾಗಿ)",
+        "enableHelp": "ಅನ್ವಯವಾಗುವ ಇನ್‌ವಾಯ್ಸ್‌ಗಳಿಗಾಗಿ IRN ಮತ್ತು QR ಕೋಡ್‌ಗಳನ್ನು ರಚಿಸಲು ಇದನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.",
+        "providerDetailsIntro": "ನಿಮ್ಮ ಇ-ಇನ್‌ವಾಯ್ಸಿಂಗ್ ಸೇವಾ ಪೂರೈಕೆದಾರರ (GSP - GST ಸುವಿಧಾ ಪೂರೈಕೆದಾರ, ಅಥವಾ ನೇರ API) ವಿವರಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ. ಯಶಸ್ವಿ ಇ-ಇನ್‌ವಾಯ್ಸ್ ರಚನೆಗಾಗಿ ಈ ವಿವರಗಳು ನಿಖರವಾಗಿವೆಯೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.",
+        "providerLabel": "ಸೇವಾ ಪೂರೈಕೆದಾರರು / GSP",
+        "selectProviderOption": "-- ಪೂರೈಕೆದಾರರನ್ನು ಆಯ್ಕೆಮಾಡಿ --",
+        "providers": {
+            "gsp_a": "GSP ಆಲ್ಫಾ ಸೇವೆಗಳು",
+            "gsp_b": "ಬೀಟಾ ಇ-ಇನ್‌ವಾಯ್ಸ್ ಪರಿಹಾರಗಳು",
+            "nic_einv": "NIC ಇ-ಇನ್‌ವಾಯ್ಸ್ ಪೋರ್ಟಲ್ (ನೇರ API - ಅನ್ವಯವಾದರೆ)",
+            "other": "ಇತರೆ (ಹಸ್ತಚಾಲಿತ ಸೆಟಪ್/ಕಸ್ಟಮ್ API ಅಗತ್ಯವಿದೆ)"
+        },
+        "usernameLabel": "GSP ಬಳಕೆದಾರಹೆಸರು / ಕ್ಲೈಂಟ್ ID",
+        "passwordLabel": "GSP ಪಾಸ್‌ವರ್ಡ್ / ಕ್ಲೈಂಟ್ ಸೀಕ್ರೆಟ್",
+        "apiEndpointLabel": "API ಎಂಡ್‌ಪಾಯಿಂಟ್ URL (ಅನ್ವಯವಾದರೆ)",
+        "apiEndpointPlaceholder": "https://api.gsp.com/v1/einvoice",
+        "testConnectionBtn": "ಸಂಪರ್ಕವನ್ನು ಪರೀಕ್ಷಿಸಿ",
+        "saveSettingsBtn": "ಇ-ಇನ್‌ವಾಯ್ಸಿಂಗ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಉಳಿಸಿ"
+    },
+    "invoiceCustomization": {
+      "title": "ಇನ್‌ವಾಯ್ಸ್ ಕಸ್ಟಮೈಸೇಶನ್",
+      "description": "ನಿಮ್ಮ ಇನ್‌ವಾಯ್ಸ್ ಟೆಂಪ್ಲೇಟ್‌ಗಳು, ಸಂಖ್ಯೆಗಳು ಮತ್ತು ಡೀಫಾಲ್ಟ್ ವಿಷಯವನ್ನು ಕಸ್ಟಮೈಸ್ ಮಾಡಿ.",
+      "placeholder": "ಇನ್‌ವಾಯ್ಸ್ ಟೆಂಪ್ಲೇಟ್ ಆಯ್ಕೆಗಳು, ಬ್ರ್ಯಾಂಡಿಂಗ್ ಮತ್ತು ಡೀಫಾಲ್ಟ್ ಫೀಲ್ಡ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ."
+    },
+    "taxSettingsContent": { "title": "ತೆರಿಗೆ ಸೆಟ್ಟಿಂಗ್‌ಗಳು", "placeholder": "ತೆರಿಗೆ ದರ ಕಾನ್ಫಿಗರೇಶನ್..." },
+    "paymentGatewaysContent": { "title": "ಪಾವತಿ ಗೇಟ್‌ವೇಗಳು", "placeholder": "ಗೇಟ್‌ವೇ ಕಾನ್ಫಿಗರೇಶನ್..." },
+    "emailSettingsContent": { "title": "ಇಮೇಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು", "placeholder": "SMTP ಮತ್ತು ಟೆಂಪ್ಲೇಟ್‌ಗಳು..." },
+    "dataManagementContent": { "title": "ಡೇಟಾ ನಿರ್ವಹಣೆ", "placeholder": "ಆಮದು/ರಫ್ತು ಉಪಕರಣಗಳು..." },
+    "integrationsContent": { "title": "ಏಕೀಕರಣಗಳು", "placeholder": "ಮೂರನೇ ವ್ಯಕ್ತಿಯ ಏಕೀಕರಣಗಳು..." }
   }
+
+  
 
 
   
