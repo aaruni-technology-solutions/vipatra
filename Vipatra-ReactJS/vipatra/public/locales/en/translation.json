@@ -1,5 +1,5 @@
 {
-  "appTitle": "Vipatra Billing Pro",
+  "appTitle": "Vipatra",
   "nav": {
     "dashboard": "Dashboard",
     "billing": "Billing",
@@ -12,7 +12,7 @@
   "sidebar": {
     "quickMenu": "Quick Menu",
     "dashboard": "Dashboard",
-    "allInvoices": "All Invoices",
+    "allInvoices": "Invoices",
     "createInvoice": "Create Invoice",
     "customers": "Customers",
     "items": "Items",
@@ -578,9 +578,9 @@
     },
     "common": { 
         "viewDetails": "View Details"
-    },
+    }
    
- 
+  },
   
   "reports": {
     "testReportKey": "English Reports Test Works!",
@@ -619,10 +619,10 @@
       "dataPlaceholder": "Report data (table/chart) will be displayed here."
     }
   }
-  
+  ,
 
   
-  },
+  
   
   "quotes": {
     "pageTitle": "New Quote",
@@ -670,11 +670,7 @@
     "saveAsDraftBtn": "Save as Draft",
     "saveAndSendBtn": "Save & Send"
   },
-  "common": { 
-    "selectPlaceholder": "-- Select --",
-    "searchOrType": "Search or type...",
-    "required": "*"
-  },
+  
   
   
   "deliveryChallans": {
@@ -797,12 +793,48 @@
     "paymentGatewaysContent": { "title": "Payment Gateways", "placeholder": "Gateway configuration..." },
     "emailSettingsContent": { "title": "Email Settings", "placeholder": "SMTP and templates..." },
     "dataManagementContent": { "title": "Data Management", "placeholder": "Import/Export tools..." },
-    "integrationsContent": { "title": "Integrations", "placeholder": "Third-party integrations..." }
-  },
-  "common": {
-    "required": "*"
+    "integrationsContent": { "title": "Integrations", "placeholder": "Third-party integrations..." },
+     "common": {
+    "required": "*",
+    
+    "selectPlaceholder": "-- Select --",
+    "searchOrType": "Search or type..."
+   
+  
     
   }
+  },
+  
+  "signupPage": {
+    "title": "Sign Up - Vipatra Billing Pro", 
+    "header": "Vipatra Billing Pro",
+    "subtitle": "Create your account to unlock powerful billing tools.",
+    "formTitle": "Create Your Account",
+    "fullNameLabel": "Full Name",
+    "fullNamePlaceholder": "E.g., Jane Doe",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Choose a strong password",
+    "togglePasswordVisibility": "Toggle password visibility", 
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter your password",
+    "roleLabel": "Select Your Role",
+    "chooseRoleOption": "-- Choose your role --",
+    "roles": {
+      "admin": "Administrator (Owner/Director)",
+      "billing_staff": "Billing Staff",
+      "inventory_manager": "Inventory Manager",
+      "patient_customer": "Patient/Customer",
+      "vendor_distributor": "Vendor/Distributor"
+    },
+    "createAccountBtn": "Create Account",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginHereLink": "Log in here",
+    "footerText": "© {{year}} Vipatra Billing Pro. All rights reserved."
+  }
+
+ 
 
 
 

@@ -1,5 +1,5 @@
 {
-  "appTitle": "ವಿಪತ್ರ ಬಿಲ್ಲಿಂಗ್ ಪ್ರೊ",
+  "appTitle": "ವಿಪತ್ರ",
   "nav": {
     "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     "billing": "ಬಿಲ್ಲಿಂಗ್",
@@ -12,7 +12,7 @@
   "sidebar": {
     "quickMenu": "ತ್ವರಿತ ಮೆನು",
     "dashboard": "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
-    "allInvoices": "ಎಲ್ಲಾ ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
+    "allInvoices": "ಇನ್‌ವಾಯ್ಸ್‌ಗಳು",
     "createInvoice": "ಇನ್‌ವಾಯ್ಸ್ ರಚಿಸಿ",
     "customers": "ಗ್ರಾಹಕರು",
     "items": "ಐಟಂಗಳನ್ನು",
@@ -789,7 +789,37 @@
     "emailSettingsContent": { "title": "ಇಮೇಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು", "placeholder": "SMTP ಮತ್ತು ಟೆಂಪ್ಲೇಟ್‌ಗಳು..." },
     "dataManagementContent": { "title": "ಡೇಟಾ ನಿರ್ವಹಣೆ", "placeholder": "ಆಮದು/ರಫ್ತು ಉಪಕರಣಗಳು..." },
     "integrationsContent": { "title": "ಏಕೀಕರಣಗಳು", "placeholder": "ಮೂರನೇ ವ್ಯಕ್ತಿಯ ಏಕೀಕರಣಗಳು..." }
+  },
+ 
+  "signupPage": {
+    "title": "ಸೈನ್ ಅಪ್ - ವಿಪತ್ರ ಬಿಲ್ಲಿಂಗ್ ಪ್ರೊ",
+    "header": "ವಿಪತ್ರ ಬಿಲ್ಲಿಂಗ್ ಪ್ರೊ",
+    "subtitle": "ಶಕ್ತಿಯುತ ಬಿಲ್ಲಿಂಗ್ ಪರಿಕರಗಳನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಚಿಸಿ.",
+    "formTitle": "ನಿಮ್ಮ ಖಾತೆಯನ್ನು ರಚಿಸಿ",
+    "fullNameLabel": "ಪೂರ್ಣ ಹೆಸರು",
+    "fullNamePlaceholder": "ಉದಾಹರಣೆಗೆ, ಜೇನ್ ಡೋ",
+    "emailLabel": "ಇಮೇಲ್ ವಿಳಾಸ",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "ಪಾಸ್ವರ್ಡ್",
+    "passwordPlaceholder": "ಒಂದು ಪ್ರಬಲ ಪಾಸ್‌ವರ್ಡ್ ಆಯ್ಕೆಮಾಡಿ",
+    "togglePasswordVisibility": "ಪಾಸ್ವರ್ಡ್ ಗೋಚರತೆಯನ್ನು ಟಾಗಲ್ ಮಾಡಿ",
+    "confirmPasswordLabel": "ಪಾಸ್ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
+    "confirmPasswordPlaceholder": "ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ಅನ್ನು ಮರು-ನಮೂದಿಸಿ",
+    "roleLabel": "ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+    "chooseRoleOption": "-- ನಿಮ್ಮ ಪಾತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ --",
+    "roles": {
+      "admin": "ನಿರ್ವಾಹಕರು (ಮಾಲೀಕರು/ನಿರ್ದೇಶಕರು)",
+      "billing_staff": "ಬಿಲ್ಲಿಂಗ್ ಸಿಬ್ಬಂದಿ",
+      "inventory_manager": "ದಾಸ್ತಾನು ನಿರ್ವಾಹಕರು",
+      "patient_customer": "ರೋಗಿ/ಗ್ರಾಹಕರು",
+      "vendor_distributor": "ಮಾರಾಟಗಾರರು/ವಿತರಕರು"
+    },
+    "createAccountBtn": "ಖಾತೆ ರಚಿಸಿ",
+    "alreadyHaveAccount": "ಈಗಾಗಲೇ ಖಾತೆ ಇದೆಯೇ?",
+    "loginHereLink": "ಇಲ್ಲಿ ಲಾಗಿನ್ ಮಾಡಿ",
+    "footerText": "© {{year}} ವಿಪತ್ರ ಬಿಲ್ಲಿಂಗ್ ಪ್ರೊ. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ."
   }
+
 
   
 

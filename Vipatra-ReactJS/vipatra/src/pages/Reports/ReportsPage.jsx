@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/layout/Header';
-import Sidebar from '../../components/layout/Sidebar'; // Assuming you have a generic or reports-specific sidebar
+import Sidebar from '../../components/layout/Sidebar'; 
 import Footer from '../../components/layout/Footer';
 
 // Define report categories with their details and icons
@@ -19,7 +19,7 @@ const reportCategories = [
 
 const ReportsPage = () => {
     const { t } = useTranslation();
-    const [selectedReportType, setSelectedReportType] = useState(null); // To manage which report view is shown
+    const [selectedReportType, setSelectedReportType] = useState(null); 
 
     const handleShowReportSection = (reportId) => {
         setSelectedReportType(reportId);

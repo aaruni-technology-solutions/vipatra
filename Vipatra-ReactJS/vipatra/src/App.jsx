@@ -64,6 +64,7 @@ const ProtectedRoutes = () => {
   return (
     <Routes>
       <Route path="dashboard" element={<AdminDashboardPage />} /> {/* Note: paths are relative to the parent "/*" */}
+      
       <Route path="customers" element={<CustomersListPage />} />
       <Route path="customers/new" element={<CustomerCreatePage />} />
       <Route path="customers/:customerId" element={<CustomerViewPage />} />

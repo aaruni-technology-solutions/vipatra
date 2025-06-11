@@ -1,5 +1,5 @@
 {
-  "appTitle": "विपत्र बिलिंग प्रो",
+  "appTitle": "विपत्र",
   "nav": {
     "dashboard": "डैशबोर्ड",
     "billing": "बिलिंग",
@@ -796,7 +796,37 @@
     "emailSettingsContent": { "title": "ईमेल सेटिंग्स", "placeholder": "SMTP और टेम्पलेट्स..." },
     "dataManagementContent": { "title": "डेटा प्रबंधन", "placeholder": "आयात/निर्यात उपकरण..." },
     "integrationsContent": { "title": "एकीकरण", "placeholder": "तृतीय-पक्ष एकीकरण..." }
+  },
+  
+  "signupPage": {
+    "title": "साइन अप - विपत्र बिलिंग प्रो",
+    "header": "विपत्र बिलिंग प्रो",
+    "subtitle": "शक्तिशाली बिलिंग टूल अनलॉक करने के लिए अपना खाता बनाएं।",
+    "formTitle": "अपना खाता बनाएं",
+    "fullNameLabel": "पूरा नाम",
+    "fullNamePlaceholder": "जैसे, जेन डो",
+    "emailLabel": "ईमेल पता",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "पासवर्ड",
+    "passwordPlaceholder": "एक मजबूत पासवर्ड चुनें",
+    "togglePasswordVisibility": "पासवर्ड दृश्यता टॉगल करें",
+    "confirmPasswordLabel": "पासवर्ड की पुष्टि करें",
+    "confirmPasswordPlaceholder": "अपना पासवर्ड पुनः दर्ज करें",
+    "roleLabel": "अपनी भूमिका चुनें",
+    "chooseRoleOption": "-- अपनी भूमिका चुनें --",
+    "roles": {
+      "admin": "प्रशासक (मालिक/निदेशक)",
+      "billing_staff": "बिलिंग स्टाफ",
+      "inventory_manager": "इन्वेंटरी प्रबंधक",
+      "patient_customer": "रोगी/ग्राहक",
+      "vendor_distributor": "विक्रेता/वितरक"
+    },
+    "createAccountBtn": "खाता बनाएं",
+    "alreadyHaveAccount": "पहले से ही एक खाता है?",
+    "loginHereLink": "यहाँ लॉग इन करें",
+    "footerText": "© {{year}} विपत्र बिलिंग प्रो। सर्वाधिकार सुरक्षित।"
   }
+
 
  
 
