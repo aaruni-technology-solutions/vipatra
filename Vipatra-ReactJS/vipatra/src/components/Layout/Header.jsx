@@ -102,7 +102,7 @@ const Header = () => {
               <Link to="/profile" className="block px-4 py-2 text-sm text-primary hover:bg-background">{t('profile.myProfile', 'My Profile')}</Link>
               <Link to="/settings/account" className="block px-4 py-2 text-sm text-primary hover:bg-background">{t('profile.accountSettings', 'Account Settings')}</Link>
               <hr className="my-1 border-borderLight" />
-              <Link to="/logout" className="block px-4 py-2 text-sm text-danger-DEFAULT hover:bg-danger-light">{t('profile.logout', 'Logout')}</Link>
+              <Link to="/logout" className="block px-4 py-2 text-sm text-danger-dark hover:bg-danger-light">{t('profile.logout', 'Logout')}</Link>
             </div>
           )}
         </div>

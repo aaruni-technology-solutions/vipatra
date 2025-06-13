@@ -1,52 +1,60 @@
 // src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
+// Removed import './App.css'; // Keep this commented unless you have specific App.css styles that don't conflict with full-width layout
 
 // Import your page components
 import LoginPage from './pages/Auth/LoginPage';
 import SignupPage from './pages/Auth/SignupPage';
 import AdminDashboardPage from './pages/Dashboard/AdminDashboardPage';
+import PackingSlipCreatePage from './pages/PackingSlips/PackingSlipCreatePage';
 import CustomersListPage from './pages/Customers/CustomersListPage';
 import CustomerCreatePage from './pages/Customers/CustomersCreatePage';
-// import CustomerViewPage from './pages/Customers/CustomerViewPage'; // Assuming you'll create this
+import CustomerViewPage from './pages/Customers/CustomersViewPage';
+import CreditNoteCreatePage from './pages/Billing/CreditNoteCreatePage';
+// ItemsListPage will handle different item types based on URL param
 import ItemsListPage from './pages/Items/ItemsListPage';
-import ItemCreatePage from './pages/Items/ItemCreatePage';
-// import ItemViewPage from './pages/Items/ItemViewPage'; // Assuming you'll create this
+// ItemCreatePage might be a separate component or integrated into ItemsListPage logic
+// For now, assuming ItemsListPage handles the "Create Item" form visibility
+// import ItemCreatePage from './pages/Items/ItemCreatePage'; // If you have a dedicated create page different from ItemsListPage
+
+import InvoicesListPage from './pages/Invoices/InvoicesListPage';
 import InvoiceCreatePage from './pages/Invoices/InvoicesCreatePage';
 import InvoiceViewPage from './pages/Invoices/InvoicesViewPage';
-import InvoicesListPage from './pages/Invoices/InvoicesListPage';
-// import RecurringInvoiceCreatePage from './pages/Invoices/RecurringInvoiceCreatePage'; // Assuming
+// import RecurringInvoiceCreatePage from './pages/Invoices/RecurringInvoiceCreatePage';
+
 import InventoryDashboardPage from './pages/Inventory/InventoryDashboardPage';
-import SettingsPage from './pages/Settings/SettingsPage';
-// import SupportPage from './pages/Support/SupportPage'; // Assuming
-import NotFoundPage from './pages/NotFoundPage';
-import CustomerViewPage from './pages/Customers/CustomersViewPage';
 import ExpensesPage from './pages/Expenses/ExpensesPage';
 import ReportsPage from './pages/Reports/ReportsPage';
+import SettingsPage from './pages/Settings/SettingsPage';
+// import SupportPage from './pages/Support/SupportPage';
+import PaymentReceiptPage from './pages/Payments/PaymentRecievedCreatePage';
 import QuoteCreatePage from './pages/Quotes/QuoteCreatePage';
 import DeliveryChallanCreatePage from './pages/DeliveryChallans/DeliveryChallanCreatePage';
+// You might also need list pages for Quotes and Delivery Challans
+// import QuotesListPage from './pages/Quotes/QuotesListPage';
+// import DeliveryChallansListPage from './pages/DeliveryChallans/DeliveryChallansListPage';
+
+import NotFoundPage from './pages/NotFoundPage';
+
 function App() {
-  // Basic concept for authentication state (replace with your actual auth logic)
-  // In a real app, this would come from Context API, Redux, Zustand, etc.
-  const isAuthenticated = true; // For testing, assume user is authenticated
+  const isAuthenticated = true; // Placeholder for your actual auth logic
 
   return (
     <Router>
       <Routes>
-        {/* Public Routes: Rendered directly */}
+        {/* Public Routes */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
 
-        {/* Protected Routes Wrapper */}
-        {/* This route will match any path not caught by /login or /signup */}
+        {/* Protected Routes Logic */}
         <Route
-          path="/*"
+          path="/*" // This will capture all other paths
           element={
             isAuthenticated ? (
-              <ProtectedRoutes /> /* All authenticated routes are defined within ProtectedRoutes */
+              <ProtectedRoutes />
             ) : (
-              <Navigate to="/login" replace /> /* If not authenticated, redirect to login */
+              <Navigate to="/login" replace />
             )
           }
         />
@@ -57,39 +65,67 @@ function App() {
 
 // Component to define all routes accessible after authentication
 const ProtectedRoutes = () => {
-  // Each page component (e.g., AdminDashboardPage) is expected to render its own
-  // Header, Sidebar, Main content area, and Footer, and its outermost div
-  // should be something like <div className="flex flex-col min-h-screen">
-  // to take up the full space provided by the router.
   return (
     <Routes>
-      <Route path="dashboard" element={<AdminDashboardPage />} /> {/* Note: paths are relative to the parent "/*" */}
-      
+      {/* Dashboard */}
+      <Route path="dashboard" element={<AdminDashboardPage />} />
+
+      {/* Customers */}
       <Route path="customers" element={<CustomersListPage />} />
       <Route path="customers/new" element={<CustomerCreatePage />} />
       <Route path="customers/:customerId" element={<CustomerViewPage />} />
-      {/* Example for a customer detail page: */}
-      {/* <Route path="customers/:customerId" element={<CustomerViewPage />} /> */}
+      <Route path="receipts/" element={<PaymentReceiptPage />} />
 
-      <Route path="items" element={<ItemsListPage />} />
+      {/* Items (Catalog: Products, Services, Subscriptions) */}
+      {/* The ItemsListPage will use the :itemTypeUrlParam to filter/display correctly */}
+      <Route path="items" element={<ItemsListPage />} /> {/* General items page, might show all or a default */}
+      <Route path="items/products" element={<ItemsListPage />} />
+      <Route path="items/services" element={<ItemsListPage />} />
+      <Route path="items/subscriptions" element={<ItemsListPage />} />
+      {/* If you decide "Create Item" is always on ItemsListPage, you don't need a separate /items/new route
+          unless ItemCreatePage is a distinct component. If ItemsListPage handles the create form visibility,
+          the "Create Item" button on ItemsListPage would just toggle a form on that same page.
+          If ItemCreatePage IS a separate component, then uncomment:
       <Route path="items/new" element={<ItemCreatePage />} />
-      {/* <Route path="items/:itemId" element={<ItemViewPage />} /> */}
+      */}
+<Route path="credit-notes/new" element={<CreditNoteCreatePage />} />
 
+      {/* Invoices */}
       <Route path="invoices" element={<InvoicesListPage />} />
       <Route path="invoices/new" element={<InvoiceCreatePage />} />
       <Route path="invoices/:invoiceId" element={<InvoiceViewPage />} />
       {/* <Route path="invoices/recurring/new" element={<RecurringInvoiceCreatePage />} /> */}
 
+      {/* Inventory */}
       <Route path="inventory" element={<InventoryDashboardPage />} />
-      <Route path="settings" element={<SettingsPage />} />
-      <Route path="reports" element={<ReportsPage />} />
-      {/* <Route path="support" element={<SupportPage />} /> */}
-      <Route path="expenses" element={<ExpensesPage />} />
-      <Route path="delivery-challans/new" element={<DeliveryChallanCreatePage />} />
-      {/* Default route for authenticated area if no other sub-path matches (e.g., if user lands on just "/") */}
-      {/* This makes `/` (after login) redirect to `/dashboard` */}
-      <Route index element={<Navigate to="dashboard" replace />} />
+      {/* Note: "Manage Items" from your sidebar might also point to "inventory" or "/items"
+          depending on how you want to structure the overall inventory vs. item catalog concept.
+          For now, /inventory points to the Inventory Dashboard.
+      */}
+     <Route path="packing-slips/new" element={<PackingSlipCreatePage />} />
+      {/* Quotes */}
       <Route path="quotes/new" element={<QuoteCreatePage />} />
+      {/* Consider adding a list page: <Route path="quotes" element={<QuotesListPage />} /> */}
+
+      {/* Delivery Challans */}
+      <Route path="delivery-challans/new" element={<DeliveryChallanCreatePage />} />
+      {/* Consider adding a list page: <Route path="delivery-challans" element={<DeliveryChallansListPage />} /> */}
+
+      {/* Expenses */}
+      <Route path="expenses" element={<ExpensesPage />} />
+
+      {/* Reports */}
+      <Route path="reports" element={<ReportsPage />} />
+
+      {/* Settings */}
+      <Route path="settings" element={<SettingsPage />} />
+      {/* For deep linking into settings sections if you implement hash-based routing there: */}
+      {/* <Route path="settings/:sectionId" element={<SettingsPage />} /> */}
+
+
+      {/* Default route for authenticated area if no other sub-path matches (e.g., user lands on just "/") */}
+      <Route index element={<Navigate to="dashboard" replace />} />
+
       {/* Fallback 404 for any unmatched path within the authenticated area */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

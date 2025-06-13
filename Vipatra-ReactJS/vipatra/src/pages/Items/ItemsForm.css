@@ -1,0 +1,97 @@
+/* This class will be added to the <form> element */
+.create-item-grid {
+    display: grid;
+    /* Define a gap between all grid items. This replaces Tailwind's space-y-6 */
+    gap: 1.5rem; /* 24px */
+
+    /* --- MOBILE FIRST LAYOUT (Default: Single Column) --- */
+    /* All items will stack vertically by default */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "type"
+        "name"
+        "unit"
+        "goods-fields"
+        "service-fields"
+        "sub-fields"
+        "image-upload"
+        "pricing-fields"
+        "description"
+        "actions";
+}
+
+/* Assign each form group to its named area */
+.form-group-type          { grid-area: type; }
+.form-group-name          { grid-area: name; }
+.form-group-unit          { grid-area: unit; }
+.form-group-goods         { grid-area: goods-fields; }
+.form-group-service       { grid-area: service-fields; }
+.form-group-subscription  { grid-area: sub-fields; }
+.form-group-image-upload  { grid-area: image-upload; }
+.form-group-pricing       { grid-area: pricing-fields; }
+.form-group-description   { grid-area: description; }
+.form-actions             { grid-area: actions; }
+
+/* The conditional fieldsets might not be direct children.
+   We make sure that if a grid-area element is empty/hidden, it doesn't take up space. */
+.form-group-goods,
+.form-group-service,
+.form-group-subscription {
+    /* If a fieldset is not rendered by React, its container will be empty.
+       This ensures it collapses and doesn't leave a gap. */
+    display: contents;
+}
+.form-group-goods > fieldset,
+.form-group-service > fieldset,
+.form-group-subscription > fieldset {
+    /* Target the actual fieldset within the container */
+    margin-top: 0; /* Remove default margins that might interfere */
+}
+
+/* Style the action buttons container */
+.form-actions {
+    /* Use flexbox inside the grid area to align the buttons */
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    gap: 0.75rem; /* 12px gap between buttons */
+    padding-top: 1rem;
+}
+
+
+/* --- DESKTOP LAYOUT (e.g., for screens 768px and wider) --- */
+@media (min-width: 768px) {
+    .create-item-grid {
+        /* Create a two-column layout */
+        grid-template-columns: 1fr 1fr;
+        /* Redraw the entire layout for desktop! This is the power of grid-template-areas. */
+        grid-template-areas:
+            "type           type"
+            "name           unit"
+            "goods-fields   goods-fields"
+            "service-fields service-fields"
+            "sub-fields     sub-fields"
+            "pricing-fields pricing-fields"
+            "image-upload   description"
+            "actions        actions";
+
+        /* Increase the gap for larger screens */
+        gap: 1rem 2rem; /* 16px row gap, 32px column gap */
+    }
+
+    /* Example of a more complex desktop layout if you wanted side-by-side pricing */
+    /*
+    @media (min-width: 1024px) {
+        .create-item-grid {
+            grid-template-areas:
+                "type           type"
+                "name           unit"
+                "goods-fields   goods-fields"
+                "service-fields service-fields"
+                "sub-fields     sub-fields"
+                "pricing-fields image-upload"
+                "pricing-fields description"
+                ".              actions"; // Push actions to the right column
+        }
+    }
+    */
+}

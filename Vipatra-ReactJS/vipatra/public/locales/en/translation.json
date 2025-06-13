@@ -16,12 +16,19 @@
     "createInvoice": "Create Invoice",
     "customers": "Customers",
     "items": "Items",
-    "newQuote": "Quotes",
+    "newQuote": "Estimate",
     "expenses": "Expenses",
      "newDeliveryChallan": "Delivery Challan",
     "manageInventory": "Inventory",
     "reports": "Reports",
-    "settings": "Settings"
+    "settings": "Settings",
+     "catalog": "Catalog",
+    "products": "Products",
+    "services": "Services",
+    "subscriptionItems": "Subscription Items",
+    "receipts":"Receipts",
+     "newPackingSlip": "Packing Slip",
+      "newCreditNote": "Credit Note"
   },
   "dashboard": {
     "adminTitle": "Admin Dashboard",
@@ -460,7 +467,14 @@
     "initialView": {
       "title": "All Your Items in One Place",
       "subtitle": "Create new items or manage existing ones from the table below (placeholder).",
-      "tablePlaceholder": "Item list table will appear here. Currently empty or loading..."
+      "tablePlaceholder": "Item list table will appear here. Currently empty or loading...",
+       "manageProductsTitle": "Manage Products",
+    "manageServicesTitle": "Manage Services",
+    "manageSubscriptionsTitle": "Manage Subscription Items",
+    "showingProducts": "Showing Products",
+    "showingServices": "Showing Services",
+    "showingSubscriptions": "Showing Subscription Items",
+    "showingAllItems": "Showing All Items"
     },
     "newItemForm": {
       "title": "New Item",
@@ -493,8 +507,22 @@
       "customTaxExample": "Custom Tax A (e.g., Cess @ 2%)",
       "defaultTaxRateHelp": "Select a default tax rate for this item. This can be overridden on individual invoices.",
       "descriptionLabel": "Description (Optional)",
-      "saveItemBtn": "Save Item"
-    }
+      "saveItemBtn": "Save Item",
+      "subscription": "Subscription",
+        "goodsSpecificLegend": "Goods Specifics",
+        "trackInventory": "Track Inventory for this item",
+        "skuLabel": "SKU",
+        "serviceSpecificLegend": "Service Specifics",
+        "subscriptionSpecificLegend": "Subscription Details",
+        "billingCycleLabel": "Billing Cycle"
+    },
+     "cycles": { 
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly",
+      "quarterly": "Quarterly",
+      "yearly": "Yearly"
+  }
   },
  
   "expenses": {
@@ -832,7 +860,133 @@
     "alreadyHaveAccount": "Already have an account?",
     "loginHereLink": "Log in here",
     "footerText": "© {{year}} Vipatra Billing Pro. All rights reserved."
+  },
+  
+  "paymentReceivedCreate": {
+    "pageTitle": "Create Payment Receipt",
+    "pageSubtitle": "Record a payment received and generate a receipt.",
+    "headerInfo": "Receipt Information",
+    "receiptNoLabel": "Receipt No.",
+    "receiptNoPlaceholder": "Auto-generated or Enter",
+    "paymentDateLabel": "Payment Date",
+    "receivedFrom": "Received From (Customer/Payer)",
+    "nameLabel": "Name",
+    "addressLabel": "Address (Optional)",
+    "phoneLabel": "Phone (Optional)",
+    "emailLabel": "Email (Optional)",
+    "paymentDetails": "Payment Details",
+    "amountReceivedLabel": "Amount Received (INR)",
+    "paymentMethodLabel": "Payment Method",
+    "referenceNoLabel": "Reference No. / Transaction ID (Optional)",
+    "referenceNoPlaceholder": "E.g., Cheque No., UPI ID, Transaction ID",
+    "itemDetailsOptional": "Item/Service Details (Optional - if this payment is for specific items)",
+    "addItemBtn": "Add Item/Service",
+    "itemNameLabel": "Item/Service Description",
+    "itemQtyLabel": "Qty",
+    "itemRateLabel": "Rate (₹)",
+    "itemAmountLabel": "Amount (₹)",
+    "notesLabel": "Notes / Remarks (Optional)",
+    "notesPlaceholder": "E.g., Advance payment for services, full payment for product X",
+    "previewReceiptBtn": "Preview Receipt",
+    "saveAndGenerateBtn": "Save & Generate Receipt",
+    "alertAtLeastOneItemIfAdding": "If adding items, please provide at least one.",
+    "alertFormSubmitted": "Payment Receipt data logged (check console)!"
+  },
+  "paymentReceipt": { 
+    "title": "PAYMENT RECEIPT", 
+    "receiptNo": "Receipt No:",
+    "paymentDate": "Payment Date:",
+    "paymentMethod": "Payment Method:",
+    "receivedFrom": "Received From:",
+    "amountReceived": "Amount Received:",
+    "itemDescription": "Description",
+    "itemQty": "Qty",
+    "itemRate": "Rate",
+    "itemAmount": "Amount",
+    "total": "Total:",
+    "amountInWords": "Amount in Words:",
+    "notes": "Notes:",
+    "signature": "Authorized Signature",
+    "thankYou": "Thank you for your payment!"
+  },
+ 
+  "paymentMethods": { 
+    "cash": "Cash",
+    "upi": "UPI",
+    "card": "Card (Credit/Debit)",
+    "netBanking": "Net Banking",
+    "cheque": "Cheque",
+    "other": "Other"
+  },
+  
+  "packingSlip": {
+    "pageTitleCreate": "Create Packing Slip",
+    "pageTitleView": "Packing Slip",
+    "pageSubtitle": "Prepare a list of items for shipment.",
+    "basedOnInvoiceLabel": "Based on Invoice # (Optional)",
+    "invoiceNoPlaceholder": "Enter Invoice No. to load items",
+    "loadItemsBtn": "Load Items",
+    "shipTo": "Ship To:",
+    "customerNameLabel": "Customer Name",
+    "shippingAddressLabel": "Shipping Address",
+    "shippingAddressPlaceholder": "Enter full shipping address",
+    "packingSlipNoLabel": "Packing Slip No.",
+    "packingSlipNoPlaceholder": "Auto-generated or Enter",
+    "shippingDateLabel": "Shipping Date",
+    "itemsToShip": "Items to Ship",
+    "addItemBtn": "Add Item",
+    "itemNameLabel": "Item Description / Name",
+    "itemSkuLabel": "SKU (Optional)",
+    "itemQtyLabel": "Quantity Shipped",
+    "notesLabel": "Notes / Shipping Instructions (Optional)",
+    "notesPlaceholder": "E.g., Handle with care, delivery instructions",
+    "previewSlipBtn": "Preview Packing Slip",
+    "generateAndSendBtn": "Generate & Send Slip",
+    "alertFormSubmitted": "Packing Slip data logged (check console)!",
+    "documentTitle": "PACKING SLIP", 
+    "shipFrom": "Shipped From:", 
+    "orderNoLabel": "Order No. (Optional):",
+    "carrierLabel": "Carrier (Optional):",
+    "trackingNoLabel": "Tracking No. (Optional):",
+    "totalQuantity": "Total Quantity:",
+    "receivedBy": "Received By (Name & Signature)",
+    "dateReceived": "Date Received"
+  },
+  
+  "creditNote": {
+    "pageTitleCreate": "Create Credit Note",
+    "pageTitleView": "Credit Note", 
+    "pageSubtitle": "Issue a credit note to a customer.",
+    "againstInvoiceLabel": "Credit Note Against Invoice #",
+    "invoiceNoPlaceholder": "Enter Original Invoice No.",
+    "loadInvoiceDetailsBtn": "Load Invoice Details",
+    "customerDetails": "Customer Details",
+    "customerNameLabel": "Customer Name", 
+    "customerEmailLabel": "Customer Email",
+    "creditNoteNoLabel": "Credit Note No.",
+    "creditNoteNoPlaceholder": "Auto-generated or Enter",
+    "creditNoteDateLabel": "Credit Note Date",
+    "reasonLabel": "Reason for Credit <span class='text-danger-DEFAULT'>*</span>",
+    "reasonPlaceholder": "E.g., Goods returned, Service cancellation, Price adjustment",
+    "itemsToCredit": "Items to Credit / Adjust",
+    "addItemBtn": "Add Item/Service to Credit",
+    "itemNameLabel": "Item/Service Description",
+    "itemQtyLabel": "Quantity Credited",
+    "itemRateLabel": "Rate (₹)",
+    "itemAmountLabel": "Credit Amount (₹)",
+    "notesLabel": "Additional Notes (Optional)",
+    "notesPlaceholder": "Any further details for this credit note",
+    "totalCreditAmount": "Total Credit Amount:",
+    "previewCreditNoteBtn": "Preview Credit Note",
+    "generateAndSendBtn": "Generate & Send Credit Note",
+    "alertFormSubmitted": "Credit Note data logged (check console)!",
+    "alertInvoiceNotFound": "Invoice not found. Please check the number.",
+    "alertItemsLoaded": "Invoice items loaded for crediting."
   }
+
+
+
+
 
  
 
