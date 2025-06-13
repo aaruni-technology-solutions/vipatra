@@ -525,49 +525,79 @@
   }
   },
  
+
   "expenses": {
-    "manageTitle": "Expense Management",
-    "manageSubtitle": "Record and track your business and vendor expenses.",
-    "recordNewExpenseBtn": "Record New Expense",
-    "initialView": {
-      "title": "Track Your Expenses",
-      "subtitle": "No expenses recorded yet, or list of recent expenses will appear here.",
-      "tablePlaceholder": "Expense list table will appear here..."
+    "pageTitle": "Expense Management", 
+    "pageSubtitle": "Record and track your business, vendor, and mileage expenses.",
+    "tabExpense": "Record Expense",
+    "tabMileage": "Record Mileage",
+    "mileagePreferencesLink": "Set Mileage Preferences", 
+
+    "initialView": { 
+      "title": "Track Your Expenses & Mileage",
+      "subtitle": "Select a category above to start recording.",
+      "tablePlaceholder": "Recent expenses/mileage entries will appear here..."
     },
-    "newExpenseForm": {
+
+    "recordExpenseForm": { 
       "title": "Record New Expense",
-      "expenseDateLabel": "Expense Date",
+      "dateLabel": "Expense Date",
       "categoryLabel": "Category",
       "selectCategoryOption": "-- Select Category --",
-      "categories": {
+      "categories": { 
         "officeSupplies": "Office Supplies",
         "rentUtilities": "Rent & Utilities",
-        "travel": "Travel",
-        "softwareSubscriptions": "Software/Subscriptions",
-        "marketing": "Marketing & Advertising",
-        "vendorPayment": "Vendor Payment (Goods/Services)",
+       
         "other": "Other"
       },
-      "vendorNameLabel": "Vendor Name (Optional)",
-      "vendorNamePlaceholder": "E.g., OfficeMax, AWS",
+      "itemizeLabel": "Itemize this expense?", 
       "amountLabel": "Amount (INR)",
-      "descriptionLabel": "Description",
-      "descriptionPlaceholder": "Briefly describe the expense",
-      "attachReceiptLabel": "Attach Receipt(s) (Optional)",
-      "uploadFile": "Upload a file",
-      "dragAndDrop": "or drag and drop",
-      "maxFileSize": "Max 5MB per file",
-      "noFileChosen": "No file chosen",
-      "reimbursableLegend": "Reimbursable / Billable (Optional)",
-      "isReimbursableLabel": "This expense is reimbursable / billable to a client/project",
-      "linkToClientLabel": "Link to Customer/Client",
-      "selectCustomerOption": "-- Select Customer --",
-      "linkToProjectLabel": "Link to Project (Optional)",
-      "linkToProjectPlaceholder": "Project Name or ID",
-      "saveExpenseBtn": "Save Expense",
-      "expenseSavedMsg": "Expense saved (check console)!"
-    }
-  },
+      "invoiceNoLabel": "Invoice# (Optional)",
+      "notesLabel": "Notes",
+      "notesPlaceholder": "Max. 500 characters",
+      "customerNameLabel": "Customer Name (Billable To)",
+      "attachReceiptLabel": "Drag or Drop your Receipts",
+      "maxFileSize": "Maximum file size allowed is 10MB",
+      "saveExpenseBtn": "Save Expense"
+    },
+
+    "recordMileageForm": { 
+      "title": "Record Mileage",
+      "dateLabel": "Date",
+      "employeeLabel": "Employee (Optional)", 
+      "calculateUsingLabel": "Calculate mileage using",
+      "distanceTravelled": "Distance travelled",
+      "odometerReading": "Odometer reading",
+      "distanceLabel": "Distance",
+      "unitKilometers": "Kilometer(s)",
+      "unitMiles": "Mile(s)",
+      "startOdometerLabel": "Start Odometer",
+      "endOdometerLabel": "End Odometer",
+      "amountLabel": "Amount (INR)", 
+      "invoiceNoLabel": "Invoice# (For Reimbursement, Optional)",
+      "notesLabel": "Notes",
+      "customerNameLabel": "Customer Name (Billable To, Optional)",
+      "saveMileageBtn": "Save Mileage"
+    },
+
+    "mileagePreferences": {
+      "title": "Mileage Preferences",
+      "defaultAccountLabel": "Default Mileage Account", 
+      "selectAccountOption": "-- Select Account --",
+      "defaultUnitLabel": "Default Unit",
+      "unitKm": "Km",
+      "unitMile": "Mile",
+      "ratesTitle": "Mileage Rates",
+      "ratesDescription": "Any mileage expense recorded on or after the start date will have the corresponding mileage rate. You can create a default rate (created without specifying a date), which will be applicable for mileage expenses recorded before the initial start date.",
+      "startDate": "Start Date",
+      "mileageRate": "Mileage Rate (INR per unit)",
+      "actions": "More Actions",
+      "addRateBtn": "Add Mileage Rate",
+      "savePreferencesBtn": "Save Preferences"
+    },
+    "alertFormSubmitted": "Data logged (check console)!" 
+  }
+,
   
  
   "inventoryDashboard": {

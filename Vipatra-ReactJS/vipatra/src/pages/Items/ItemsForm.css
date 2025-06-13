@@ -1,97 +1,122 @@
-/* This class will be added to the <form> element */
+/* =================================================================== */
+/* ==      1. Main Page Layout (Elegant & Consistent)             == */
+/* =================================================================== */
+
+.items-page-layout {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "page-header"
+        "main-content";
+    gap: 2rem;
+}
+
+.page-header {
+    grid-area: page-header;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Allows stacking on small screens */
+    gap: 1rem;
+}
+
+.main-content {
+    grid-area: main-content;
+}
+
+/* =================================================================== */
+/* ==   2. "Beautiful" Create Item Form Grid (Modern App Style)   == */
+/* =================================================================== */
+
+.create-item-form-container {
+    --form-main-column-width: 2fr; /* Main fields are twice as wide */
+    --form-side-column-width: 1fr; /* Side fields are narrower */
+    --form-column-gap: 2.5rem;   /* Generous gap for a clean look */
+    --form-row-gap: 1.5rem;
+}
+
 .create-item-grid {
     display: grid;
-    /* Define a gap between all grid items. This replaces Tailwind's space-y-6 */
-    gap: 1.5rem; /* 24px */
-
-    /* --- MOBILE FIRST LAYOUT (Default: Single Column) --- */
-    /* All items will stack vertically by default */
-    grid-template-columns: 1fr;
+    gap: var(--form-row-gap);
+    grid-template-columns: 1fr; /* Mobile-first: single column */
+    /* Define all areas for clarity */
     grid-template-areas:
         "type"
         "name"
         "unit"
+        "pricing"
+        "taxation"
         "goods-fields"
         "service-fields"
         "sub-fields"
         "image-upload"
-        "pricing-fields"
         "description"
         "actions";
 }
 
-/* Assign each form group to its named area */
+/* --- Area Assignments (No change needed here) --- */
 .form-group-type          { grid-area: type; }
 .form-group-name          { grid-area: name; }
 .form-group-unit          { grid-area: unit; }
+.form-group-pricing       { grid-area: pricing; }
+.form-group-taxation      { grid-area: taxation; }
 .form-group-goods         { grid-area: goods-fields; }
 .form-group-service       { grid-area: service-fields; }
 .form-group-subscription  { grid-area: sub-fields; }
 .form-group-image-upload  { grid-area: image-upload; }
-.form-group-pricing       { grid-area: pricing-fields; }
 .form-group-description   { grid-area: description; }
-.form-actions             { grid-area: actions; }
+.form-actions-wrapper     { grid-area: actions; }
 
-/* The conditional fieldsets might not be direct children.
-   We make sure that if a grid-area element is empty/hidden, it doesn't take up space. */
+
+/* --- Advanced Desktop Layout (The "Beautiful" Part) --- */
+@media (min-width: 1024px) {
+    .create-item-grid {
+        /* Define a two-panel layout */
+        grid-template-columns: var(--form-main-column-width) var(--form-side-column-width);
+        column-gap: var(--form-column-gap);
+
+        /* "Draw" the new layout. Notice how some items span, and others are in the side column. */
+        grid-template-areas:
+            "type            image-upload"
+            "name            image-upload"
+            "unit            description"
+            "pricing         description"
+            "taxation        description"
+            "goods-fields    ."
+            "service-fields  ."
+            "sub-fields      ."
+            "actions         ."; /* Actions aligned with the main column */
+    }
+}
+
+/* --- Styling for Sections and Fieldsets --- */
+.form-fieldset {
+    border: 1px solid #e5e7eb; /* Softer border */
+    border-radius: 0.75rem; /* Rounded corners */
+    padding: 1.5rem;
+    margin-top: 0; /* Override default margins */
+}
+.form-fieldset legend {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 600;
+    padding: 0 0.5rem;
+    margin-left: -0.5rem; /* Align legend with padding */
+    color: var(--color-primary); /* Use your theme color */
+}
+
+/* Style the conditional fieldsets to have a consistent look */
 .form-group-goods,
 .form-group-service,
 .form-group-subscription {
-    /* If a fieldset is not rendered by React, its container will be empty.
-       This ensures it collapses and doesn't leave a gap. */
-    display: contents;
-}
-.form-group-goods > fieldset,
-.form-group-service > fieldset,
-.form-group-subscription > fieldset {
-    /* Target the actual fieldset within the container */
-    margin-top: 0; /* Remove default margins that might interfere */
+    display: contents; /* Ensures they don't add an extra layout layer */
 }
 
-/* Style the action buttons container */
-.form-actions {
-    /* Use flexbox inside the grid area to align the buttons */
+/* --- Final Polish for Actions --- */
+.form-actions-wrapper {
     display: flex;
-    justify-content: flex-end; /* Aligns buttons to the right */
-    gap: 0.75rem; /* 12px gap between buttons */
-    padding-top: 1rem;
-}
-
-
-/* --- DESKTOP LAYOUT (e.g., for screens 768px and wider) --- */
-@media (min-width: 768px) {
-    .create-item-grid {
-        /* Create a two-column layout */
-        grid-template-columns: 1fr 1fr;
-        /* Redraw the entire layout for desktop! This is the power of grid-template-areas. */
-        grid-template-areas:
-            "type           type"
-            "name           unit"
-            "goods-fields   goods-fields"
-            "service-fields service-fields"
-            "sub-fields     sub-fields"
-            "pricing-fields pricing-fields"
-            "image-upload   description"
-            "actions        actions";
-
-        /* Increase the gap for larger screens */
-        gap: 1rem 2rem; /* 16px row gap, 32px column gap */
-    }
-
-    /* Example of a more complex desktop layout if you wanted side-by-side pricing */
-    /*
-    @media (min-width: 1024px) {
-        .create-item-grid {
-            grid-template-areas:
-                "type           type"
-                "name           unit"
-                "goods-fields   goods-fields"
-                "service-fields service-fields"
-                "sub-fields     sub-fields"
-                "pricing-fields image-upload"
-                "pricing-fields description"
-                ".              actions"; // Push actions to the right column
-        }
-    }
-    */
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 1rem;
 }
