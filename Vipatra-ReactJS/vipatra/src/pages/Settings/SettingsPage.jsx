@@ -2,9 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // For handling hash navigation
 import { useTranslation } from 'react-i18next';
-import Header from '../../components/layout/Header';
-// Not using the main Sidebar here, as Settings has its own sub-navigation
-import Footer from '../../components/layout/Footer';
 
 // Define settings sections with icons
 const settingsSectionsConfig = [
@@ -24,22 +21,20 @@ const SettingsPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    // Determine active section from URL hash or default to the first one
     const getActiveSectionFromHash = () => {
-        const hash = location.hash.substring(1); // Remove #
+        const hash = location.hash.substring(1);
         return settingsSectionsConfig.find(s => s.id === hash) ? hash : settingsSectionsConfig[0].id;
     };
 
     const [activeSection, setActiveSection] = useState(getActiveSectionFromHash());
 
-    // Update active section if hash changes (e.g., browser back/forward)
     useEffect(() => {
         setActiveSection(getActiveSectionFromHash());
     }, [location.hash]);
 
     const handleSectionChange = (sectionId) => {
         setActiveSection(sectionId);
-        navigate(`#${sectionId}`); // Update URL hash
+        navigate(`#${sectionId}`);
     };
 
     // --- Dummy state for Organization Profile ---
@@ -62,32 +57,28 @@ const SettingsPage = () => {
     const [enableEInvoicing, setEnableEInvoicing] = useState(false);
     const [eInvoiceProvider, setEInvoiceProvider] = useState('');
     const [gspUsername, setGspUsername] = useState('');
-    const [gspPassword, setGspPassword] = useState(''); // In real app, never store/display actual passwords
+    const [gspPassword, setGspPassword] = useState('');
     const [gspApiEndpoint, setGspApiEndpoint] = useState('');
     const [testConnectionStatus, setTestConnectionStatus] = useState('');
 
 
     const handleOrgProfileSubmit = (e) => {
         e.preventDefault();
-        console.log("Organization Profile Saved:", { orgName, orgIndustry /* ... more fields */ });
         alert("Organization Profile Saved!");
     };
-
-    const handleUserManagementSubmit = (e) => { /* Placeholder */ e.preventDefault(); };
+    
     const handleEInvoiceSettingsSubmit = (e) => {
         e.preventDefault();
-        console.log("e-Invoicing Settings Saved:", { enableEInvoicing, eInvoiceProvider, gspUsername, gspApiEndpoint });
         alert("e-Invoicing Settings Saved!");
-        setTestConnectionStatus(''); // Clear test status on save
+        setTestConnectionStatus('');
     };
+
     const handleTestConnection = () => {
         setTestConnectionStatus(t('common.testing', 'Testing...'));
         setTimeout(() => {
-            // Simulate API call result
             setTestConnectionStatus(Math.random() > 0.5 ? t('common.connectionSuccessful', 'Connection Successful!') : t('common.connectionFailed', 'Connection Failed. Check details.'));
         }, 2000);
-    }
-
+    };
 
     const renderSectionContent = () => {
         switch (activeSection) {
@@ -179,7 +170,6 @@ const SettingsPage = () => {
                         </div>
                     </section>
                 );
-            // Add cases for other sections, rendering placeholder content for now
             case 'invoiceCustomization': return <section id="invoiceCustomizationSection" className="settings-section"><div className="dashboard-card"><h3 className="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">{t('settings.invoiceCustomization.title')}</h3><p className="font-sans text-secondary mb-4">{t('settings.invoiceCustomization.description')}</p><div className="mt-6 bg-background p-6 rounded-lg text-center">{t('settings.invoiceCustomization.placeholder')}</div></div></section>;
             case 'taxSettings': return <section id="taxSettingsSection" className="settings-section"><div className="dashboard-card"><h3 className="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">{t('settings.taxSettingsContent.title')}</h3><div className="mt-6 bg-background p-6 rounded-lg text-center">{t('settings.taxSettingsContent.placeholder')}</div></div></section>;
             case 'paymentGateways': return <section id="paymentGatewaysSection" className="settings-section"><div className="dashboard-card"><h3 className="text-2xl font-heading text-primary mb-6 border-b border-borderLight pb-3">{t('settings.paymentGatewaysContent.title')}</h3><div className="mt-6 bg-background p-6 rounded-lg text-center">{t('settings.paymentGatewaysContent.placeholder')}</div></div></section>;
@@ -192,32 +182,37 @@ const SettingsPage = () => {
 
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <Header />
-            <div className="flex flex-1 overflow-hidden">
-                {/* Settings Sub-Navigation Sidebar */}
-                <aside id="settingsSidebar" className="w-72 bg-cardBg p-6 border-r border-borderLight shadow-sm hidden md:block flex-shrink-0 overflow-y-auto">
-                    <h2 className="text-xl font-heading text-primary mb-6 font-semibold">{t('settings.sidebarTitle')}</h2>
-                    <nav className="space-y-1.5">
-                        {settingsSectionsConfig.map(section => (
-                            <button // Changed from <a> to <button> for non-navigation SPA behavior
-                                key={section.id}
-                                onClick={() => handleSectionChange(section.id)}
-                                className={`settings-nav-link w-full flex items-center space-x-3 text-left ${activeSection === section.id ? 'settings-nav-link-active' : ''}`}
-                            >
-                                {section.icon}
-                                <span className="whitespace-nowrap overflow-hidden text-ellipsis">{t(section.labelKey)}</span>
-                            </button>
-                        ))}
-                    </nav>
-                </aside>
-
-                {/* Settings Content Area */}
-                <main id="settingsContent" className="flex-1 p-6 sm:p-10 overflow-y-auto">
-                    {renderSectionContent()}
-                </main>
+        <div className="p-6 sm:p-10">
+            {/* Page Header */}
+            <div className="mb-8">
+                <h2 className="text-3xl font-heading text-primary font-semibold">{t('settings.sidebarTitle', 'Settings')}</h2>
+                <p className="text-secondary font-sans mt-1">{t('settings.pageSubtitle', 'Manage your organization, users, and system preferences.')}</p>
             </div>
-            <Footer />
+
+            {/* Horizontal Navigation Tabs */}
+            <div className="border-b border-borderLight mb-8">
+                <nav className="-mb-px flex space-x-6 overflow-x-auto" aria-label="Tabs">
+                    {settingsSectionsConfig.map(section => (
+                        <button
+                            key={section.id}
+                            onClick={() => handleSectionChange(section.id)}
+                            className={`whitespace-nowrap flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors duration-200 ease-in-out focus:outline-none ${
+                                activeSection === section.id
+                                    ? 'border-primary text-primary'
+                                    : 'border-transparent text-secondary hover:text-primary hover:border-gray-300'
+                            }`}
+                        >
+                            {section.icon}
+                            <span>{t(section.labelKey)}</span>
+                        </button>
+                    ))}
+                </nav>
+            </div>
+
+            {/* Settings Content Area */}
+            <div id="settingsContent">
+                {renderSectionContent()}
+            </div>
         </div>
     );
 };

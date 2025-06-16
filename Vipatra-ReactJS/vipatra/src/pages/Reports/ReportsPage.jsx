@@ -1,10 +1,6 @@
 // src/pages/Reports/ReportsPage.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import Header from '../../components/layout/Header';
-import Sidebar from '../../components/layout/Sidebar'; 
-import Footer from '../../components/layout/Footer';
 
 // Define report categories with their details and icons
 const reportCategories = [
@@ -16,10 +12,9 @@ const reportCategories = [
     { id: 'expenseReports', titleKey: 'reports.categories.expense.title', descriptionKey: 'reports.categories.expense.description', icon: <svg className="w-8 h-8 mb-3 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> },
 ];
 
-
 const ReportsPage = () => {
     const { t } = useTranslation();
-    const [selectedReportType, setSelectedReportType] = useState(null); 
+    const [selectedReportType, setSelectedReportType] = useState(null);
 
     const handleShowReportSection = (reportId) => {
         setSelectedReportType(reportId);
@@ -59,38 +54,30 @@ const ReportsPage = () => {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <Header />
-           
-            <div className="flex flex-1 overflow-hidden">
-                <Sidebar /> {/* Ensure "Reports" or "Analytics" is active */}
-                <main className="flex-1 p-6 sm:p-8 overflow-y-auto">
-                    <div className="mb-8">
-                        <h2 className="text-3xl font-heading text-primary">{t('reports.pageTitle')}</h2>
-                        <p className="text-secondary font-sans mt-1">{t('reports.pageSubtitle')}</p>
-                    </div>
-
-                    {!selectedReportType ? (
-                        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6"> {/* Changed to 3 columns for better look */}
-                            {reportCategories.map((category) => (
-                                <div
-                                    key={category.id}
-                                    onClick={() => handleShowReportSection(category.id)}
-                                    className="report-category-card transform hover:scale-105" // Added transform for subtle hover effect
-                                >
-                                    {category.icon}
-                                    <h3 className="text-xl font-heading text-primary mt-2 mb-1">{t(category.titleKey)}</h3>
-                                    <p className="text-xs text-secondary font-sans leading-relaxed">{t(category.descriptionKey)}</p>
-                                </div>
-                            ))}
-                        </section>
-                    ) : (
-                        renderSelectedReport()
-                    )}
-                </main>
+        <main className="p-6 sm:p-8">
+            <div className="mb-8">
+                <h2 className="text-3xl font-heading text-primary">{t('reports.pageTitle')}</h2>
+                <p className="text-secondary font-sans mt-1">{t('reports.pageSubtitle')}</p>
             </div>
-            <Footer />
-        </div>
+
+            {!selectedReportType ? (
+                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                    {reportCategories.map((category) => (
+                        <div
+                            key={category.id}
+                            onClick={() => handleShowReportSection(category.id)}
+                            className="report-category-card transform hover:scale-105" // Added transform for subtle hover effect
+                        >
+                            {category.icon}
+                            <h3 className="text-xl font-heading text-primary mt-2 mb-1">{t(category.titleKey)}</h3>
+                            <p className="text-xs text-secondary font-sans leading-relaxed">{t(category.descriptionKey)}</p>
+                        </div>
+                    ))}
+                </section>
+            ) : (
+                renderSelectedReport()
+            )}
+        </main>
     );
 };
 
