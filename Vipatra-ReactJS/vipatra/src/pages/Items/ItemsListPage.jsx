@@ -1,10 +1,12 @@
 // src/pages/Items/ItemsListPage.jsx
-import React, { useState, useRef, useEffect } from 'react'; // Added useEffect
-import { Link, useParams } from 'react-router-dom';      // Added useParams
+// src/pages/Items/ItemsListPage.jsx
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/layout/Header';
 import Sidebar from '../../components/layout/Sidebar';
 import Footer from '../../components/layout/Footer';
+import ActionHeader from '../../components/layout/ActionHeader'; // <-- ADD THIS LINE
 import './ItemsForm.css'; 
 const ItemsListPage = () => {
     const { t } = useTranslation();
@@ -134,7 +136,18 @@ const ItemsListPage = () => {
         alert(t('items.newItemForm.itemSavedMsg'));
         handleHideCreateForm();
     };
-
+    const getPageTitle = () => {
+        switch (filterType) {
+            case 'products':
+                return t('items.allProductsTitle', 'All Products');
+            case 'services':
+                return t('items.allServicesTitle', 'All Services');
+            case 'subscriptions':
+                return t('items.allSubscriptionsTitle', 'All Subscriptions');
+            default:
+                return t('items.allItemsTitle', 'All Items');
+        }
+    };
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -142,49 +155,36 @@ const ItemsListPage = () => {
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar />
                 <main className="flex-1 p-6 sm:p-8 overflow-y-auto">
-                    <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                        <div>
-                            <h2 className="text-3xl font-heading text-primary">
-                                {filterType === 'products' ? t('items.manageProductsTitle', 'Manage Products') :
-                                 filterType === 'services' ? t('items.manageServicesTitle', 'Manage Services') :
-                                 filterType === 'subscriptions' ? t('items.manageSubscriptionsTitle', 'Manage Subscriptions') :
-                                 t('items.manageTitle')}
-                            </h2>
-                            <p className="text-secondary font-sans mt-1">{t('items.manageSubtitle')}</p>
-                        </div>
-                        {!showCreateForm && (
-                             <div className="mt-4 sm:mt-0">
-                                <button
-                                    onClick={() => handleShowCreateForm(filterType || 'goods')}
-                                    className="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-6 py-3 rounded-lg shadow-soft transition-colors duration-200 flex items-center space-x-2"
-                                >
-                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                    <span>{t('items.createItemBtn')}</span>
-                                </button>
-                            </div>
-                        )}
-                    </div>
 
-                    {!showCreateForm && (
-                        <div id="itemInitialView" className="dashboard-card">
-                            <div className="text-center py-10">
-                                <svg className="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5a2 2 0 012 2v5a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2zm0 10h.01M17 17h.01M17 13h5a2 2 0 012 2v5a2 2 0 01-2 2h-5a2 2 0 01-2-2v-5a2 2 0 012-2zm0 10h.01M7 13H2v5a2 2 0 002 2h5a2 2 0 002-2v-5H7z"></path></svg>
-                                <h3 className="text-lg font-heading text-primary">
-                                    {filterType === 'products' ? t('items.showingProducts', 'Showing Products') :
-                                     filterType === 'services' ? t('items.showingServices', 'Showing Services') :
-                                     filterType === 'subscriptions' ? t('items.showingSubscriptions', 'Showing Subscriptions') :
-                                     t('items.initialView.title')}
-                                </h3>
-                                <p className="text-sm text-secondary font-sans">{t('items.initialView.subtitle')}</p>
-                                <div className="mt-6 border border-borderDefault rounded-lg p-4 text-left">
-                                    <p className="text-center text-secondary">{t('items.initialView.tablePlaceholder')}</p>
-                                    {/* Actual item table would go here, filtered by `filterType` */}
+{!showCreateForm ? (
+                        // This block shows when you are viewing the list
+                        <>
+                            {/* 1. Add the new ActionHeader component here */}
+                            <ActionHeader 
+                                title={getPageTitle()}
+                                onNewClick={() => handleShowCreateForm(filterType || 'goods')}
+                            />
+
+                            {/* 2. Your existing list view */}
+                            <div id="itemInitialView" className="dashboard-card">
+                                <div className="text-center py-10">
+                                    <svg className="w-12 h-12 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5a2 2 0 012 2v5a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2zm0 10h.01M17 17h.01M17 13h5a2 2 0 012 2v5a2 2 0 01-2 2h-5a2 2 0 01-2-2v-5a2 2 0 012-2zm0 10h.01M7 13H2v5a2 2 0 002 2h5a2 2 0 002-2v-5H7z"></path></svg>
+                                    <h3 className="text-lg font-heading text-primary">
+                                        {filterType === 'products' ? t('items.showingProducts', 'Showing Products') :
+                                         filterType === 'services' ? t('items.showingServices', 'Showing Services') :
+                                         filterType === 'subscriptions' ? t('items.showingSubscriptions', 'Showing Subscriptions') :
+                                         t('items.initialView.title')}
+                                    </h3>
+                                    <p className="text-sm text-secondary font-sans">{t('items.initialView.subtitle')}</p>
+                                    <div className="mt-6 border border-borderDefault rounded-lg p-4 text-left">
+                                        <p className="text-center text-secondary">{t('items.initialView.tablePlaceholder')}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )}
+                        </>
+                    ) : (
 
-                    {showCreateForm && (
+                 
                         <div id="createItemFormContainer" className="mt-0">
                             <section className="dashboard-card">
                                 <div className="flex justify-between items-center mb-6">
@@ -381,3 +381,4 @@ const ItemsListPage = () => {
 };
 
 export default ItemsListPage; // Or ItemsPage
+

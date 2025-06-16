@@ -206,6 +206,7 @@
   },
   "common": {
     "or": "OR",
+     "help": "Help",
     "fullName": "Full Name",
     "phoneNumber": "Phone Number",
     "emailAddress": "Email Address",
@@ -1012,7 +1013,20 @@
     "alertFormSubmitted": "Credit Note data logged (check console)!",
     "alertInvoiceNotFound": "Invoice not found. Please check the number.",
     "alertItemsLoaded": "Invoice items loaded for crediting."
+  },
+  
+ 
+  "actionHeader": {
+    "newDefault": "New", 
+    "moreActions": "More actions",
+    "sortBy": "Sort by",
+    "import": "Import",
+    "export": "Export",
+    "preferences": "Preferences",
+    "refreshList": "Refresh List",
+    "resetColumnWidth": "Reset Column Width"
   }
+
 
 
 

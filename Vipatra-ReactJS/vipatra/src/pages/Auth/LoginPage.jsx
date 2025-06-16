@@ -27,8 +27,6 @@ const AppLogo = ({ appName }) => {
         </div>
     );
 };
-
-
 const LoginPage = () => {
     // const { t, i18n } = useTranslation(); // For when you add translations
     const navigate = useNavigate();

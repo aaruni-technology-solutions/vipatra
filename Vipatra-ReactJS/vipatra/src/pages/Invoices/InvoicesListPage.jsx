@@ -1,13 +1,12 @@
 // src/pages/Invoices/InvoicesListPage.jsx
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/layout/Header';
 import Sidebar from '../../components/layout/Sidebar';
 import Footer from '../../components/layout/Footer';
-// Icons (assuming you have an icon library or SVGs)
-import { EyeIcon, PencilIcon, DotsVerticalIcon, DocumentDownloadIcon, MailIcon, DuplicateIcon, XCircleIcon, CheckCircleIcon, CashIcon } from '@heroicons/react/outline'; // Example with Heroicons
-// If not using heroicons, replace with your SVG components or paths
+import ActionHeader from '../../components/layout/ActionHeader'; // <-- 1. IMPORT THE COMPONENT
+import { EyeIcon, PencilIcon, DotsVerticalIcon, DocumentDownloadIcon, MailIcon, DuplicateIcon, XCircleIcon, CheckCircleIcon, CashIcon } from '@heroicons/react/outline';
 
 // Dummy data - replace with API call
 const initialInvoices = [
@@ -18,7 +17,7 @@ const initialInvoices = [
     { id: "INV-2024-0074", customer: "GreenScape Gardens", issueDate: "Apr 28, 2024", dueDate: "May 13, 2024", amount: "4,200.00", status: "Draft", statusKey: "status.draft", statusClass: "status-draft" },
 ];
 
-const summaryStatsData = { // Dummy data
+const summaryStatsData = {
     totalInvoices: 152,
     totalOutstanding: "85,300",
     overdueAmount: "12,750",
@@ -27,7 +26,7 @@ const summaryStatsData = { // Dummy data
 
 const InvoicesListPage = () => {
     const { t } = useTranslation();
-    const navigate = useNavigate(); // For programmatic navigation
+    const navigate = useNavigate();
     const [invoices, setInvoices] = useState(initialInvoices);
     const [selectedInvoices, setSelectedInvoices] = useState([]);
     const [selectAll, setSelectAll] = useState(false);
@@ -43,13 +42,18 @@ const InvoicesListPage = () => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [openActionDropdown]);
 
-    const handleSelectAll = (e) => { /* ... same as before ... */ };
-    const handleSelectSingle = (e, invoiceId) => { /* ... same as before ... */ };
-    useEffect(() => { /* ... same as before for selectAll logic ... */ }, [selectedInvoices, invoices]);
+    const handleSelectAll = (e) => { /* ... */ };
+    const handleSelectSingle = (e, invoiceId) => { /* ... */ };
+    useEffect(() => { /* ... */ }, [selectedInvoices, invoices]);
 
     const toggleInvoiceActions = (invoiceId, event) => {
         event.stopPropagation();
         setOpenActionDropdown(openActionDropdown === invoiceId ? null : invoiceId);
+    };
+    
+    // Function to handle the "New" button click in the ActionHeader
+    const handleNewInvoiceClick = () => {
+        navigate('/invoices/new');
     };
 
     return (
@@ -58,24 +62,23 @@ const InvoicesListPage = () => {
             <div className="flex flex-1 overflow-hidden">
                 <Sidebar />
                 <main className="flex-1 p-6 sm:p-8 overflow-y-auto">
+                    
+                    {/* 2. REPLACE THE OLD HEADER BLOCK */}
+                    {/* 
                     <div className="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                        <div>
-                            <h2 className="text-3xl font-heading text-primary">{t('invoices.allInvoicesTitle')}</h2>
-                            <p className="text-secondary font-sans mt-1">{t('invoices.allInvoicesSubtitle')}</p>
-                        </div>
-                        <div className="mt-4 sm:mt-0">
-                            <Link
-                                to="/invoices/new"
-                                className="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-150 flex items-center space-x-2 text-sm"
-                            >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span>{t('invoices.createNewInvoiceBtn')}</span>
-                            </Link>
-                        </div>
+                        ... (Old title and button code was here) ...
                     </div>
+                    */}
 
-                    {/* Filters and Search Section - More compact */}
+                    {/* 3. INSERT THE NEW ACTIONHEADER COMPONENT */}
+                    <ActionHeader 
+                        title={t('invoices.allInvoicesTitle', 'All Invoices')}
+                        onNewClick={handleNewInvoiceClick}
+                    />
+
+                    {/* Filters and Search Section */}
                     <section className="filter-section-card">
+                        {/* ... (no changes to the filter section) ... */}
                         <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
                             <div className="lg:col-span-2">
                                 <label htmlFor="searchInvoice" className="block text-xs font-medium text-primary mb-1">{t('common.search')}</label>
@@ -86,7 +89,6 @@ const InvoicesListPage = () => {
                                 <select id="statusFilter" name="statusFilter" className="form-element !p-2 text-sm">
                                     <option value="">{t('common.allStatuses')}</option>
                                     <option value="draft">{t('status.draft')}</option>
-                                    {/* ... other statuses ... */}
                                      <option value="sent">{t('status.sent')}</option>
                                     <option value="viewed">{t('status.viewed')}</option>
                                     <option value="partial">{t('status.partial')}</option>
@@ -95,12 +97,11 @@ const InvoicesListPage = () => {
                                     <option value="void">{t('status.void')}</option>
                                 </select>
                             </div>
-                            <div> {/* Date Range - can be a single Date Range Picker component later */}
+                            <div>
                                 <label htmlFor="dateStart" className="block text-xs font-medium text-primary mb-1">{t('common.dateRangeIssue')}</label>
                                 <input type="date" id="dateStart" name="dateStart" className="form-element !p-2 text-sm" />
-                                {/* You might use a proper date range picker component here */}
                             </div>
-                            <div className="flex space-x-2 items-end"> {/* Buttons aligned to the bottom of their grid cell */}
+                            <div className="flex space-x-2 items-end">
                                 <button type="submit" className="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-4 py-2 rounded-lg shadow-sm text-sm w-full">
                                     {t('common.apply')}
                                 </button>
@@ -111,7 +112,7 @@ const InvoicesListPage = () => {
                         </form>
                     </section>
 
-                    {/* Bulk Actions Bar - slightly more refined */}
+                    {/* Bulk Actions Bar */}
                     {selectedInvoices.length > 0 && (
                         <div className="mb-6 bg-primary/5 p-3 rounded-lg flex flex-wrap items-center gap-x-4 gap-y-2 border border-primary/20">
                             <span className="text-sm font-medium text-primary">{t('invoices.withSelected', { count: selectedInvoices.length })}</span>
@@ -129,16 +130,18 @@ const InvoicesListPage = () => {
                         </div>
                     )}
 
-                    {/* Summary Stats - using new card style */}
+
+                    {/* Summary Stats */}
                     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        {/* ... (no changes to the summary stats section) ... */}
                         <div className="summary-stat-card"><p>{t('invoices.totalInvoices')}</p><p>{summaryStatsData.totalInvoices}</p></div>
                         <div className="summary-stat-card"><p>{t('invoices.totalOutstanding')}</p><p className="text-danger-DEFAULT">₹{summaryStatsData.totalOutstanding}</p></div>
                         <div className="summary-stat-card"><p>{t('invoices.overdueAmount')}</p><p className="text-danger-dark">₹{summaryStatsData.overdueAmount}</p></div>
                         <div className="summary-stat-card"><p>{t('invoices.paidThisMonth')}</p><p className="text-success-dark">₹{summaryStatsData.paidThisMonth}</p></div>
                     </section>
 
-                    {/* Invoice Table - with .invoice-table for specific styling */}
-                    <div className="dashboard-card overflow-x-auto p-0"> {/* Removed padding here, table cells will have it */}
+                    {/* Invoice Table */}
+ <div className="dashboard-card overflow-x-auto p-0"> {/* Removed padding here, table cells will have it */}
                         <table className="invoice-table w-full min-w-[900px] text-sm font-sans">
                             <thead>
                                 <tr>
@@ -189,8 +192,8 @@ const InvoicesListPage = () => {
                         {invoices.length === 0 && (<p className="text-center text-secondary py-10">{t('invoices.noInvoicesFound')}</p>)}
                     </div>
 
-                    {/* Pagination - Slightly more styled */}
-                    <div className="mt-8 flex flex-col sm:flex-row justify-between items-center font-sans text-sm text-secondary">
+                    {/* Pagination */}
+                     <div className="mt-8 flex flex-col sm:flex-row justify-between items-center font-sans text-sm text-secondary">
                         <span>{t('pagination.showingRange', { start: 1, end: Math.min(10, invoices.length), total: invoices.length })}</span>
                         <div className="flex space-x-1 mt-3 sm:mt-0">
                             <button className="px-3 py-1.5 border border-borderDefault rounded-md hover:bg-background disabled:opacity-50 disabled:cursor-not-allowed text-xs" disabled>{t('pagination.previous')}</button>
