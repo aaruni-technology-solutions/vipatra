@@ -38,10 +38,10 @@ const Header = () => {
         <nav className="hidden md:flex space-x-4 font-sans">
           {/* Use NavLink for active class styling with React Router */}
           <NavLink to="/dashboard" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.dashboard', 'Dashboard')}</NavLink>
-          <NavLink to="/billing/create-invoice" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.billing', 'Billing')}</NavLink>
+          <NavLink to="/invoices" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.billing', 'Billing')}</NavLink>
           <NavLink to="/inventory" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.inventory', 'Inventory')}</NavLink>
          
-          <NavLink to="/analytics" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.analytics', 'Analytics')}</NavLink>
+          
           <NavLink to="/settings" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.settings', 'Settings')}</NavLink>
           <NavLink to="/support" className={({ isActive }) => isActive ? "nav-link nav-link-active" : "nav-link"}>{t('nav.support', 'Support')}</NavLink>
         </nav>

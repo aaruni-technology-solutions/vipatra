@@ -1,109 +1,101 @@
-// src/pages/PackingSlips/PackingSlipsListPage.jsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import ActionHeader from '../../components/layout/ActionHeader'; // 1. IMPORT THE ACTION HEADER
-
-// 2. DUMMY DATA FOR THE LIST VIEW
-const initialPackingSlips = [
-    { id: 1, customerName: 'Wellness Clinic Pvt. Ltd.', invoiceNo: 'INV-2024-0078', packingSlipNo: 'PS-0012', date: '2024-05-11' },
-    { id: 2, customerName: 'Tech Solutions Inc.', invoiceNo: 'INV-2024-0075', packingSlipNo: 'PS-0011', date: '2024-05-02' },
-    { id: 3, customerName: 'GreenScape Gardens', invoiceNo: 'INV-2024-0074', packingSlipNo: 'PS-0010', date: '2024-04-29' },
-];
+import ActionHeader from '../../components/layout/ActionHeader';
+import { PencilIcon } from '@heroicons/react/outline';
 
 const PackingSlipsListPage = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [packingSlips, setPackingSlips] = useState(initialPackingSlips);
 
-    // 3. NAVIGATION HANDLER FOR THE "NEW" BUTTON
+    // Added more dummy data to ensure vertical scrolling is visible
+    const initialPackingSlips = [
+        { id: 1, customerName: 'Wellness Clinic Pvt. Ltd.', invoiceNo: 'INV-2024-0078', packingSlipNo: 'PS-0012', date: '2024-05-11' },
+        { id: 2, customerName: 'Tech Solutions Inc.', invoiceNo: 'INV-2024-0075', packingSlipNo: 'PS-0011', date: '2024-05-02' },
+        { id: 3, customerName: 'GreenScape Gardens & Landscaping', invoiceNo: 'INV-2024-0074', packingSlipNo: 'PS-0010', date: '2024-04-29' },
+        { id: 4, customerName: 'Modern Apparel & Fashion House', invoiceNo: 'INV-2024-0073', packingSlipNo: 'PS-0009', date: '2024-04-26' },
+        { id: 5, customerName: 'Coastal Exporters International', invoiceNo: 'INV-2024-0072', packingSlipNo: 'PS-0008', date: '2024-04-23' },
+        { id: 6, customerName: 'Phoenix Digital Solutions', invoiceNo: 'INV-2024-0071', packingSlipNo: 'PS-0007', date: '2024-04-21' },
+        { id: 7, customerName: 'City Bakers & Confectionery', invoiceNo: 'INV-2024-0070', packingSlipNo: 'PS-0006', date: '2024-04-19' },
+        { id: 8, customerName: 'Sunrise Hotels Group', invoiceNo: 'INV-2024-0069', packingSlipNo: 'PS-0005', date: '2024-04-16' },
+        { id: 9, customerName: 'Quantum Innovations Ltd.', invoiceNo: 'INV-2024-0068', packingSlipNo: 'PS-0004', date: '2024-04-13' },
+        { id: 10, customerName: 'DeepSea Logistics & Shipping', invoiceNo: 'INV-2024-0067', packingSlipNo: 'PS-0003', date: '2024-04-11' },
+    ];
+    
+    const [packingSlips] = useState(initialPackingSlips);
+
     const handleNewClick = () => {
-        // This will navigate to your existing create page
         navigate('/packing-slips/new'); 
     };
-    
-    const pageStyles = `
-      .page-container-fixed-header {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow: hidden; /* Prevent body from scrolling */
-        background-color: #f9fafb; /* Or your main app background */
-      }
-      .action-header-sticky {
-        flex-shrink: 0;
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        background-color: inherit;
-        padding: 1.5rem 2rem 0; /* Match original p-6/sm:p-8, but no bottom padding */
-      }
-      .main-content-scrollable {
-        flex-grow: 1;
-        overflow-y: auto;
-        padding: 1.5rem 2rem; /* The main content's own padding */
-      }
-    `;
 
     return (
-        <div className="page-container-fixed-header">
-            <style>{pageStyles}</style>
+        // PAGE LAYOUT: Applying the standard flexbox structure
+        <div className="flex flex-col h-full">
+            <ActionHeader
+                title={t('packingSlip.allPackingSlipsTitle', 'All Packing Slips')}
+                onNewClick={handleNewClick}
+                newButtonText={t('packingSlip.newPackingSlip', 'New Packing Slip')}
+            />
 
-            <header className="action-header-sticky">
-                {/* 4. THE ACTION HEADER IS NOW IN A FIXED POSITION */}
-                <ActionHeader
-                    title={t('packingSlip.allPackingSlipsTitle', 'All Packing Slips')}
-                    onNewClick={handleNewClick}
-                />
-            </header>
-            
-            <main className="main-content-scrollable">
-                {/* 5. THE TABLE VIEW FOR PACKING SLIPS */}
-                <div className="dashboard-card">
-                    {packingSlips.length > 0 ? (
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-sm font-sans">
-                                <thead className="bg-background border-b border-borderDefault">
+            {/* MAIN CONTENT CONTAINER: Takes all available space and manages child layout */}
+            <div className="dashboard-card flex flex-col flex-grow mt-4 overflow-hidden">
+                {packingSlips.length > 0 ? (
+                    <>
+                        {/* SCROLLABLE TABLE WRAPPER: This is the element that scrolls */}
+                        <div className="flex-grow overflow-auto">
+                            <table className="w-full min-w-[900px] text-sm font-sans border-separate border-spacing-0">
+                                <thead>
                                     <tr>
-                                        <th className="p-3 text-left font-semibold text-primary">{t('packingSlip.table.date', 'Date')}</th>
-                                        <th className="p-3 text-left font-semibold text-primary">{t('packingSlip.table.packingSlipNo', 'Packing Slip #')}</th>
-                                        <th className="p-3 text-left font-semibold text-primary">{t('packingSlip.table.invoiceNo', 'Invoice #')}</th>
-                                        <th className="p-3 text-left font-semibold text-primary">{t('packingSlip.table.customerName', 'Customer Name')}</th>
-                                        <th className="p-3 text-center font-semibold text-primary">{t('common.actions', 'Actions')}</th>
+                                        {/* STICKY HEADER CELLS: Stick to the top */}
+                                        <th className="sticky top-0 z-20 bg-background p-3 text-left font-semibold text-primary border-b border-borderDefault">Date</th>
+                                        <th className="sticky top-0 z-20 bg-background p-3 text-left font-semibold text-primary border-b border-borderDefault">Packing Slip #</th>
+                                        <th className="sticky top-0 z-20 bg-background p-3 text-left font-semibold text-primary border-b border-borderDefault">Invoice #</th>
+                                        <th className="sticky top-0 z-20 bg-background p-3 text-left font-semibold text-primary border-b border-borderDefault">Customer Name</th>
+                                        
+                                        {/* STICKY CORNER CELL: Sticks to the top-right */}
+                                        <th className="sticky top-0 right-0 z-30 bg-background p-3 text-center font-semibold text-primary border-b border-borderDefault">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {packingSlips.map(slip => (
-                                        <tr key={slip.id} className="border-b border-borderLight hover:bg-background/50">
-                                            <td className="p-3 text-secondary">{slip.date}</td>
-                                            <td className="p-3">
+                                        <tr key={slip.id} className="hover:bg-background/50">
+                                            <td className="p-3 text-secondary border-b border-borderLight whitespace-nowrap">{slip.date}</td>
+                                            <td className="p-3 border-b border-borderLight whitespace-nowrap">
                                                 <Link to={`/packing-slips/${slip.id}`} className="text-primary font-medium hover:text-accent hover:underline">
                                                     {slip.packingSlipNo}
                                                 </Link>
                                             </td>
-                                            <td className="p-3 text-secondary">{slip.invoiceNo}</td>
-                                            <td className="p-3 text-secondary">{slip.customerName}</td>
-                                            <td className="p-3 text-center">
-                                                <button className="table-action-btn" title={t('actions.view', 'View')}>
-                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                                </button>
+                                            <td className="p-3 text-secondary border-b border-borderLight whitespace-nowrap">{slip.invoiceNo}</td>
+                                            <td className="p-3 text-secondary border-b border-borderLight">{slip.customerName}</td>
+                                            
+                                            {/* STICKY ACTION CELL: Sticks to the right edge */}
+                                            <td className="sticky right-0 z-10 p-3 text-center border-b border-borderLight bg-white hover:bg-background/50">
+                                                <div className="flex justify-center items-center">
+                                                    <button onClick={() => navigate(`/packing-slips/edit/${slip.id}`)} className="table-action-btn" title={t('actions.edit')}>
+                                                        <PencilIcon className="w-5 h-5" />
+                                                    </button>
+                                                </div>
                                             </td>
                                         </tr>
                                     ))}
                                 </tbody>
                             </table>
                         </div>
-                    ) : (
-                        <div className="text-center py-16">
-                            <h3 className="text-xl font-heading text-primary mb-2">{t('packingSlip.noSlipsTitle', 'No Packing Slips Found')}</h3>
-                            <p className="text-secondary font-sans mb-6">{t('packingSlip.noSlipsSubtitle', 'Create your first packing slip by clicking the "New" button.')}</p>
-                            <button onClick={handleNewClick} className="font-sans bg-primary hover:bg-primary-dark text-textOnPrimary px-5 py-2.5 rounded-lg shadow-md">
-                                {t('packingSlip.createFirstSlipBtn', 'Create Packing Slip')}
-                            </button>
+                        
+                        {/* PAGINATION: Sits outside the scrollable area */}
+                        <div className="flex-shrink-0 mt-4 flex justify-end items-center font-sans text-sm text-secondary">
+                            <span>Showing 1 to {packingSlips.length} of {packingSlips.length} packing slips</span>
                         </div>
-                    )}
-                </div>
-            </main>
+                    </>
+                ) : (
+                    <div className="flex-grow flex items-center justify-center text-center">
+                        <div>
+                            <h3 className="text-xl font-heading text-primary mb-2">{t('packingSlip.noSlipsTitle', 'No Packing Slips Found')}</h3>
+                            <p className="text-secondary font-sans mb-6">{t('packingSlip.noSlipsSubtitle', 'Create your first packing slip by clicking the "New Packing Slip" button.')}</p>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
