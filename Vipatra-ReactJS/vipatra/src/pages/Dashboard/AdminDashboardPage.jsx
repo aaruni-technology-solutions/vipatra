@@ -1,7 +1,7 @@
 // src/pages/Dashboard/AdminDashboardPage.jsx
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom'; // Added for proper navigation
+import { Link } from 'react-router-dom';
 
 // Dummy data for dashboard cards (This is page-specific, so it stays)
 const revenueData = {
@@ -37,7 +37,8 @@ const AdminDashboardPage = () => {
     // We wrap everything in a React Fragment <>...</>
     return (
         <>
-            <div className="mb-6">
+            {/* THIS IS THE MODIFIED LINE FOR THE STICKY HEADER */}
+            <div className="sticky top- z-10 bg-background py-4 mb-6">
                 <h2 className="text-3xl font-heading text-primary">{t('dashboard.adminTitle', 'Admin Dashboard')}</h2>
                 <p className="text-secondary font-sans">{t('dashboard.adminSubtitle', 'Overview of your business performance and alerts.')}</p>
             </div>
