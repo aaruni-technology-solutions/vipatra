@@ -6,14 +6,13 @@ import Alert from '../../components/common/Alert';
 
 const initialCreditItem = { id: Date.now(), description: '', qty: 1, rate: '', amount: 0 };
 
-// Dummy function (keep as is)
-const fetchInvoiceDetailsForCredit = async (invoiceNo) => { /* ... */ };
+const fetchInvoiceDetailsForCredit = async (invoiceNo) => { /* Dummy function */ };
 
 const CreditNoteCreatePage = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    // --- Form State (keep all your existing state variables) ---
+    // --- All your state and logic remains the same ---
     const [againstInvoiceNo, setAgainstInvoiceNo] = useState('');
     const [customerName, setCustomerName] = useState('');
     const [customerEmail, setCustomerEmail] = useState('');
@@ -25,45 +24,46 @@ const CreditNoteCreatePage = () => {
     const [totalCreditAmount, setTotalCreditAmount] = useState(0);
     const [formAlert, setFormAlert] = useState(null);
 
-    // --- Handlers & Logic (keep all your existing functions) ---
     const handleLoadInvoiceDetails = async () => { /* ... */ };
     const handleItemChange = (index, field, value) => { /* ... */ };
     const addItemRow = () => { /* ... */ };
     const removeItemRow = (index) => { /* ... */ };
-    useEffect(() => { /* For totalCreditAmount calculation */
+    useEffect(() => {
         let total = 0;
-        itemsToCredit.forEach(item => {
-            total += parseFloat(item.amount) || 0;
-        });
+        itemsToCredit.forEach(item => { total += parseFloat(item.amount) || 0; });
         setTotalCreditAmount(total.toFixed(2));
     }, [itemsToCredit]);
+    const handleSubmit = (e) => { e.preventDefault(); /* ... */ };
 
-    const handleSubmit = (e) => { /* ... your existing submit logic ... */ };
-
-    useEffect(() => {
-        document.title = t('creditNote.pageTitleCreate');
-    }, [t]);
+    useEffect(() => { document.title = t('creditNote.pageTitleCreate'); }, [t]);
 
 
     return (
-        <main className="p-6 sm:p-8">
-            <div className="mb-8">
+        // 1. THE PERFECT PAGE LAYOUT
+        <main className="flex flex-col h-full bg-background">
+            
+            {/* 2. THE STICKY HEADER BLOCK */}
+            <div className="sticky top-0 z-10 bg-background px-6 sm:px-8 pt-4 pb-6">
                 <h2 className="text-3xl font-heading text-primary">{t('creditNote.pageTitleCreate')}</h2>
                 <p className="text-secondary font-sans mt-1">{t('creditNote.pageSubtitle')}</p>
             </div>
+            
+            {/* 3. THE SCROLLABLE CONTENT AREA */}
+            <div className="flex-1 overflow-y-auto px-6 sm:px-8 pb-8">
 
-            {formAlert && (
-                <div className="mb-6">
-                    <Alert type={formAlert.type} message={formAlert.messageKey ? t(formAlert.messageKey) : formAlert.message} onClose={() => setFormAlert(null)} />
-                </div>
-            )}
+                {formAlert && (
+                    <div className="mb-6">
+                        <Alert type={formAlert.type} message={formAlert.messageKey ? t(formAlert.messageKey) : formAlert.message} onClose={() => setFormAlert(null)} />
+                    </div>
+                )}
 
-            {/* Single Card for the entire form */}
-            <section className="dashboard-card">
-                <form onSubmit={handleSubmit} className="space-y-8"> {/* Increased space-y for sections */}
+                <section className="dashboard-card">
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                        
+                        {/* ALL YOUR FORM SECTIONS ARE HERE, UNCHANGED */}
 
-                    {/* Section 1: Basic Information & Invoice Link */}
-                    <fieldset>
+                        {/* Section 1: Basic Information & Invoice Link */}
+                        <fieldset>
                         <legend className="form-legend">{t('creditNote.section.basicInfo', 'Basic Information')}</legend> {/* New translation key */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mt-4">
                             <div>
@@ -86,8 +86,8 @@ const CreditNoteCreatePage = () => {
                         </div>
                     </fieldset>
 
-                    {/* Section 2: Customer Details (Often auto-filled) */}
-                    <fieldset>
+                        {/* Section 2: Customer Details */}
+                       <fieldset>
                         <legend className="form-legend">{t('creditNote.customerDetails')}</legend>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mt-4">
                             <div>
@@ -101,8 +101,8 @@ const CreditNoteCreatePage = () => {
                         </div>
                     </fieldset>
 
-                    {/* Section 3: Reason for Credit */}
-                    <fieldset>
+                        {/* Section 3: Reason for Credit */}
+                       <fieldset>
                         <legend className="form-legend">{t('creditNote.reasonSectionTitle', 'Reason for Credit')}</legend> {/* New Key */}
                         <div className="mt-4">
                             <label htmlFor="reason" className="block text-sm font-medium text-primary mb-1.5 font-sans">
@@ -112,8 +112,8 @@ const CreditNoteCreatePage = () => {
                         </div>
                     </fieldset>
 
-                    {/* Section 4: Items to Credit / Adjust */}
-                    <fieldset>
+                        {/* Section 4: Items to Credit / Adjust */}
+                       <fieldset>
                         <legend className="form-legend">{t('creditNote.itemsToCredit')}</legend>
                         <div id="creditItemsContainer" className="space-y-3 mt-4"> {/* Reduced space-y */}
                             {itemsToCredit.map((item, index) => (
@@ -150,15 +150,15 @@ const CreditNoteCreatePage = () => {
                             <p className="text-xl font-heading text-primary">{t('creditNote.totalCreditAmount')} <span className="font-bold">₹{totalCreditAmount}</span></p>
                         </div>
                     </fieldset>
-
-                    {/* Section 5: Notes */}
-                    <fieldset>
+                        {/* Section 5: Notes */}
+                        <fieldset>
                         <legend className="form-legend">{t('creditNote.notesLabel')}</legend>
                         <textarea id="notesCredit" value={notes} onChange={e => setNotes(e.target.value)} rows="3" placeholder={t('creditNote.notesPlaceholder')} className="form-element mt-4"></textarea>
                     </fieldset>
 
-                    {/* Form Actions */}
-                    <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-borderLight mt-2">
+
+                        {/* Form Actions */}
+                          <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-borderLight mt-2">
                         <button type="button" onClick={() => { console.log("Preview Credit Note"); alert("Preview functionality to be implemented."); }}
                             className="font-sans bg-secondary hover:bg-secondary/80 text-textOnSecondary px-6 py-3 rounded-lg shadow-soft transition-colors duration-200 flex items-center justify-center space-x-2">
                             <span>{t('creditNote.previewCreditNoteBtn')}</span>
@@ -169,8 +169,10 @@ const CreditNoteCreatePage = () => {
                             <span>{t('creditNote.generateAndSendBtn')}</span>
                         </button>
                     </div>
-                </form>
-            </section>
+
+                    </form>
+                </section>
+            </div>
         </main>
     );
 };

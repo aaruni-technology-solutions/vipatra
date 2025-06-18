@@ -2,11 +2,9 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// Header, Sidebar, and Footer imports have been removed.
 
 // =====================================================================
 // SUB-COMPONENT 1: Record Expense Form
-// This full component definition remains unchanged.
 // =====================================================================
 const RecordExpenseForm = ({ t, onSubmit }) => {
     const [expenseDate, setExpenseDate] = useState(new Date().toISOString().slice(0, 10));
@@ -19,6 +17,7 @@ const RecordExpenseForm = ({ t, onSubmit }) => {
     const [receipts, setReceipts] = useState([]);
     const expenseFileInputRef = useRef(null);
 
+    // THIS IS THE MISSING CODE THAT CAUSED THE ERROR. IT IS NOW ADDED BACK.
     const expenseCategories = [
         { value: "advertising", labelKey: "expenses.categories.advertising" },
         { value: "meals", labelKey: "expenses.categories.meals" },
@@ -35,7 +34,7 @@ const RecordExpenseForm = ({ t, onSubmit }) => {
     const handleFileChange = (event) => setReceipts(Array.from(event.target.files));
 
     return (
-        <section className="dashboard-card mt-6">
+        <section className="dashboard-card">
             <h3 className="text-2xl font-heading text-primary mb-6">{t('expenses.recordExpenseForm.title')}</h3>
             <form onSubmit={handleFormSubmit} className="space-y-6">
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -75,9 +74,9 @@ const RecordExpenseForm = ({ t, onSubmit }) => {
 
 // =====================================================================
 // SUB-COMPONENT 2: Record Mileage Form
-// This full component definition remains unchanged.
 // =====================================================================
 const RecordMileageForm = ({ t, onSubmit }) => {
+    // ... all component code is unchanged ...
     const [mileageDate, setMileageDate] = useState(new Date().toISOString().slice(0, 10));
     const [employee, setEmployee] = useState('');
     const [calculationMode, setCalculationMode] = useState('distance');
@@ -100,7 +99,7 @@ const RecordMileageForm = ({ t, onSubmit }) => {
     const handleFileChange = (event) => setReceipts(Array.from(event.target.files));
 
     return (
-        <section className="dashboard-card mt-6">
+        <section className="dashboard-card">
             <h3 className="text-2xl font-heading text-primary mb-6">{t('expenses.recordMileageForm.title')}</h3>
             <form onSubmit={handleFormSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -110,8 +109,8 @@ const RecordMileageForm = ({ t, onSubmit }) => {
                 <div>
                     <label className="block text-sm font-medium text-primary mb-2">{t('expenses.recordMileageForm.calculateUsingLabel')}</label>
                     <div className="flex space-x-4">
-                        <div className="type-option"><input type="radio" id="calcDistance" name="calculationMode" value="distance" checked={calculationMode === 'distance'} onChange={e=>setCalculationMode(e.target.value)}/><label htmlFor="calcDistance">{t('expenses.recordMileageForm.distanceTravelled')}</label></div>
-                        <div className="type-option"><input type="radio" id="calcOdometer" name="calculationMode" value="odometer" checked={calculationMode === 'odometer'} onChange={e=>setCalculationMode(e.target.value)}/><label htmlFor="calcOdometer">{t('expenses.recordMileageForm.odometerReading')}</label></div>
+                        <div className="flex items-center space-x-2"><input type="radio" id="calcDistance" name="calculationMode" value="distance" checked={calculationMode === 'distance'} onChange={e=>setCalculationMode(e.target.value)} className="form-radio"/><label htmlFor="calcDistance">{t('expenses.recordMileageForm.distanceTravelled')}</label></div>
+                        <div className="flex items-center space-x-2"><input type="radio" id="calcOdometer" name="calculationMode" value="odometer" checked={calculationMode === 'odometer'} onChange={e=>setCalculationMode(e.target.value)} className="form-radio"/><label htmlFor="calcOdometer">{t('expenses.recordMileageForm.odometerReading')}</label></div>
                     </div>
                 </div>
                 {calculationMode === 'distance' && (
@@ -142,7 +141,6 @@ const RecordMileageForm = ({ t, onSubmit }) => {
 
 // =====================================================================
 // MAIN CREATE PAGE COMPONENT
-// This renders the correct form based on the active tab.
 // =====================================================================
 const ExpenseCreatePage = () => {
     const { t } = useTranslation();
@@ -162,38 +160,42 @@ const ExpenseCreatePage = () => {
     };
 
     return (
-        // The main layout wrappers have been removed. 
-        // The <main> tag is now the root element.
-        <main className="p-6 sm:p-8">
-            <div className="mb-6 flex flex-col sm:flex-row justify-between items-start">
+        <main className="flex flex-col h-full bg-background">
+            
+            <div className="sticky top-0 z-10 bg-background px-6 sm:px-8 pt-4 pb-6 flex justify-between items-center">
                 <div>
                     <h2 className="text-3xl font-heading text-primary">{t('expenses.pageTitleCreate', 'Create Expense')}</h2>
-                    <p className="text-secondary font-sans mt-1">{t('expenses.pageSubtitleCreate', 'Record a new business expense or mileage.')}</p>
+                   
                 </div>
                 <button
                     onClick={() => navigate('/expenses/preferences')}
-                    className="mt-4 sm:mt-0 font-sans text-sm text-primary hover:text-accent underline transition-colors duration-200 flex items-center space-x-1 self-start sm:self-center"
+                    className="font-sans text-sm text-primary hover:text-accent underline transition-colors duration-200 flex items-center space-x-1"
                 >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924-1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     <span>{t('expenses.mileagePreferencesLink')}</span>
                 </button>
             </div>
-            <div className="mb-6 border-b border-borderDefault flex space-x-1">
-                <button
-                    onClick={() => setActiveTab('expense')}
-                    className={`py-2 px-4 font-sans text-sm font-medium border-b-2 transition-colors duration-150 ${activeTab === 'expense' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-primary hover:border-gray-300'}`}
-                >
-                    {t('expenses.tabExpense')}
-                </button>
-                <button
-                    onClick={() => setActiveTab('mileage')}
-                    className={`py-2 px-4 font-sans text-sm font-medium border-b-2 transition-colors duration-150 ${activeTab === 'mileage' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-primary hover:border-gray-300'}`}
-                >
-                    {t('expenses.tabMileage')}
-                </button>
+            
+            <div className="flex-1 overflow-y-auto px-6 sm:px-8 pb-8">
+
+                <div className="mb-6 border-b border-borderDefault flex space-x-1">
+                    <button
+                        onClick={() => setActiveTab('expense')}
+                        className={`py-2 px-4 font-sans text-sm font-medium border-b-2 transition-colors duration-150 ${activeTab === 'expense' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-primary hover:border-gray-300'}`}
+                    >
+                        {t('expenses.tabExpense')}
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('mileage')}
+                        className={`py-2 px-4 font-sans text-sm font-medium border-b-2 transition-colors duration-150 ${activeTab === 'mileage' ? 'border-primary text-primary' : 'border-transparent text-secondary hover:text-primary hover:border-gray-300'}`}
+                    >
+                        {t('expenses.tabMileage')}
+                    </button>
+                </div>
+
+                {activeTab === 'expense' && <RecordExpenseForm t={t} onSubmit={handleSaveExpense} />}
+                {activeTab === 'mileage' && <RecordMileageForm t={t} onSubmit={handleSaveMileage} />}
             </div>
-            {activeTab === 'expense' && <RecordExpenseForm t={t} onSubmit={handleSaveExpense} />}
-            {activeTab === 'mileage' && <RecordMileageForm t={t} onSubmit={handleSaveMileage} />}
         </main>
     );
 };

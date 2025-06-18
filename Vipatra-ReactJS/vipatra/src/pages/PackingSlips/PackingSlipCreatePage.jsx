@@ -10,22 +10,20 @@ const PackingSlipCreatePage = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    // Form State
+    // --- All your state and logic remains the same ---
     const [basedOnInvoiceNo, setBasedOnInvoiceNo] = useState('');
     const [customerName, setCustomerName] = useState('');
     const [shippingAddress, setShippingAddress] = useState('');
-    const [packingSlipNo, setPackingSlipNo] = useState(''); // Could be auto-generated
+    const [packingSlipNo, setPackingSlipNo] = useState('');
     const [shippingDate, setShippingDate] = useState(new Date().toISOString().slice(0, 10));
     const [itemsToShip, setItemsToShip] = useState([{ ...initialSlipItem }]);
     const [notes, setNotes] = useState('');
     const [orderNo, setOrderNo] = useState('');
     const [carrier, setCarrier] = useState('');
     const [trackingNo, setTrackingNo] = useState('');
-
-
     const [formAlert, setFormAlert] = useState(null);
 
-    const handleLoadItemsFromInvoice = () => {
+     const handleLoadItemsFromInvoice = () => {
         if (!basedOnInvoiceNo) {
             setFormAlert({ type: 'warning', message: t('alerts.enterInvoiceToLoad', 'Please enter an Invoice # to load items.') }); // Add to JSON
             return;
@@ -38,25 +36,20 @@ const PackingSlipCreatePage = () => {
         ]);
         setFormAlert({ type: 'success', message: t('alerts.itemsLoaded', 'Items loaded from invoice (dummy data).') }); // Add to JSON
     };
-
-
     const handleItemChange = (index, field, value) => {
         const updatedItems = [...itemsToShip];
         updatedItems[index][field] = value;
         setItemsToShip(updatedItems);
     };
-
     const addItemRow = () => {
         setItemsToShip([...itemsToShip, { ...initialSlipItem, id: Date.now() }]);
     };
-
     const removeItemRow = (index) => {
         if (itemsToShip.length > 0) {
-            const updatedItems = itemsToShip.filter((_, i) => i !== index);
-            setItemsToShip(updatedItems);
+            setItemsToShip(itemsToShip.filter((_, i) => i !== index));
         }
     };
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         setFormAlert(null);
@@ -84,27 +77,33 @@ const PackingSlipCreatePage = () => {
     };
 
 
-    useEffect(() => {
-        document.title = t('packingSlip.pageTitleCreate');
-    }, [t]);
-
+    useEffect(() => { document.title = t('packingSlip.pageTitleCreate'); }, [t]);
 
     return (
-        <main className="p-6 sm:p-8">
-            <div className="mb-8">
+        // 1. THE PERFECT PAGE LAYOUT
+        <main className="flex flex-col h-full bg-background">
+            
+            {/* 2. THE STICKY HEADER BLOCK */}
+            <div className="sticky top-0 z-10 bg-background px-6 sm:px-8 pt-4 pb-6">
                 <h2 className="text-3xl font-heading text-primary">{t('packingSlip.pageTitleCreate')}</h2>
-                <p className="text-secondary font-sans mt-1">{t('packingSlip.pageSubtitle')}</p>
+               
             </div>
+            
+            {/* 3. THE SCROLLABLE CONTENT AREA */}
+            <div className="flex-1 overflow-y-auto px-6 sm:px-8 pb-8">
+                
+                {formAlert && (
+                    <div className="mb-6">
+                        <Alert type={formAlert.type} message={formAlert.message} onClose={() => setFormAlert(null)} />
+                    </div>
+                )}
 
-            {formAlert && (
-                <div className="mb-6">
-                    <Alert type={formAlert.type} message={formAlert.message} onClose={() => setFormAlert(null)} />
-                </div>
-            )}
+                <form onSubmit={handleSubmit} className="dashboard-card space-y-8">
+                    
+                    {/* ALL YOUR FORM SECTIONS ARE HERE, UNCHANGED */}
 
-            <form onSubmit={handleSubmit} className="dashboard-card space-y-8">
-                {/* Section 1: Basic Info & Customer */}
-                <fieldset>
+                    {/* Section 1: Basic Info & Customer */}
+                     <fieldset>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label htmlFor="basedOnInvoiceNo" className="block text-sm font-medium text-primary mb-1 font-sans">{t('packingSlip.basedOnInvoiceLabel')}</label>
@@ -134,8 +133,9 @@ const PackingSlipCreatePage = () => {
                     </div>
                 </fieldset>
 
-                {/* Section 2: Shipping Details (Optional) */}
-                    <fieldset>
+
+                    {/* Section 2: Shipping Details (Optional) */}
+                   <fieldset>
                     <legend className="text-xl font-heading text-primary mb-4 border-b border-borderLight pb-2">{t('common.shippingDetails', 'Shipping Details')}</legend> {/* Add key */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
@@ -153,9 +153,8 @@ const PackingSlipCreatePage = () => {
                     </div>
                 </fieldset>
 
-
-                {/* Section 3: Items to Ship */}
-                <fieldset>
+                    {/* Section 3: Items to Ship */}
+                       <fieldset>
                     <legend className="text-xl font-heading text-primary mb-4 border-b border-borderLight pb-2">{t('packingSlip.itemsToShip')}</legend>
                     <div id="packingSlipItemsContainer" className="space-y-4">
                         {itemsToShip.map((item, index) => (
@@ -186,14 +185,14 @@ const PackingSlipCreatePage = () => {
                     </button>
                 </fieldset>
 
-                {/* Section 4: Notes */}
-                <fieldset>
-                    <legend className="text-xl font-heading text-primary mb-4 border-b border-borderLight pb-2">{t('packingSlip.notesLabel')}</legend>
-                    <textarea id="notes" value={notes} onChange={e => setNotes(e.target.value)} rows="3" placeholder={t('packingSlip.notesPlaceholder')} className="form-element"></textarea>
-                </fieldset>
+                    {/* Section 4: Notes */}
+                    <fieldset>
+                        <legend className="text-xl font-heading text-primary mb-4 border-b border-borderLight pb-2">{t('packingSlip.notesLabel')}</legend>
+                        <textarea id="notes" value={notes} onChange={e => setNotes(e.target.value)} rows="3" placeholder={t('packingSlip.notesPlaceholder')} className="form-element"></textarea>
+                    </fieldset>
 
-                {/* Form Actions */}
-                <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-borderLight mt-6">
+                    {/* Form Actions */}
+                     <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 border-t border-borderLight mt-6">
                     <button
                         type="button"
                         onClick={() => { /* Implement Preview Logic */ console.log("Preview Packing Slip Clicked"); alert("Preview functionality to be implemented."); }}
@@ -210,7 +209,8 @@ const PackingSlipCreatePage = () => {
                         <span>{t('packingSlip.generateAndSendBtn')}</span>
                     </button>
                 </div>
-            </form>
+                </form>
+            </div>
         </main>
     );
 };

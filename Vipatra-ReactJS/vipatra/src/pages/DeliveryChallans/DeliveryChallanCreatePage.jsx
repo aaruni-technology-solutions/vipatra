@@ -2,16 +2,16 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { PlusCircleIcon, TrashIcon } from '@heroicons/react/outline'; // Example icons
+import { PlusCircleIcon, TrashIcon } from '@heroicons/react/outline';
 
 const initialLineItem = { id: Date.now(), itemDetails: '', quantity: 1, description: '' };
 
 const DeliveryChallanCreatePage = () => {
     const { t } = useTranslation();
 
-    // --- Form State ---
+    // --- All your state and logic remains the same ---
     const [customerName, setCustomerName] = useState('');
-    const [challanNo, setChallanNo] = useState('DC-00001'); // Auto-generate this in backend
+    const [challanNo, setChallanNo] = useState('DC-00001');
     const [referenceNo, setReferenceNo] = useState('');
     const [challanDate, setChallanDate] = useState(new Date().toISOString().slice(0, 10));
     const [challanType, setChallanType] = useState('');
@@ -22,47 +22,46 @@ const DeliveryChallanCreatePage = () => {
     const fileInputRef = useRef(null);
     const [totalQuantity, setTotalQuantity] = useState(0);
 
-    // --- Handlers ---
-    const handleLineItemChange = (index, field, value) => {
-        const updatedItems = [...lineItems];
-        updatedItems[index][field] = value;
-        setLineItems(updatedItems);
-    };
-    const addLineItem = () => {
-        setLineItems([...lineItems, { ...initialLineItem, id: Date.now() }]);
-    };
-    const removeLineItem = (index) => {
-        if (lineItems.length > 0) {
-            const updatedItems = lineItems.filter((_, i) => i !== index);
-            setLineItems(updatedItems);
-        }
-    };
-    const handleFileChange = (event) => {
-        const files = Array.from(event.target.files).slice(0, 3);
-        setAttachedFiles(files);
-        if (fileInputRef.current) fileInputRef.current.value = "";
-    };
-
-    // --- Calculation Logic ---
-    const calculateSummary = useCallback(() => {
-        let currentTotalQuantity = 0;
-        lineItems.forEach(item => {
-            currentTotalQuantity += parseFloat(item.quantity) || 0;
-        });
-        setTotalQuantity(currentTotalQuantity);
-    }, [lineItems]);
-
-    useEffect(() => {
-        calculateSummary();
-    }, [calculateSummary]);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const challanData = { customerName, challanNo, referenceNo, challanDate, challanType, items: lineItems, customerNotes, termsConditions, attachedFiles, totalQuantity };
-        console.log("Delivery Challan Data:", challanData);
-        alert(t('common.formSubmitted'));
-    };
-
+   const handleLineItemChange = (index, field, value) => {
+           const updatedItems = [...lineItems];
+           updatedItems[index][field] = value;
+           setLineItems(updatedItems);
+       };
+       const addLineItem = () => {
+           setLineItems([...lineItems, { ...initialLineItem, id: Date.now() }]);
+       };
+       const removeLineItem = (index) => {
+           if (lineItems.length > 0) {
+               const updatedItems = lineItems.filter((_, i) => i !== index);
+               setLineItems(updatedItems);
+           }
+       };
+       const handleFileChange = (event) => {
+           const files = Array.from(event.target.files).slice(0, 3);
+           setAttachedFiles(files);
+           if (fileInputRef.current) fileInputRef.current.value = "";
+       };
+   
+       // --- Calculation Logic ---
+       const calculateSummary = useCallback(() => {
+           let currentTotalQuantity = 0;
+           lineItems.forEach(item => {
+               currentTotalQuantity += parseFloat(item.quantity) || 0;
+           });
+           setTotalQuantity(currentTotalQuantity);
+       }, [lineItems]);
+   
+       useEffect(() => {
+           calculateSummary();
+       }, [calculateSummary]);
+   
+       const handleSubmit = (e) => {
+           e.preventDefault();
+           const challanData = { customerName, challanNo, referenceNo, challanDate, challanType, items: lineItems, customerNotes, termsConditions, attachedFiles, totalQuantity };
+           console.log("Delivery Challan Data:", challanData);
+           alert(t('common.formSubmitted'));
+       };
+   
     const challanTypes = [
         { value: "jobWork", labelKey: "deliveryChallans.types.jobWork" },
         { value: "supplyOnApproval", labelKey: "deliveryChallans.types.supplyOnApproval" },
@@ -71,17 +70,23 @@ const DeliveryChallanCreatePage = () => {
     ];
 
     return (
-        <main className="p-6 sm:p-8">
-            <div className="mb-8">
+        // 1. THE PERFECT PAGE LAYOUT
+        <main className="flex flex-col h-full bg-background">
+            
+            {/* 2. THE STICKY HEADER BLOCK */}
+            <div className="sticky top-0 z-10 bg-background px-6 sm:px-8 pt-4 pb-6">
                 <h2 className="text-3xl font-heading text-primary">{t('deliveryChallans.pageTitle')}</h2>
             </div>
+            
+            {/* 3. THE SCROLLABLE CONTENT AREA */}
+            <div className="flex-1 overflow-y-auto px-6 sm:px-8 pb-8">
+                <section className="dashboard-card">
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                        
+                        {/* ALL YOUR FORM SECTIONS ARE HERE, UNCHANGED */}
 
-            {/* Single Card for the entire form */}
-            <section className="dashboard-card">
-                <form onSubmit={handleSubmit} className="space-y-8">
-
-                    {/* ----- Section 1: Customer & Challan Basic Info ----- */}
-                    <div>
+                        {/* Section 1: Customer & Challan Basic Info */}
+                        <div>
                         <h3 className="form-legend">{t('deliveryChallans.customerAndChallanInfoTitle', 'Customer & Challan Details')}</h3> {/* New Key */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-5">
                             <div>
@@ -112,51 +117,52 @@ const DeliveryChallanCreatePage = () => {
                         </div>
                     </div>
 
-                    {/* ----- Section 2: Item Table ----- */}
-                    <div className="form-section-divider">
-                        <h3 className="form-legend">{t('deliveryChallans.itemTable.title')}</h3>
-                        <div className="overflow-x-auto -mx-3">
-                            <table className="w-full min-w-[600px] sm:min-w-[700px]">
-                                <thead className="font-sans text-xs text-secondary uppercase bg-background/70">
-                                    <tr>
-                                        <th className="py-2 px-2 text-center w-10">{/* Drag */}</th>
-                                        <th className="py-2 px-2 text-left flex-1">{t('deliveryChallans.itemTable.itemDetails')}</th>
-                                        <th className="py-2 px-2 text-center w-24 sm:w-32">{t('deliveryChallans.itemTable.quantity')}</th>
-                                        <th className="py-2 px-2 text-left w-1/3">{t('deliveryChallans.itemTable.descriptionOptional')}</th>
-                                        <th className="py-2 px-2 text-center w-12">{/* Remove */}</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="font-sans divide-y divide-borderLight">
-                                    {lineItems.map((item, index) => (
-                                        <tr key={item.id} className="item-row group hover:bg-primary/5">
-                                            <td className="py-2.5 px-2 text-gray-400 cursor-grab text-center group-hover:text-primary">⠿</td>
-                                            <td className="py-2.5 px-2">
-                                                <input type="text" value={item.itemDetails} onChange={e => handleLineItemChange(index, 'itemDetails', e.target.value)} placeholder={t('common.searchOrType')} className="form-element-sm !p-2 w-full" />
-                                            </td>
-                                            <td className="py-2.5 px-1">
-                                                <input type="number" value={item.quantity} onChange={e => handleLineItemChange(index, 'quantity', e.target.value)} min="1" className="form-element-sm !p-2 text-center" />
-                                            </td>
-                                            <td className="py-2.5 px-1">
-                                                <input type="text" value={item.description} onChange={e => handleLineItemChange(index, 'description', e.target.value)} placeholder={t('common.optional')} className="form-element-sm !p-2 w-full" />
-                                            </td>
-                                            <td className="py-2.5 px-2 text-center">
-                                                <button type="button" onClick={() => removeLineItem(index)} className="text-gray-400 hover:text-danger-DEFAULT p-1 rounded-full hover:bg-danger-light">
-                                                    <TrashIcon className="w-4 h-4" />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <button type="button" onClick={addLineItem} className="mt-4 font-sans text-sm text-primary hover:text-primary-dark font-medium py-2 px-3 rounded-md hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-colors flex items-center space-x-1.5">
-                            <PlusCircleIcon className="w-5 h-5" />
-                            <span>{t('deliveryChallans.addItemBtn')}</span>
-                        </button>
-                    </div>
 
-                    {/* ----- Section 3: Notes, Summary, Attachments ----- */}
-                    <div className="form-section-divider">
+                        {/* Section 2: Item Table */}
+                        <div className="form-section-divider">
+                                              <h3 className="form-legend">{t('deliveryChallans.itemTable.title')}</h3>
+                                              <div className="overflow-x-auto -mx-3">
+                                                  <table className="w-full min-w-[600px] sm:min-w-[700px]">
+                                                      <thead className="font-sans text-xs text-secondary uppercase bg-background/70">
+                                                          <tr>
+                                                              <th className="py-2 px-2 text-center w-10">{/* Drag */}</th>
+                                                              <th className="py-2 px-2 text-left flex-1">{t('deliveryChallans.itemTable.itemDetails')}</th>
+                                                              <th className="py-2 px-2 text-center w-24 sm:w-32">{t('deliveryChallans.itemTable.quantity')}</th>
+                                                              <th className="py-2 px-2 text-left w-1/3">{t('deliveryChallans.itemTable.descriptionOptional')}</th>
+                                                              <th className="py-2 px-2 text-center w-12">{/* Remove */}</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody className="font-sans divide-y divide-borderLight">
+                                                          {lineItems.map((item, index) => (
+                                                              <tr key={item.id} className="item-row group hover:bg-primary/5">
+                                                                  <td className="py-2.5 px-2 text-gray-400 cursor-grab text-center group-hover:text-primary">⠿</td>
+                                                                  <td className="py-2.5 px-2">
+                                                                      <input type="text" value={item.itemDetails} onChange={e => handleLineItemChange(index, 'itemDetails', e.target.value)} placeholder={t('common.searchOrType')} className="form-element-sm !p-2 w-full" />
+                                                                  </td>
+                                                                  <td className="py-2.5 px-1">
+                                                                      <input type="number" value={item.quantity} onChange={e => handleLineItemChange(index, 'quantity', e.target.value)} min="1" className="form-element-sm !p-2 text-center" />
+                                                                  </td>
+                                                                  <td className="py-2.5 px-1">
+                                                                      <input type="text" value={item.description} onChange={e => handleLineItemChange(index, 'description', e.target.value)} placeholder={t('common.optional')} className="form-element-sm !p-2 w-full" />
+                                                                  </td>
+                                                                  <td className="py-2.5 px-2 text-center">
+                                                                      <button type="button" onClick={() => removeLineItem(index)} className="text-gray-400 hover:text-danger-DEFAULT p-1 rounded-full hover:bg-danger-light">
+                                                                          <TrashIcon className="w-4 h-4" />
+                                                                      </button>
+                                                                  </td>
+                                                              </tr>
+                                                          ))}
+                                                      </tbody>
+                                                  </table>
+                                              </div>
+                                              <button type="button" onClick={addLineItem} className="mt-4 font-sans text-sm text-primary hover:text-primary-dark font-medium py-2 px-3 rounded-md hover:bg-primary/10 border border-transparent hover:border-primary/20 transition-colors flex items-center space-x-1.5">
+                                                  <PlusCircleIcon className="w-5 h-5" />
+                                                  <span>{t('deliveryChallans.addItemBtn')}</span>
+                                              </button>
+                                          </div>
+
+                        {/* Section 3: Notes, Summary, Attachments */}
+                         <div className="form-section-divider">
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-6">
                             <div className="lg:col-span-2 space-y-6">
                                 <div>
@@ -185,8 +191,8 @@ const DeliveryChallanCreatePage = () => {
                         </div>
                     </div>
 
-                    {/* Form Actions */}
-                    <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 mt-6 border-t border-borderLight">
+                        {/* Form Actions */}
+                         <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-4 pt-6 mt-6 border-t border-borderLight">
                         <button type="button" onClick={() => console.log("Save as Draft clicked")} className="font-sans bg-cardBg hover:bg-borderLight text-secondary px-6 py-2.5 rounded-lg shadow-sm border border-borderDefault transition-colors">
                             {t('deliveryChallans.saveAsDraftBtn')}
                         </button>
@@ -194,8 +200,10 @@ const DeliveryChallanCreatePage = () => {
                             {t('deliveryChallans.saveAndSendBtn')}
                         </button>
                     </div>
-                </form>
-            </section>
+
+                    </form>
+                </section>
+            </div>
         </main>
     );
 };
