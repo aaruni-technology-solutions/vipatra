@@ -30,6 +30,7 @@ const getSidebarLinks = (t) => [
     { to: "/delivery-challans", labelKey: "sidebar.newDeliveryChallan", Icon: PaperAirplaneIcon },
     { to: "/credit-notes", labelKey: "sidebar.newCreditNote", Icon: CreditCardIcon },
     { to: "/expenses", labelKey: "sidebar.expenses", Icon: CashIcon },
+    {to:"/admin/audit-logs",labelKey:"sidebar.auditLogs",Icon:AdjustmentsIcon},
     { to: "/reports", labelKey: "sidebar.reports", Icon: ChartBarIcon },
     { to: "/settings", labelKey: "sidebar.settings", Icon: CogIcon },
 ];

@@ -28,7 +28,8 @@
     "subscriptionItems": "Subscription Items",
     "receipts":"Receipts",
      "newPackingSlip": "Packing Slip",
-      "newCreditNote": "Credit Note"
+      "newCreditNote": "Credit Note",
+      "auditLogs":"Audit Logs"
   },
   "dashboard": {
     "adminTitle": "Admin Dashboard",
