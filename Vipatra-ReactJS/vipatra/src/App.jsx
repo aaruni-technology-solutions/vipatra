@@ -33,7 +33,9 @@ import CreditNotesListPage from './pages/Billing/CreditNotesListPage';
 import CreditNoteCreatePage from './pages/Billing/CreditNoteCreatePage';
 
 // Items & Inventory
-import ItemsListPage from './pages/Items/ItemsListPage';
+import ItemsList from './pages/Items/ItemsList';
+import ItemsPage from './pages/Items/ItemsPage';
+import ItemsCreatePage from './pages/Items/ItemsCreatePage';
 import InventoryDashboardPage from './pages/Inventory/InventoryDashboardPage';
 import AuditLogsPage from './pages/Admin/AuditLogsPage';
 // Shipping
@@ -106,10 +108,11 @@ const ProtectedRoutes = () => {
         <Route path="credit-notes/new" element={<CreditNoteCreatePage />} />
         
         {/* --- Items & Inventory --- */}
-        <Route path="items" element={<ItemsListPage />} />
-        <Route path="items/products" element={<ItemsListPage />} />
-        <Route path="items/services" element={<ItemsListPage />} />
-        <Route path="items/subscriptions" element={<ItemsListPage />} />
+        <Route path="items" element={<ItemsList />} />
+         <Route path="items/new" element={<ItemsCreatePage />} />
+        <Route path="items/products" element={<ItemsPage />} />
+        <Route path="items/services" element={<ItemsPage />} />
+        <Route path="items/subscriptions" element={<ItemsPage />} />
         <Route path="inventory" element={<InventoryDashboardPage />} />
         
         {/* --- Shipping --- */}
